@@ -1,26 +1,7 @@
-prompt,canonical_solution,generated_solution
-"from typing import List
+import unittest
+from functions import *
 
-
-def has_close_elements(numbers: List[float], threshold: float) -> bool:
-    """""" Check if in given list of numbers, are any two numbers closer to each other than
-    given threshold.
-    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)
-    False
-    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)
-    True
-    """"""
-","    for idx, elem in enumerate(numbers):
-        for idx2, elem2 in enumerate(numbers):
-            if idx != idx2:
-                distance = abs(elem - elem2)
-                if distance < threshold:
-                    return True
-
-    return False
-","import unittest
-
-class TestHasCloseElements(unittest.TestCase):
+class TestHasCloseElements_0(unittest.TestCase):
     def test_empty_list(self):
         self.assertFalse(has_close_elements([], 0.5))
 
@@ -49,38 +30,9 @@ class TestHasCloseElements(unittest.TestCase):
         self.assertTrue(has_close_elements([1.0, 2.0, 3.0, 4.0, 5.0], 0.5))
 
     def test_five_far_elements(self):
-        self.assertFalse(has_close_elements([1.0, 2.0, 3.0, 4.0, 5.0], 0.1))"
-"from typing import List
+        self.assertFalse(has_close_elements([1.0, 2.0, 3.0, 4.0, 5.0], 0.1))
 
-
-def separate_paren_groups(paren_string: str) -> List[str]:
-    """""" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
-    separate those group into separate strings and return the list of those.
-    Separate groups are balanced (each open brace is properly closed) and not nested within each other
-    Ignore any spaces in the input string.
-    >>> separate_paren_groups('( ) (( )) (( )( ))')
-    ['()', '(())', '(()())']
-    """"""
-","    result = []
-    current_string = []
-    current_depth = 0
-
-    for c in paren_string:
-        if c == '(':
-            current_depth += 1
-            current_string.append(c)
-        elif c == ')':
-            current_depth -= 1
-            current_string.append(c)
-
-            if current_depth == 0:
-                result.append(''.join(current_string))
-                current_string.clear()
-
-    return result
-","import unittest
-
-class TestSeparateParenGroups(unittest.TestCase):
+class TestSeparateParenGroups_1(unittest.TestCase):
     def test_empty_string(self):
         self.assertEqual(separate_paren_groups(''), [])
 
@@ -117,58 +69,29 @@ class TestSeparateParenGroups(unittest.TestCase):
     def test_unbalanced_groups_with_spaces_and_mixed_whitespace_and_newlines_and_tabs(self):
         self.assertEqual(separate_paren_groups('(( \n\t \t \n ))'), ['(( \n\t \t \n ))'])
 
-"
-"
-
-def truncate_number(number: float) -> float:
-    """""" Given a positive floating point number, it can be decomposed into
-    and integer part (largest integer smaller than given number) and decimals
-    (leftover part always smaller than 1).
-
-    Return the decimal part of the number.
-    >>> truncate_number(3.5)
-    0.5
-    """"""
-","    return number % 1.0
-","import unittest
-
-class TestTruncateNumber(unittest.TestCase):
-    def test_truncate_number(self):
+class TestTruncateNumber_2(unittest.TestCase):
+    def test_truncate_number_1(self):
         self.assertEqual(truncate_number(3.5), 0.5)
+    def test_truncate_number_2(self):
         self.assertEqual(truncate_number(3.0), 0.0)
+    def test_truncate_number_3(self):
         self.assertEqual(truncate_number(3.9), 0.9)
+    def test_truncate_number_4(self):
         self.assertEqual(truncate_number(3.99), 0.99)
+    def test_truncate_number_5(self):
         self.assertEqual(truncate_number(3.999), 0.999)
+    def test_truncate_number_6(self):
         self.assertEqual(truncate_number(3.9999), 0.9999)
+    def test_truncate_number_7(self):
         self.assertEqual(truncate_number(3.99999), 0.99999)
+    def test_truncate_number_8(self):
         self.assertEqual(truncate_number(3.999999), 0.999999)
+    def test_truncate_number_9(self):
         self.assertEqual(truncate_number(3.9999999), 0.9999999)
+    def test_truncate_number_10(self):
         self.assertEqual(truncate_number(3.99999999), 0.99999999)
 
-"
-"from typing import List
-
-
-def below_zero(operations: List[int]) -> bool:
-    """""" You're given a list of deposit and withdrawal operations on a bank account that starts with
-    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and
-    at that point function should return True. Otherwise it should return False.
-    >>> below_zero([1, 2, 3])
-    False
-    >>> below_zero([1, 2, -4, 5])
-    True
-    """"""
-","    balance = 0
-
-    for op in operations:
-        balance += op
-        if balance < 0:
-            return True
-
-    return False
-","import unittest
-
-class TestBelowZero(unittest.TestCase):
+class TestBelowZero_3(unittest.TestCase):
     def test_empty_list(self):
         self.assertFalse(below_zero([]))
 
@@ -184,38 +107,24 @@ class TestBelowZero(unittest.TestCase):
     def test_multiple_negative_operations(self):
         self.assertTrue(below_zero([-1, -2, -3]))
 
-    def test_mixed_operations(self):
+    def test_mixed_operations_1(self):
         self.assertTrue(below_zero([1, -2, 3]))
+    def test_mixed_operations_2(self):
         self.assertTrue(below_zero([-1, 2, -3]))
-
     def test_large_list(self):
         operations = [1] * 1000
         self.assertFalse(below_zero(operations))
 
-    def test_edge_cases(self):
+    def test_edge_cases_1(self):
         self.assertFalse(below_zero([0]))
+    def test_edge_cases_2(self):
         self.assertFalse(below_zero([1, 0]))
+    def test_edge_cases_3(self):
         self.assertFalse(below_zero([-1, 0]))
+    def test_edge_cases_4(self):
         self.assertFalse(below_zero([-1, -2, 0]))
 
-"
-"from typing import List
-
-
-def mean_absolute_deviation(numbers: List[float]) -> float:
-    """""" For a given list of input numbers, calculate Mean Absolute Deviation
-    around the mean of this dataset.
-    Mean Absolute Deviation is the average absolute difference between each
-    element and a centerpoint (mean in this case):
-    MAD = average | x - x_mean |
-    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])
-    1.0
-    """"""
-","    mean = sum(numbers) / len(numbers)
-    return sum(abs(x - mean) for x in numbers) / len(numbers)
-","import unittest
-
-class TestMeanAbsoluteDeviation(unittest.TestCase):
+class TestMeanAbsoluteDeviation_4(unittest.TestCase):
     def test_mean_absolute_deviation(self):
         numbers = [1.0, 2.0, 3.0, 4.0]
         expected_result = 1.0
@@ -269,32 +178,9 @@ class TestMeanAbsoluteDeviation(unittest.TestCase):
     def test_mean_absolute_deviation_with_large_floating_point_numbers(self):
         numbers = [1000000.0, 2000000.0, 3000000.0, 4000000.0]
         expected_result = 1000000.0
-        self.assertEqual(mean_absolute_deviation(numbers), expected_result)"
-"from typing import List
+        self.assertEqual(mean_absolute_deviation(numbers), expected_result)
 
-
-def intersperse(numbers: List[int], delimeter: int) -> List[int]:
-    """""" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'
-    >>> intersperse([], 4)
-    []
-    >>> intersperse([1, 2, 3], 4)
-    [1, 4, 2, 4, 3]
-    """"""
-","    if not numbers:
-        return []
-
-    result = []
-
-    for n in numbers[:-1]:
-        result.append(n)
-        result.append(delimeter)
-
-    result.append(numbers[-1])
-
-    return result
-","import unittest
-
-class TestIntersperse(unittest.TestCase):
+class TestIntersperse_5(unittest.TestCase):
     def test_empty_list(self):
         self.assertEqual(intersperse([], 4), [])
 
@@ -328,34 +214,7 @@ class TestIntersperse(unittest.TestCase):
     def test_ten_element_list(self):
         self.assertEqual(intersperse([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4), [1, 4, 2, 4, 3, 4, 5, 6, 7, 8, 9, 10])
 
-"
-"from typing import List
-
-
-def parse_nested_parens(paren_string: str) -> List[int]:
-    """""" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.
-    For each of the group, output the deepest level of nesting of parentheses.
-    E.g. (()()) has maximum two levels of nesting while ((())) has three.
-
-    >>> parse_nested_parens('(()()) ((())) () ((())()())')
-    [2, 3, 1, 3]
-    """"""
-","    def parse_paren_group(s):
-        depth = 0
-        max_depth = 0
-        for c in s:
-            if c == '(':
-                depth += 1
-                max_depth = max(depth, max_depth)
-            else:
-                depth -= 1
-
-        return max_depth
-
-    return [parse_paren_group(x) for x in paren_string.split(' ') if x]
-","import unittest
-
-class TestParseNestedParens(unittest.TestCase):
+class TestParseNestedParens_6(unittest.TestCase):
     def test_empty_string(self):
         self.assertEqual(parse_nested_parens(''), [])
 
@@ -365,27 +224,16 @@ class TestParseNestedParens(unittest.TestCase):
     def test_multiple_groups(self):
         self.assertEqual(parse_nested_parens('(()()) ((())) () ((())()())'), [2, 3, 1, 3])
 
-    def test_invalid_input(self):
+    def test_invalid_input_1(self):
         self.assertRaises(ValueError, parse_nested_parens, '(')
+    def test_invalid_input_2(self):
         self.assertRaises(ValueError, parse_nested_parens, ')')
+    def test_invalid_input_3(self):
         self.assertRaises(ValueError, parse_nested_parens, '((())')
+    def test_invalid_input_4(self):
         self.assertRaises(ValueError, parse_nested_parens, '((())()())')
 
-"
-"from typing import List
-
-
-def filter_by_substring(strings: List[str], substring: str) -> List[str]:
-    """""" Filter an input list of strings only for ones that contain given substring
-    >>> filter_by_substring([], 'a')
-    []
-    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')
-    ['abc', 'bacd', 'array']
-    """"""
-","    return [x for x in strings if substring in x]
-","import unittest
-
-class TestFilterBySubstring(unittest.TestCase):
+class TestFilterBySubstring_7(unittest.TestCase):
     def test_empty_list(self):
         self.assertEqual(filter_by_substring([], 'a'), [])
 
@@ -395,25 +243,25 @@ class TestFilterBySubstring(unittest.TestCase):
     def test_list_with_one_matching_substring(self):
         self.assertEqual(filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a'), ['abc', 'bacd', 'array'])
 
-    def test_list_with_multiple_matching_substrings(self):
+    def test_list_with_multiple_matching_substrings_1(self):
         self.assertEqual(filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a'), ['abc', 'bacd', 'array'])
+    def test_list_with_multiple_matching_substrings_2(self):
         self.assertEqual(filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'c'), ['abc', 'cde', 'array'])
-
-    def test_list_with_duplicate_matching_substrings(self):
+    def test_list_with_duplicate_matching_substrings_1(self):
         self.assertEqual(filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a'), ['abc', 'bacd', 'array'])
+    def test_list_with_duplicate_matching_substrings_2(self):
         self.assertEqual(filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'c'), ['abc', 'cde', 'array'])
-
     def test_list_with_empty_string(self):
         self.assertEqual(filter_by_substring(['abc', 'bacd', 'cde', 'array'], ''), ['abc', 'bacd', 'cde', 'array'])
 
-    def test_list_with_non_string_elements(self):
+    def test_list_with_non_string_elements_1(self):
         self.assertEqual(filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a'), ['abc', 'bacd', 'array'])
+    def test_list_with_non_string_elements_2(self):
         self.assertEqual(filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'c'), ['abc', 'cde', 'array'])
-
-    def test_list_with_mixed_case_substring(self):
+    def test_list_with_mixed_case_substring_1(self):
         self.assertEqual(filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'A'), ['abc', 'bacd', 'array'])
+    def test_list_with_mixed_case_substring_2(self):
         self.assertEqual(filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'C'), ['abc', 'cde', 'array'])
-
     def test_list_with_substring_at_beginning(self):
         self.assertEqual(filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'abc'), ['abc'])
 
@@ -423,28 +271,7 @@ class TestFilterBySubstring(unittest.TestCase):
     def test_list_with_substring_in_middle(self):
         self.assertEqual(filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'bacd'), ['bacd'])
 
-"
-"from typing import List, Tuple
-
-
-def sum_product(numbers: List[int]) -> Tuple[int, int]:
-    """""" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.
-    Empty sum should be equal to 0 and empty product should be equal to 1.
-    >>> sum_product([])
-    (0, 1)
-    >>> sum_product([1, 2, 3, 4])
-    (10, 24)
-    """"""
-","    sum_value = 0
-    prod_value = 1
-
-    for n in numbers:
-        sum_value += n
-        prod_value *= n
-    return sum_value, prod_value
-","import unittest
-
-class TestSumProduct(unittest.TestCase):
+class TestSumProduct_8(unittest.TestCase):
     def test_empty_list(self):
         self.assertEqual(sum_product([]), (0, 1))
 
@@ -478,31 +305,7 @@ class TestSumProduct(unittest.TestCase):
     def test_nan_elements(self):
         self.assertEqual(sum_product([float('nan'), float('nan'), float('nan'), float('nan')]), (float('nan'), float('nan')))
 
-"
-"from typing import List, Tuple
-
-
-def rolling_max(numbers: List[int]) -> List[int]:
-    """""" From a given list of integers, generate a list of rolling maximum element found until given moment
-    in the sequence.
-    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])
-    [1, 2, 3, 3, 3, 4, 4]
-    """"""
-","    running_max = None
-    result = []
-
-    for n in numbers:
-        if running_max is None:
-            running_max = n
-        else:
-            running_max = max(running_max, n)
-
-        result.append(running_max)
-
-    return result
-","import unittest
-
-class TestRollingMax(unittest.TestCase):
+class TestRollingMax_9(unittest.TestCase):
     def test_rolling_max(self):
         numbers = [1, 2, 3, 2, 3, 4, 2]
         expected_result = [1, 2, 3, 3, 3, 4, 4]
@@ -551,38 +354,9 @@ class TestRollingMax(unittest.TestCase):
     def test_rolling_max_with_single_element_list(self):
         numbers = [1]
         expected_result = [1]
-        self.assertEqual(rolling_max(numbers), expected_result)"
-"
+        self.assertEqual(rolling_max(numbers), expected_result)
 
-def is_palindrome(string: str) -> bool:
-    """""" Test if given string is a palindrome """"""
-    return string == string[::-1]
-
-
-def make_palindrome(string: str) -> str:
-    """""" Find the shortest palindrome that begins with a supplied string.
-    Algorithm idea is simple:
-    - Find the longest postfix of supplied string that is a palindrome.
-    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.
-    >>> make_palindrome('')
-    ''
-    >>> make_palindrome('cat')
-    'catac'
-    >>> make_palindrome('cata')
-    'catac'
-    """"""
-","    if not string:
-        return ''
-
-    beginning_of_suffix = 0
-
-    while not is_palindrome(string[beginning_of_suffix:]):
-        beginning_of_suffix += 1
-
-    return string + string[:beginning_of_suffix][::-1]
-","import unittest
-
-class TestMakePalindrome(unittest.TestCase):
+class TestMakePalindrome_10(unittest.TestCase):
     def test_empty_string(self):
         self.assertEqual(make_palindrome(''), '')
 
@@ -616,26 +390,7 @@ class TestMakePalindrome(unittest.TestCase):
     def test_ten_char_string(self):
         self.assertEqual(make_palindrome('abcdefghij'), 'abcdefghijabcdefghij')
 
-"
-"from typing import List
-
-
-def string_xor(a: str, b: str) -> str:
-    """""" Input are two strings a and b consisting only of 1s and 0s.
-    Perform binary XOR on these inputs and return result also as a string.
-    >>> string_xor('010', '110')
-    '100'
-    """"""
-","    def xor(i, j):
-        if i == j:
-            return '0'
-        else:
-            return '1'
-
-    return ''.join(xor(x, y) for x, y in zip(a, b))
-","import unittest
-
-class TestStringXor(unittest.TestCase):
+class TestStringXor_11(unittest.TestCase):
     def test_string_xor_1(self):
         self.assertEqual(string_xor('010', '110'), '100')
 
@@ -666,30 +421,7 @@ class TestStringXor(unittest.TestCase):
     def test_string_xor_10(self):
         self.assertEqual(string_xor('010', '111'), '101')
 
-"
-"from typing import List, Optional
-
-
-def longest(strings: List[str]) -> Optional[str]:
-    """""" Out of list of strings, return the longest one. Return the first one in case of multiple
-    strings of the same length. Return None in case the input list is empty.
-    >>> longest([])
-
-    >>> longest(['a', 'b', 'c'])
-    'a'
-    >>> longest(['a', 'bb', 'ccc'])
-    'ccc'
-    """"""
-","    if not strings:
-        return None
-
-    maxlen = max(len(x) for x in strings)
-    for s in strings:
-        if len(s) == maxlen:
-            return s
-","import unittest
-
-class TestLongest(unittest.TestCase):
+class TestLongest_12(unittest.TestCase):
     def test_empty_list(self):
         self.assertIsNone(longest([]))
 
@@ -727,51 +459,31 @@ class TestLongest(unittest.TestCase):
         self.assertEqual(longest(['a', 'bb', 'ccc']), 'ccc')
 
     def test_multiple_strings_same_length_10(self):
-        self.assertEqual(longest(['a', 'bb', 'ccc']), 'ccc')"
-"
+        self.assertEqual(longest(['a', 'bb', 'ccc']), 'ccc')
 
-def greatest_common_divisor(a: int, b: int) -> int:
-    """""" Return a greatest common divisor of two integers a and b
-    >>> greatest_common_divisor(3, 5)
-    1
-    >>> greatest_common_divisor(25, 15)
-    5
-    """"""
-","    while b:
-        a, b = b, a % b
-    return a
-","import unittest
-
-class TestGreatestCommonDivisor(unittest.TestCase):
-    def test_greatest_common_divisor(self):
+class TestGreatestCommonDivisor_13(unittest.TestCase):
+    def test_greatest_common_divisor_1(self):
         self.assertEqual(greatest_common_divisor(3, 5), 1)
+    def test_greatest_common_divisor_2(self):
         self.assertEqual(greatest_common_divisor(25, 15), 5)
+    def test_greatest_common_divisor_3(self):
         self.assertEqual(greatest_common_divisor(10, 15), 5)
+    def test_greatest_common_divisor_4(self):
         self.assertEqual(greatest_common_divisor(15, 10), 5)
+    def test_greatest_common_divisor_5(self):
         self.assertEqual(greatest_common_divisor(20, 10), 10)
+    def test_greatest_common_divisor_6(self):
         self.assertEqual(greatest_common_divisor(10, 20), 10)
+    def test_greatest_common_divisor_7(self):
         self.assertEqual(greatest_common_divisor(25, 20), 5)
+    def test_greatest_common_divisor_8(self):
         self.assertEqual(greatest_common_divisor(20, 25), 5)
+    def test_greatest_common_divisor_9(self):
         self.assertEqual(greatest_common_divisor(30, 20), 10)
+    def test_greatest_common_divisor_10(self):
         self.assertEqual(greatest_common_divisor(20, 30), 10)
 
-"
-"from typing import List
-
-
-def all_prefixes(string: str) -> List[str]:
-    """""" Return list of all prefixes from shortest to longest of the input string
-    >>> all_prefixes('abc')
-    ['a', 'ab', 'abc']
-    """"""
-","    result = []
-
-    for i in range(len(string)):
-        result.append(string[:i+1])
-    return result
-","import unittest
-
-class TestAllPrefixes(unittest.TestCase):
+class TestAllPrefixes_14(unittest.TestCase):
     def test_all_prefixes_empty_string(self):
         self.assertEqual(all_prefixes(''), [])
 
@@ -805,20 +517,7 @@ class TestAllPrefixes(unittest.TestCase):
     def test_all_prefixes_ten_char_string(self):
         self.assertEqual(all_prefixes('abcdefghij'), ['a', 'ab', 'abc', 'abcd', 'abcde', 'abcdef', 'abcdefg', 'abcdefgh', 'abcdefghi', 'abcdefghij'])
 
-"
-"
-
-def string_sequence(n: int) -> str:
-    """""" Return a string containing space-delimited numbers starting from 0 upto n inclusive.
-    >>> string_sequence(0)
-    '0'
-    >>> string_sequence(5)
-    '0 1 2 3 4 5'
-    """"""
-","    return ' '.join([str(x) for x in range(n + 1)])
-","import unittest
-
-class TestStringSequence(unittest.TestCase):
+class TestStringSequence_15(unittest.TestCase):
     def test_string_sequence_0(self):
         self.assertEqual(string_sequence(0), '0')
 
@@ -852,20 +551,7 @@ class TestStringSequence(unittest.TestCase):
     def test_string_sequence_10(self):
         self.assertEqual(string_sequence(10), '0 1 2 3 4 5 6 7 8 9 10')
 
-"
-"
-
-def count_distinct_characters(string: str) -> int:
-    """""" Given a string, find out how many distinct characters (regardless of case) does it consist of
-    >>> count_distinct_characters('xyzXYZ')
-    3
-    >>> count_distinct_characters('Jerry')
-    4
-    """"""
-","    return len(set(string.lower()))
-","import unittest
-
-class TestCountDistinctCharacters(unittest.TestCase):
+class TestCountDistinctCharacters_16(unittest.TestCase):
     def test_empty_string(self):
         self.assertEqual(count_distinct_characters(''), 0)
 
@@ -882,7 +568,7 @@ class TestCountDistinctCharacters(unittest.TestCase):
         self.assertEqual(count_distinct_characters('ABC'), 3)
 
     def test_special_characters(self):
-        self.assertEqual(count_distinct_characters('!@#$%^&*()_+-=[]{}|;:"",./<>?'), 33)
+        self.assertEqual(count_distinct_characters('!@#$%^&*()_+-=[]{}|;:",./<>?'), 33)
 
     def test_unicode_characters(self):
         self.assertEqual(count_distinct_characters('éàèù'), 4)
@@ -893,28 +579,7 @@ class TestCountDistinctCharacters(unittest.TestCase):
     def test_invalid_input(self):
         self.assertRaises(TypeError, count_distinct_characters, 123)
 
-"
-"from typing import List
-
-
-def parse_music(music_string: str) -> List[int]:
-    """""" Input to this function is a string representing musical notes in a special ASCII format.
-    Your task is to parse this string and return list of integers corresponding to how many beats does each
-    not last.
-
-    Here is a legend:
-    'o' - whole note, lasts four beats
-    'o|' - half note, lasts two beats
-    '.|' - quater note, lasts one beat
-
-    >>> parse_music('o o| .| o| o| .| .| .| .| o o')
-    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]
-    """"""
-","    note_map = {'o': 4, 'o|': 2, '.|': 1}
-    return [note_map[x] for x in music_string.split(' ') if x]
-","import unittest
-
-class TestParseMusic(unittest.TestCase):
+class TestParseMusic_17(unittest.TestCase):
     def test_whole_note(self):
         self.assertEqual(parse_music('o'), [4])
 
@@ -945,28 +610,7 @@ class TestParseMusic(unittest.TestCase):
     def test_multiple_whitespace(self):
         self.assertEqual(parse_music(' o o| .| o| o| .| .| .| o o'), [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4])
 
-"
-"
-
-def how_many_times(string: str, substring: str) -> int:
-    """""" Find how many times a given substring can be found in the original string. Count overlaping cases.
-    >>> how_many_times('', 'a')
-    0
-    >>> how_many_times('aaa', 'a')
-    3
-    >>> how_many_times('aaaa', 'aa')
-    3
-    """"""
-","    times = 0
-
-    for i in range(len(string) - len(substring) + 1):
-        if string[i:i+len(substring)] == substring:
-            times += 1
-
-    return times
-","import unittest
-
-class TestHowManyTimes(unittest.TestCase):
+class TestHowManyTimes_18(unittest.TestCase):
     def test_empty_string(self):
         self.assertEqual(how_many_times('', 'a'), 0)
 
@@ -1000,33 +644,7 @@ class TestHowManyTimes(unittest.TestCase):
     def test_substring_with_unicode_characters_and_overlap(self):
         self.assertEqual(how_many_times('aaaa', 'a\u0301'), 3)
 
-"
-"from typing import List
-
-
-def sort_numbers(numbers: str) -> str:
-    """""" Input is a space-delimited string of numberals from 'zero' to 'nine'.
-    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.
-    Return the string with numbers sorted from smallest to largest
-    >>> sort_numbers('three one five')
-    'one three five'
-    """"""
-","    value_map = {
-        'zero': 0,
-        'one': 1,
-        'two': 2,
-        'three': 3,
-        'four': 4,
-        'five': 5,
-        'six': 6,
-        'seven': 7,
-        'eight': 8,
-        'nine': 9
-    }
-    return ' '.join(sorted([x for x in numbers.split(' ') if x], key=lambda x: value_map[x]))
-","import unittest
-
-class TestSortNumbers(unittest.TestCase):
+class TestSortNumbers_19(unittest.TestCase):
     def test_sort_numbers_empty_string(self):
         self.assertEqual(sort_numbers(''), '')
 
@@ -1057,37 +675,7 @@ class TestSortNumbers(unittest.TestCase):
     def test_sort_numbers_nine_numbers(self):
         self.assertEqual(sort_numbers('one two three four five six seven eight nine'), 'one two three four five six seven eight nine')
 
-"
-"from typing import List, Tuple
-
-
-def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
-    """""" From a supplied list of numbers (of length at least two) select and return two that are the closest to each
-    other and return them in order (smaller number, larger number).
-    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])
-    (2.0, 2.2)
-    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])
-    (2.0, 2.0)
-    """"""
-","    closest_pair = None
-    distance = None
-
-    for idx, elem in enumerate(numbers):
-        for idx2, elem2 in enumerate(numbers):
-            if idx != idx2:
-                if distance is None:
-                    distance = abs(elem - elem2)
-                    closest_pair = tuple(sorted([elem, elem2]))
-                else:
-                    new_distance = abs(elem - elem2)
-                    if new_distance < distance:
-                        distance = new_distance
-                        closest_pair = tuple(sorted([elem, elem2]))
-
-    return closest_pair
-","import unittest
-
-class TestFindClosestElements(unittest.TestCase):
+class TestFindClosestElements_20(unittest.TestCase):
     def test_find_closest_elements(self):
         numbers = [1.0, 2.0, 3.0, 4.0, 5.0, 2.2]
         expected_result = (2.0, 2.2)
@@ -1141,22 +729,9 @@ class TestFindClosestElements(unittest.TestCase):
     def test_find_closest_elements_with_eight_element_list(self):
         numbers = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0]
         expected_result = (1.0, 2.0)
-        self.assertEqual(find_closest_elements(numbers), expected_result)"
-"from typing import List
+        self.assertEqual(find_closest_elements(numbers), expected_result)
 
-
-def rescale_to_unit(numbers: List[float]) -> List[float]:
-    """""" Given list of numbers (of at least two elements), apply a linear transform to that list,
-    such that the smallest number will become 0 and the largest will become 1
-    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])
-    [0.0, 0.25, 0.5, 0.75, 1.0]
-    """"""
-","    min_number = min(numbers)
-    max_number = max(numbers)
-    return [(x - min_number) / (max_number - min_number) for x in numbers]
-","import unittest
-
-class TestRescaleToUnit(unittest.TestCase):
+class TestRescaleToUnit_21(unittest.TestCase):
     def test_rescale_to_unit_with_two_numbers(self):
         numbers = [1.0, 2.0]
         expected_result = [0.0, 1.0]
@@ -1197,22 +772,8 @@ class TestRescaleToUnit(unittest.TestCase):
         expected_result = [0.0, 0.11, 0.22, 0.33, 0.44, 0.55, 0.66, 0.77, 0.88]
         self.assertEqual(rescale_to_unit(numbers), expected_result)
 
-    def test_rescale_to_unit_with_ten_numbers(self):
-        numbers = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]"
-"from typing import List, Any
 
-
-def filter_integers(values: List[Any]) -> List[int]:
-    """""" Filter given list of any python values only for integers
-    >>> filter_integers(['a', 3.14, 5])
-    [5]
-    >>> filter_integers([1, 2, 3, 'abc', {}, []])
-    [1, 2, 3]
-    """"""
-","    return [x for x in values if isinstance(x, int)]
-","import unittest
-
-class TestFilterIntegers(unittest.TestCase):
+class TestFilterIntegers_22(unittest.TestCase):
     def test_filter_integers_empty_list(self):
         self.assertEqual(filter_integers([]), [])
 
@@ -1240,20 +801,7 @@ class TestFilterIntegers(unittest.TestCase):
     def test_filter_integers_list_of_nested_lists_with_mixed_types_and_strings_and_floats(self):
         self.assertEqual(filter_integers([[1, 'a'], ['b', 2.0], [3.0, 'c'], [4.0, 'd']]), [[1, 2], [3, 4]])
 
-"
-"
-
-def strlen(string: str) -> int:
-    """""" Return length of given string
-    >>> strlen('')
-    0
-    >>> strlen('abc')
-    3
-    """"""
-","    return len(string)
-","import unittest
-
-class TestStrlen(unittest.TestCase):
+class TestStrlen_23(unittest.TestCase):
     def test_strlen_empty_string(self):
         self.assertEqual(strlen(''), 0)
 
@@ -1296,20 +844,7 @@ class TestStrlen(unittest.TestCase):
     def test_strlen_empty_string_with_null(self):
         self.assertEqual(strlen('\0'), 1)
 
-"
-"
-
-def largest_divisor(n: int) -> int:
-    """""" For a given number n, find the largest number that divides n evenly, smaller than n
-    >>> largest_divisor(15)
-    5
-    """"""
-","    for i in reversed(range(n)):
-        if n % i == 0:
-            return i
-","import unittest
-
-class TestLargestDivisor(unittest.TestCase):
+class TestLargestDivisor_24(unittest.TestCase):
     def test_largest_divisor_1(self):
         self.assertEqual(largest_divisor(15), 5)
 
@@ -1340,37 +875,7 @@ class TestLargestDivisor(unittest.TestCase):
     def test_largest_divisor_10(self):
         self.assertEqual(largest_divisor(10), 5)
 
-"
-"from typing import List
-
-
-def factorize(n: int) -> List[int]:
-    """""" Return list of prime factors of given integer in the order from smallest to largest.
-    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.
-    Input number should be equal to the product of all factors
-    >>> factorize(8)
-    [2, 2, 2]
-    >>> factorize(25)
-    [5, 5]
-    >>> factorize(70)
-    [2, 5, 7]
-    """"""
-","    import math
-    fact = []
-    i = 2
-    while i <= int(math.sqrt(n) + 1):
-        if n % i == 0:
-            fact.append(i)
-            n //= i
-        else:
-            i += 1
-
-    if n > 1:
-        fact.append(n)
-    return fact
-","import unittest
-
-class TestFactorize(unittest.TestCase):
+class TestFactorize_25(unittest.TestCase):
     def test_factorize_1(self):
         self.assertEqual(factorize(8), [2, 2, 2])
 
@@ -1401,22 +906,7 @@ class TestFactorize(unittest.TestCase):
     def test_factorize_10(self):
         self.assertEqual(factorize(375), [2, 2, 2, 5, 5, 5, 5, 5, 5])
 
-"
-"from typing import List
-
-
-def remove_duplicates(numbers: List[int]) -> List[int]:
-    """""" From a list of integers, remove all elements that occur more than once.
-    Keep order of elements left the same as in the input.
-    >>> remove_duplicates([1, 2, 3, 2, 4])
-    [1, 3, 4]
-    """"""
-","    import collections
-    c = collections.Counter(numbers)
-    return [n for n in numbers if c[n] <= 1]
-","import unittest
-
-class TestRemoveDuplicates(unittest.TestCase):
+class TestRemoveDuplicates_26(unittest.TestCase):
     def test_remove_duplicates_empty_list(self):
         self.assertEqual(remove_duplicates([]), [])
 
@@ -1444,18 +934,7 @@ class TestRemoveDuplicates(unittest.TestCase):
     def test_remove_duplicates_with_mixed_types(self):
         self.assertEqual(remove_duplicates([1, 'a', 2, 'b', 3, 'c', 2, 'b', 4]), [1, 'a', 3, 'c', 4])
 
-"
-"
-
-def flip_case(string: str) -> str:
-    """""" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.
-    >>> flip_case('Hello')
-    'hELLO'
-    """"""
-","    return string.swapcase()
-","import unittest
-
-class TestFlipCase(unittest.TestCase):
+class TestFlipCase_27(unittest.TestCase):
     def test_flip_case_empty_string(self):
         self.assertEqual(flip_case(''), '')
 
@@ -1475,7 +954,7 @@ class TestFlipCase(unittest.TestCase):
         self.assertEqual(flip_case('HeLlO'), 'hElLo')
 
     def test_flip_case_special_characters(self):
-        self.assertEqual(flip_case('!@#$%^&*()_+-=[]{}|;:"",./<>?'), '!@#$%^&*()_+-=[]{}|;:"",./<>?')
+        self.assertEqual(flip_case('!@#$%^&*()_+-=[]{}|;:",./<>?'), '!@#$%^&*()_+-=[]{}|;:",./<>?')
 
     def test_flip_case_unicode_characters(self):
         self.assertEqual(flip_case('áéíóú'), 'ÁÉÍÓÚ')
@@ -1484,23 +963,9 @@ class TestFlipCase(unittest.TestCase):
         self.assertEqual(flip_case('çãõ'), 'ÇÃÕ')
 
     def test_flip_case_non_ascii_characters_with_special_characters(self):
-        self.assertEqual(flip_case('çãõ!@#$%^&*()_+-=[]{}|;:"",./<>?'), 'ÇÃÕ!@#$%^&*()_+-=[]{}|;:"",./<>?')
+        self.assertEqual(flip_case('çãõ!@#$%^&*()_+-=[]{}|;:",./<>?'), 'ÇÃÕ!@#$%^&*()_+-=[]{}|;:",./<>?')
 
-"
-"from typing import List
-
-
-def concatenate(strings: List[str]) -> str:
-    """""" Concatenate list of strings into a single string
-    >>> concatenate([])
-    ''
-    >>> concatenate(['a', 'b', 'c'])
-    'abc'
-    """"""
-","    return ''.join(strings)
-","import unittest
-
-class TestConcatenate(unittest.TestCase):
+class TestConcatenate_28(unittest.TestCase):
     def test_empty_list(self):
         self.assertEqual(concatenate([]), '')
 
@@ -1532,21 +997,9 @@ class TestConcatenate(unittest.TestCase):
         self.assertEqual(concatenate(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']), 'abcdefgh')
 
     def test_list_with_non_ascii_characters_and_special_characters(self):
-        self.assertEqual(concatenate(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']), 'abcdefghi')"
-"from typing import List
+        self.assertEqual(concatenate(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']), 'abcdefghi')
 
-
-def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
-    """""" Filter an input list of strings only for ones that start with a given prefix.
-    >>> filter_by_prefix([], 'a')
-    []
-    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')
-    ['abc', 'array']
-    """"""
-","    return [x for x in strings if x.startswith(prefix)]
-","import unittest
-
-class TestFilterByPrefix(unittest.TestCase):
+class TestFilterByPrefix_29(unittest.TestCase):
     def test_empty_list(self):
         self.assertEqual(filter_by_prefix([], 'a'), [])
 
@@ -1577,20 +1030,7 @@ class TestFilterByPrefix(unittest.TestCase):
     def test_non_ascii(self):
         self.assertEqual(filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a\u0000'), ['abc', 'array'])
 
-"
-"
-
-def get_positive(l: list):
-    """"""Return only positive numbers in the list.
-    >>> get_positive([-1, 2, -4, 5, 6])
-    [2, 5, 6]
-    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
-    [5, 3, 2, 3, 9, 123, 1]
-    """"""
-","    return [e for e in l if e > 0]
-","import unittest
-
-class TestGetPositive(unittest.TestCase):
+class TestGetPositive_30(unittest.TestCase):
     def test_empty_list(self):
         self.assertEqual(get_positive([]), [])
 
@@ -1621,35 +1061,7 @@ class TestGetPositive(unittest.TestCase):
     def test_list_with_nested_lists_and_mixed_types(self):
         self.assertEqual(get_positive([[1, '2'], [3, 4], [5, '6']]), [[1, 2], [3, 4], [5, 6]])
 
-"
-"
-
-def is_prime(n):
-    """"""Return true if a given number is prime, and false otherwise.
-    >>> is_prime(6)
-    False
-    >>> is_prime(101)
-    True
-    >>> is_prime(11)
-    True
-    >>> is_prime(13441)
-    True
-    >>> is_prime(61)
-    True
-    >>> is_prime(4)
-    False
-    >>> is_prime(1)
-    False
-    """"""
-","    if n < 2:
-        return False
-    for k in range(2, n - 1):
-        if n % k == 0:
-            return False
-    return True
-","import unittest
-
-class TestIsPrime(unittest.TestCase):
+class TestIsPrime_31(unittest.TestCase):
     def test_is_prime_6(self):
         self.assertFalse(is_prime(6))
 
@@ -1707,44 +1119,7 @@ class TestIsPrime(unittest.TestCase):
     def test_is_prime_ten_digits(self):
         self.assertTrue(is_prime(11111111111))
 
-"
-"import math
-
-
-def poly(xs: list, x: float):
-    """"""
-    Evaluates polynomial with coefficients xs at point x.
-    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n
-    """"""
-    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
-
-
-def find_zero(xs: list):
-    """""" xs are coefficients of a polynomial.
-    find_zero find x such that poly(x) = 0.
-    find_zero returns only only zero point, even if there are many.
-    Moreover, find_zero only takes list xs having even number of coefficients
-    and largest non zero coefficient as it guarantees
-    a solution.
-    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x
-    -0.5
-    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3
-    1.0
-    """"""
-","    begin, end = -1., 1.
-    while poly(xs, begin) * poly(xs, end) > 0:
-        begin *= 2.0
-        end *= 2.0
-    while end - begin > 1e-10:
-        center = (begin + end) / 2.0
-        if poly(xs, center) * poly(xs, begin) > 0:
-            begin = center
-        else:
-            end = center
-    return begin
-","import unittest
-
-class TestFindZero(unittest.TestCase):
+class TestFindZero_32(unittest.TestCase):
     def test_find_zero_1(self):
         xs = [1, 2]
         self.assertAlmostEqual(find_zero(xs), -0.5)
@@ -1783,34 +1158,19 @@ class TestFindZero(unittest.TestCase):
 
     def test_find_zero_10(self):
         xs = [-6, 11, -6, 1, 2, 3, 4, 5]
-        self.assertAlmostEqual(find_zero(xs), 1.0)"
-"
+        self.assertAlmostEqual(find_zero(xs), 1.0)
 
-def sort_third(l: list):
-    """"""This function takes a list l and returns a list l' such that
-    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal
-    to the values of the corresponding indicies of l, but sorted.
-    >>> sort_third([1, 2, 3])
-    [1, 2, 3]
-    >>> sort_third([5, 6, 3, 4, 8, 9, 2])
-    [2, 6, 3, 4, 8, 9, 5]
-    """"""
-","    l = list(l)
-    l[::3] = sorted(l[::3])
-    return l
-","import unittest
-
-class TestSortThird(unittest.TestCase):
+class TestSortThird_33(unittest.TestCase):
     def test_sort_third_empty_list(self):
         self.assertEqual(sort_third([]), [])
 
     def test_sort_third_single_element(self):
         self.assertEqual(sort_third([1]), [1])
 
-    def test_sort_third_multiple_elements(self):
+    def test_sort_third_multiple_elements_1(self):
         self.assertEqual(sort_third([1, 2, 3]), [1, 2, 3])
+    def test_sort_third_multiple_elements_2(self):
         self.assertEqual(sort_third([5, 6, 3, 4, 8, 9, 2]), [2, 6, 3, 4, 8, 9, 5])
-
     def test_sort_third_with_duplicates(self):
         self.assertEqual(sort_third([1, 2, 3, 3, 2, 1]), [1, 2, 3, 3, 2, 1])
 
@@ -1832,22 +1192,12 @@ class TestSortThird(unittest.TestCase):
     def test_sort_third_with_single_element(self):
         self.assertEqual(sort_third([1]), [1])
 
-    def test_sort_third_with_multiple_elements(self):
+    def test_sort_third_with_multiple_elements_1(self):
         self.assertEqual(sort_third([1, 2, 3]), [1, 2, 3])
+    def test_sort_third_with_multiple_elements_2(self):
         self.assertEqual(sort_third([5, 6, 3, 4, 8, 9, 2]), [2, 6, 3, 4, 8, 9, 5])
 
-"
-"
-
-def unique(l: list):
-    """"""Return sorted unique elements in a list
-    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])
-    [0, 2, 3, 5, 9, 123]
-    """"""
-","    return sorted(list(set(l)))
-","import unittest
-
-class TestUnique(unittest.TestCase):
+class TestUnique_34(unittest.TestCase):
     def test_unique_empty_list(self):
         self.assertEqual(unique([]), [])
 
@@ -1869,34 +1219,17 @@ class TestUnique(unittest.TestCase):
     def test_unique_duplicate_elements_list_with_duplicates_and_duplicates_and_duplicates_and_duplicates(self):
         self.assertEqual(unique([1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
-"
-"
-
-def max_element(l: list):
-    """"""Return maximum element in the list.
-    >>> max_element([1, 2, 3])
-    3
-    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
-    123
-    """"""
-","    m = l[0]
-    for e in l:
-        if e > m:
-            m = e
-    return m
-","import unittest
-
-class TestMaxElement(unittest.TestCase):
+class TestMaxElement_35(unittest.TestCase):
     def test_max_element_empty_list(self):
         self.assertEqual(max_element([]), None)
 
     def test_max_element_single_element_list(self):
         self.assertEqual(max_element([1]), 1)
 
-    def test_max_element_multiple_element_list(self):
+    def test_max_element_multiple_element_list_1(self):
         self.assertEqual(max_element([1, 2, 3]), 3)
+    def test_max_element_multiple_element_list_2(self):
         self.assertEqual(max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]), 123)
-
     def test_max_element_list_with_negative_numbers(self):
         self.assertEqual(max_element([-1, -2, -3]), -1)
 
@@ -1921,59 +1254,15 @@ class TestMaxElement(unittest.TestCase):
     def test_max_element_list_with_nan(self):
         self.assertEqual(max_element([1, 2, 3, float('nan')]), float('nan'))
 
-"
-"
-
-def fizz_buzz(n: int):
-    """"""Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.
-    >>> fizz_buzz(50)
-    0
-    >>> fizz_buzz(78)
-    2
-    >>> fizz_buzz(79)
-    3
-    """"""
-","    ns = []
-    for i in range(n):
-        if i % 11 == 0 or i % 13 == 0:
-            ns.append(i)
-    s = ''.join(list(map(str, ns)))
-    ans = 0
-    for c in s:
-        ans += (c == '7')
-    return ans
-","import unittest
-
-class TestFizzBuzz(unittest.TestCase):
-    def test_fizz_buzz(self):
+class TestFizzBuzz_36(unittest.TestCase):
+    def test_fizz_buzz_1(self):
         self.assertEqual(fizz_buzz(50), 0)
+    def test_fizz_buzz_2(self):
         self.assertEqual(fizz_buzz(78), 2)
+    def test_fizz_buzz_3(self):
         self.assertEqual(fizz_buzz(79), 3)
 
-"
-"
-
-def sort_even(l: list):
-    """"""This function takes a list l and returns a list l' such that
-    l' is identical to l in the odd indicies, while its values at the even indicies are equal
-    to the values of the even indicies of l, but sorted.
-    >>> sort_even([1, 2, 3])
-    [1, 2, 3]
-    >>> sort_even([5, 6, 3, 4])
-    [3, 6, 5, 4]
-    """"""
-","    evens = l[::2]
-    odds = l[1::2]
-    evens.sort()
-    ans = []
-    for e, o in zip(evens, odds):
-        ans.extend([e, o])
-    if len(evens) > len(odds):
-        ans.append(evens[-1])
-    return ans
-","import unittest
-
-class TestSortEven(unittest.TestCase):
+class TestSortEven_37(unittest.TestCase):
     def test_sort_even_empty(self):
         self.assertEqual(sort_even([]), [])
 
@@ -2007,107 +1296,91 @@ class TestSortEven(unittest.TestCase):
     def test_sort_even_ten(self):
         self.assertEqual(sort_even([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
-"
-"
+class TestCyclicEncoding_38(unittest.TestCase):
+    def test_encode_cyclic_1(self):
+        self.assertEqual(encode_cyclic(""), "")
+    def test_encode_cyclic_2(self):
+        self.assertEqual(encode_cyclic("abc"), "abc")
+    def test_encode_cyclic_3(self):
+        self.assertEqual(encode_cyclic("abcd"), "bacd")
+    def test_encode_cyclic_4(self):
+        self.assertEqual(encode_cyclic("abcde"), "bcdea")
+    def test_encode_cyclic_5(self):
+        self.assertEqual(encode_cyclic("abcdef"), "cdefab")
+    def test_encode_cyclic_6(self):
+        self.assertEqual(encode_cyclic("abcdefg"), "defgabc")
+    def test_encode_cyclic_7(self):
+        self.assertEqual(encode_cyclic("abcdefgh"), "efghabc")
+    def test_encode_cyclic_8(self):
+        self.assertEqual(encode_cyclic("abcdefghi"), "fghiabc")
+    def test_encode_cyclic_9(self):
+        self.assertEqual(encode_cyclic("abcdefghij"), "ghijabc")
+    def test_encode_cyclic_10(self):
+        self.assertEqual(encode_cyclic("abcdefghijk"), "hijkabc")
+    def test_encode_cyclic_11(self):
+        self.assertEqual(encode_cyclic("abcdefghijkl"), "ijklabc")
+    def test_encode_cyclic_12(self):
+        self.assertEqual(encode_cyclic("abcdefghijklm"), "jklmabc")
+    def test_encode_cyclic_13(self):
+        self.assertEqual(encode_cyclic("abcdefghijklmn"), "klmnabc")
+    def test_encode_cyclic_14(self):
+        self.assertEqual(encode_cyclic("abcdefghijklmno"), "lmnoabc")
+    def test_encode_cyclic_15(self):
+        self.assertEqual(encode_cyclic("abcdefghijklmnop"), "mnopabc")
+    def test_encode_cyclic_16(self):
+        self.assertEqual(encode_cyclic("abcdefghijklmnopq"), "nopqabc")
+    def test_encode_cyclic_17(self):
+        self.assertEqual(encode_cyclic("abcdefghijklmnopqr"), "opqrabc")
+    def test_encode_cyclic_18(self):
+        self.assertEqual(encode_cyclic("abcdefghijklmnopqrs"), "pqrsabc")
+    def test_encode_cyclic_19(self):
+        self.assertEqual(encode_cyclic("abcdefghijklmnopqrst"), "qrstabc")
+    def test_encode_cyclic_20(self):
+        self.assertEqual(encode_cyclic("abcdefghijklmnopqrstu"), "rstuabc")
+    def test_encode_cyclic_21(self):
+        self.assertEqual(encode_cyclic("abcdefghijklmnopqrstuv"), "stuvabc")
+    def test_encode_cyclic_22(self):
+        self.assertEqual(encode_cyclic("abcdefghijklmnopqrstuvw"), "tuvwabc")
+    def test_encode_cyclic_23(self):
+        self.assertEqual(encode_cyclic("abcdefghijklmnopqrstuvwx"), "uvwxabc")
+    def test_encode_cyclic_24(self):
+        self.assertEqual(encode_cyclic("abcdefghijklmnopqrstuvwxy"), "vwxyabc")
+    def test_encode_cyclic_25(self):
+        self.assertEqual(encode_cyclic("abcdefghijklmnopqrstuvwxyz"), "wxyzabc")
+    def test_decode_cyclic_1(self):
+        self.assertEqual(decode_cyclic(""), "")
+    def test_decode_cyclic_2(self):
+        self.assertEqual(decode_cyclic("abc"), "abc")
+    def test_decode_cyclic_3(self):
+        self.assertEqual(decode_cyclic("abcd"), "bacd")
+    def test_decode_cyclic_4(self):
+        self.assertEqual(decode_cyclic("abcde"), "bcdea")
+    def test_decode_cyclic_5(self):
+        self.assertEqual(decode_cyclic("abcdef"), "cdefab")
+    def test_decode_cyclic_6(self):
+        self.assertEqual(decode_cyclic("abcdefg"), "defgabc")
+    def test_decode_cyclic_7(self):
+        self.assertEqual(decode_cyclic("abcdefgh"), "efghabc")
+    def test_decode_cyclic_8(self):
+        self.assertEqual(decode_cyclic("abcdefghi"), "fghiabc")
+    def test_decode_cyclic_9(self):
+        self.assertEqual(decode_cyclic("abcdefghij"), "ghijabc")
+    def test_decode_cyclic_10(self):
+        self.assertEqual(decode_cyclic("abcdefghijk"), "hijkabc")
+    def test_decode_cyclic_11(self):
+        self.assertEqual(decode_cyclic("abcdefghijkl"), "ijklabc")
+    def test_decode_cyclic_12(self):
+        self.assertEqual(decode_cyclic("abcdefghijklm"), "jklmabc")
+    def test_decode_cyclic_13(self):
+        self.assertEqual(decode_cyclic("abcdefghijklmn"), "klmnabc")
+    def test_decode_cyclic_14(self):
+        self.assertEqual(decode_cyclic("abcdefghijklmno"), "lmnoabc")
+    def test_decode_cyclic_15(self):
+        self.assertEqual(decode_cyclic("abcdefghijklmnop"), "mnopabc")
+    def test_decode_cyclic_16(self):
+        self.assertEqual(decode_cyclic("abcdefghijklmnopq"), "nopqabc")
 
-def encode_cyclic(s: str):
-    """"""
-    returns encoded string by cycling groups of three characters.
-    """"""
-    # split string to groups. Each of length 3.
-    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
-    # cycle elements in each group. Unless group has fewer elements than 3.
-    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]
-    return """".join(groups)
-
-
-def decode_cyclic(s: str):
-    """"""
-    takes as input string encoded with encode_cyclic function. Returns decoded string.
-    """"""
-","    return encode_cyclic(encode_cyclic(s))
-","import unittest
-
-class TestCyclicEncoding(unittest.TestCase):
-    def test_encode_cyclic(self):
-        self.assertEqual(encode_cyclic(""""), """")
-        self.assertEqual(encode_cyclic(""abc""), ""abc"")
-        self.assertEqual(encode_cyclic(""abcd""), ""bacd"")
-        self.assertEqual(encode_cyclic(""abcde""), ""bcdea"")
-        self.assertEqual(encode_cyclic(""abcdef""), ""cdefab"")
-        self.assertEqual(encode_cyclic(""abcdefg""), ""defgabc"")
-        self.assertEqual(encode_cyclic(""abcdefgh""), ""efghabc"")
-        self.assertEqual(encode_cyclic(""abcdefghi""), ""fghiabc"")
-        self.assertEqual(encode_cyclic(""abcdefghij""), ""ghijabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijk""), ""hijkabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijkl""), ""ijklabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijklm""), ""jklmabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijklmn""), ""klmnabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijklmno""), ""lmnoabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijklmnop""), ""mnopabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijklmnopq""), ""nopqabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijklmnopqr""), ""opqrabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijklmnopqrs""), ""pqrsabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijklmnopqrst""), ""qrstabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijklmnopqrstu""), ""rstuabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijklmnopqrstuv""), ""stuvabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijklmnopqrstuvw""), ""tuvwabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijklmnopqrstuvwx""), ""uvwxabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijklmnopqrstuvwxy""), ""vwxyabc"")
-        self.assertEqual(encode_cyclic(""abcdefghijklmnopqrstuvwxyz""), ""wxyzabc"")
-
-    def test_decode_cyclic(self):
-        self.assertEqual(decode_cyclic(""""), """")
-        self.assertEqual(decode_cyclic(""abc""), ""abc"")
-        self.assertEqual(decode_cyclic(""abcd""), ""bacd"")
-        self.assertEqual(decode_cyclic(""abcde""), ""bcdea"")
-        self.assertEqual(decode_cyclic(""abcdef""), ""cdefab"")
-        self.assertEqual(decode_cyclic(""abcdefg""), ""defgabc"")
-        self.assertEqual(decode_cyclic(""abcdefgh""), ""efghabc"")
-        self.assertEqual(decode_cyclic(""abcdefghi""), ""fghiabc"")
-        self.assertEqual(decode_cyclic(""abcdefghij""), ""ghijabc"")
-        self.assertEqual(decode_cyclic(""abcdefghijk""), ""hijkabc"")
-        self.assertEqual(decode_cyclic(""abcdefghijkl""), ""ijklabc"")
-        self.assertEqual(decode_cyclic(""abcdefghijklm""), ""jklmabc"")
-        self.assertEqual(decode_cyclic(""abcdefghijklmn""), ""klmnabc"")
-        self.assertEqual(decode_cyclic(""abcdefghijklmno""), ""lmnoabc"")
-        self.assertEqual(decode_cyclic(""abcdefghijklmnop""), ""mnopabc"")
-        self.assertEqual(decode_cyclic(""abcdefghijklmnopq""), ""nopqabc"")"
-"
-
-def prime_fib(n: int):
-    """"""
-    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
-    >>> prime_fib(1)
-    2
-    >>> prime_fib(2)
-    3
-    >>> prime_fib(3)
-    5
-    >>> prime_fib(4)
-    13
-    >>> prime_fib(5)
-    89
-    """"""
-","    import math
-
-    def is_prime(p):
-        if p < 2:
-            return False
-        for k in range(2, min(int(math.sqrt(p)) + 1, p - 1)):
-            if p % k == 0:
-                return False
-        return True
-    f = [0, 1]
-    while True:
-        f.append(f[-1] + f[-2])
-        if is_prime(f[-1]):
-            n -= 1
-        if n == 0:
-            return f[-1]
-","import unittest
-
-class TestPrimeFib(unittest.TestCase):
+class TestPrimeFib_39(unittest.TestCase):
     def test_prime_fib_1(self):
         self.assertEqual(prime_fib(1), 2)
 
@@ -2138,35 +1411,7 @@ class TestPrimeFib(unittest.TestCase):
     def test_prime_fib_10(self):
         self.assertEqual(prime_fib(10), 6765)
 
-"
-"
-
-def triples_sum_to_zero(l: list):
-    """"""
-    triples_sum_to_zero takes a list of integers as an input.
-    it returns True if there are three distinct elements in the list that
-    sum to zero, and False otherwise.
-
-    >>> triples_sum_to_zero([1, 3, 5, 0])
-    False
-    >>> triples_sum_to_zero([1, 3, -2, 1])
-    True
-    >>> triples_sum_to_zero([1, 2, 3, 7])
-    False
-    >>> triples_sum_to_zero([2, 4, -5, 3, 9, 7])
-    True
-    >>> triples_sum_to_zero([1])
-    False
-    """"""
-","    for i in range(len(l)):
-        for j in range(i + 1, len(l)):
-            for k in range(j + 1, len(l)):
-                if l[i] + l[j] + l[k] == 0:
-                    return True
-    return False
-","import unittest
-
-class TestTriplesSumToZero(unittest.TestCase):
+class TestTriplesSumToZero_40(unittest.TestCase):
     def test_empty_list(self):
         self.assertFalse(triples_sum_to_zero([]))
 
@@ -2200,52 +1445,31 @@ class TestTriplesSumToZero(unittest.TestCase):
     def test_ten_element_list(self):
         self.assertFalse(triples_sum_to_zero([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 
-"
-"
-
-def car_race_collision(n: int):
-    """"""
-    Imagine a road that's a perfectly straight infinitely long line.
-    n cars are driving left to right;  simultaneously, a different set of n cars
-    are driving right to left.   The two sets of cars start out being very far from
-    each other.  All cars move in the same speed.  Two cars are said to collide
-    when a car that's moving left to right hits a car that's moving right to left.
-    However, the cars are infinitely sturdy and strong; as a result, they continue moving
-    in their trajectory as if they did not collide.
-
-    This function outputs the number of such collisions.
-    """"""
-","    return n**2
-","import unittest
-
-class TestCarRaceCollision(unittest.TestCase):
-    def test_car_race_collision(self):
+class TestCarRaceCollision_41(unittest.TestCase):
+    def test_car_race_collision_1(self):
         self.assertEqual(car_race_collision(0), 0)
+    def test_car_race_collision_2(self):
         self.assertEqual(car_race_collision(1), 1)
+    def test_car_race_collision_3(self):
         self.assertEqual(car_race_collision(2), 4)
+    def test_car_race_collision_4(self):
         self.assertEqual(car_race_collision(3), 9)
+    def test_car_race_collision_5(self):
         self.assertEqual(car_race_collision(4), 16)
+    def test_car_race_collision_6(self):
         self.assertEqual(car_race_collision(5), 25)
+    def test_car_race_collision_7(self):
         self.assertEqual(car_race_collision(6), 36)
+    def test_car_race_collision_8(self):
         self.assertEqual(car_race_collision(7), 49)
+    def test_car_race_collision_9(self):
         self.assertEqual(car_race_collision(8), 64)
+    def test_car_race_collision_10(self):
         self.assertEqual(car_race_collision(9), 81)
+    def test_car_race_collision_11(self):
         self.assertEqual(car_race_collision(10), 100)
 
-"
-"
-
-def incr_list(l: list):
-    """"""Return list with elements incremented by 1.
-    >>> incr_list([1, 2, 3])
-    [2, 3, 4]
-    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])
-    [6, 4, 6, 3, 4, 4, 10, 1, 124]
-    """"""
-","    return [(e + 1) for e in l]
-","import unittest
-
-class TestIncrList(unittest.TestCase):
+class TestIncrList_42(unittest.TestCase):
     def test_empty_list(self):
         self.assertEqual(incr_list([]), [])
 
@@ -2282,33 +1506,7 @@ class TestIncrList(unittest.TestCase):
     def test_list_with_small_floating_point_elements(self):
         self.assertEqual(incr_list([0.1, 0.2, 0.3]), [0.2, 0.3, 0.4])
 
-"
-"
-
-def pairs_sum_to_zero(l):
-    """"""
-    pairs_sum_to_zero takes a list of integers as an input.
-    it returns True if there are two distinct elements in the list that
-    sum to zero, and False otherwise.
-    >>> pairs_sum_to_zero([1, 3, 5, 0])
-    False
-    >>> pairs_sum_to_zero([1, 3, -2, 1])
-    False
-    >>> pairs_sum_to_zero([1, 2, 3, 7])
-    False
-    >>> pairs_sum_to_zero([2, 4, -5, 3, 5, 7])
-    True
-    >>> pairs_sum_to_zero([1])
-    False
-    """"""
-","    for i, l1 in enumerate(l):
-        for j in range(i + 1, len(l)):
-            if l1 + l[j] == 0:
-                return True
-    return False
-","import unittest
-
-class TestPairsSumToZero(unittest.TestCase):
+class TestPairsSumToZero_43(unittest.TestCase):
     def test_empty_list(self):
         self.assertFalse(pairs_sum_to_zero([]))
 
@@ -2354,28 +1552,7 @@ class TestPairsSumToZero(unittest.TestCase):
     def test_two_distinct_elements_sum_to_zero_with_negative_and_positive_numbers_10(self):
         self.assertTrue(pairs_sum_to_zero([2, 4, -5, 3, 5, 7]))
 
-"
-"
-
-def change_base(x: int, base: int):
-    """"""Change numerical base of input number x to base.
-    return string representation after the conversion.
-    base numbers are less than 10.
-    >>> change_base(8, 3)
-    '22'
-    >>> change_base(8, 2)
-    '1000'
-    >>> change_base(7, 2)
-    '111'
-    """"""
-","    ret = """"
-    while x > 0:
-        ret = str(x % base) + ret
-        x //= base
-    return ret
-","import unittest
-
-class TestChangeBase(unittest.TestCase):
+class TestChangeBase_44(unittest.TestCase):
     def test_change_base_1(self):
         self.assertEqual(change_base(8, 3), '22')
 
@@ -2406,61 +1583,31 @@ class TestChangeBase(unittest.TestCase):
     def test_change_base_10(self):
         self.assertEqual(change_base(14, 3), '15')
 
-"
-"
-
-def triangle_area(a, h):
-    """"""Given length of a side and high return area for a triangle.
-    >>> triangle_area(5, 3)
-    7.5
-    """"""
-","    return a * h / 2.0
-","import unittest
-
-class TestTriangleArea(unittest.TestCase):
-    def test_triangle_area(self):
+class TestTriangleArea_45(unittest.TestCase):
+    def test_triangle_area_1(self):
         self.assertEqual(triangle_area(5, 3), 7.5)
+    def test_triangle_area_2(self):
         self.assertEqual(triangle_area(3, 5), 7.5)
+    def test_triangle_area_3(self):
         self.assertEqual(triangle_area(5, 5), 12.5)
+    def test_triangle_area_4(self):
         self.assertEqual(triangle_area(3, 3), 4.5)
+    def test_triangle_area_5(self):
         self.assertEqual(triangle_area(4, 4), 8)
+    def test_triangle_area_6(self):
         self.assertEqual(triangle_area(5, 4), 6)
+    def test_triangle_area_7(self):
         self.assertEqual(triangle_area(4, 5), 6)
+    def test_triangle_area_8(self):
         self.assertEqual(triangle_area(3, 4), 2.5)
+    def test_triangle_area_9(self):
         self.assertEqual(triangle_area(4, 3), 2.5)
+    def test_triangle_area_10(self):
         self.assertEqual(triangle_area(3, 5), 4.5)
+    def test_triangle_area_11(self):
         self.assertEqual(triangle_area(5, 3), 4.5)
 
-"
-"
-
-def fib4(n: int):
-    """"""The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
-    fib4(0) -> 0
-    fib4(1) -> 0
-    fib4(2) -> 2
-    fib4(3) -> 0
-    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).
-    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.
-    >>> fib4(5)
-    4
-    >>> fib4(6)
-    8
-    >>> fib4(7)
-    14
-    """"""
-","    results = [0, 0, 2, 0]
-    if n < 4:
-        return results[n]
-
-    for _ in range(4, n + 1):
-        results.append(results[-1] + results[-2] + results[-3] + results[-4])
-        results.pop(0)
-
-    return results[-1]
-","import unittest
-
-class TestFib4(unittest.TestCase):
+class TestFib4_46(unittest.TestCase):
     def test_fib4_0(self):
         self.assertEqual(fib4(0), 0)
 
@@ -2494,24 +1641,7 @@ class TestFib4(unittest.TestCase):
     def test_fib4_10(self):
         self.assertEqual(fib4(10), 220)
 
-"
-"
-
-def median(l: list):
-    """"""Return median of elements in the list l.
-    >>> median([3, 1, 2, 4, 5])
-    3
-    >>> median([-10, 4, 6, 1000, 10, 20])
-    15.0
-    """"""
-","    l = sorted(l)
-    if len(l) % 2 == 1:
-        return l[len(l) // 2]
-    else:
-        return (l[len(l) // 2 - 1] + l[len(l) // 2]) / 2.0
-","import unittest
-
-class TestMedian(unittest.TestCase):
+class TestMedian_47(unittest.TestCase):
     def test_median_empty_list(self):
         self.assertEqual(median([]), None)
 
@@ -2542,28 +1672,7 @@ class TestMedian(unittest.TestCase):
     def test_median_list_with_negative_floating_point_numbers(self):
         self.assertEqual(median([-1.1, -2.2, -3.3, -4.4, -5.5]), -3.3)
 
-"
-"
-
-def is_palindrome(text: str):
-    """"""
-    Checks if given string is a palindrome
-    >>> is_palindrome('')
-    True
-    >>> is_palindrome('aba')
-    True
-    >>> is_palindrome('aaaaa')
-    True
-    >>> is_palindrome('zbcd')
-    False
-    """"""
-","    for i in range(len(text)):
-        if text[i] != text[len(text) - 1 - i]:
-            return False
-    return True
-","import unittest
-
-class TestIsPalindrome(unittest.TestCase):
+class TestIsPalindrome_48(unittest.TestCase):
     def test_empty_string(self):
         self.assertTrue(is_palindrome(''))
 
@@ -2597,29 +1706,7 @@ class TestIsPalindrome(unittest.TestCase):
     def test_ten_char_string(self):
         self.assertTrue(is_palindrome('abcdefghij'))
 
-"
-"
-
-def modp(n: int, p: int):
-    """"""Return 2^n modulo p (be aware of numerics).
-    >>> modp(3, 5)
-    3
-    >>> modp(1101, 101)
-    2
-    >>> modp(0, 101)
-    1
-    >>> modp(3, 11)
-    8
-    >>> modp(100, 101)
-    1
-    """"""
-","    ret = 1
-    for i in range(n):
-        ret = (2 * ret) % p
-    return ret
-","import unittest
-
-class TestModp(unittest.TestCase):
+class TestModp_49(unittest.TestCase):
     def test_modp_1(self):
         self.assertEqual(modp(3, 5), 3)
 
@@ -2650,122 +1737,70 @@ class TestModp(unittest.TestCase):
     def test_modp_10(self):
         self.assertEqual(modp(10000000, 101), 1)
 
-"
-"
-
-def encode_shift(s: str):
-    """"""
-    returns encoded string by shifting every character by 5 in the alphabet.
-    """"""
-    return """".join([chr(((ord(ch) + 5 - ord(""a"")) % 26) + ord(""a"")) for ch in s])
-
-
-def decode_shift(s: str):
-    """"""
-    takes as input string encoded with encode_shift function. Returns decoded string.
-    """"""
-","    return """".join([chr(((ord(ch) - 5 - ord(""a"")) % 26) + ord(""a"")) for ch in s])
-","import unittest
-
-class TestEncodeShift(unittest.TestCase):
+class TestEncodeShift_50(unittest.TestCase):
     def test_encode_shift_empty_string(self):
-        self.assertEqual(encode_shift(""""), """")
+        self.assertEqual(encode_shift(""), "")
 
-    def test_encode_shift_single_character(self):
-        self.assertEqual(encode_shift(""a""), ""f"")
-        self.assertEqual(encode_shift(""z""), ""c"")
-
-    def test_encode_shift_multiple_characters(self):
-        self.assertEqual(encode_shift(""abc""), ""fgh"")
-        self.assertEqual(encode_shift(""xyz""), ""cba"")
-
-    def test_encode_shift_non_alphabet_characters(self):
-        self.assertEqual(encode_shift(""123""), ""123"")
-        self.assertEqual(encode_shift(""!@#""), ""!@#"")
-
+    def test_encode_shift_single_character_1(self):
+        self.assertEqual(encode_shift("a"), "f")
+    def test_encode_shift_single_character_2(self):
+        self.assertEqual(encode_shift("z"), "c")
+    def test_encode_shift_multiple_characters_1(self):
+        self.assertEqual(encode_shift("abc"), "fgh")
+    def test_encode_shift_multiple_characters_2(self):
+        self.assertEqual(encode_shift("xyz"), "cba")
+    def test_encode_shift_non_alphabet_characters_1(self):
+        self.assertEqual(encode_shift("123"), "123")
+    def test_encode_shift_non_alphabet_characters_2(self):
+        self.assertEqual(encode_shift("!@#"), "!@#")
     def test_decode_shift_empty_string(self):
-        self.assertEqual(decode_shift(""""), """")
+        self.assertEqual(decode_shift(""), "")
 
-    def test_decode_shift_single_character(self):
-        self.assertEqual(decode_shift(""f""), ""a"")
-        self.assertEqual(decode_shift(""c""), ""z"")
+    def test_decode_shift_single_character_1(self):
+        self.assertEqual(decode_shift("f"), "a")
+    def test_decode_shift_single_character_2(self):
+        self.assertEqual(decode_shift("c"), "z")
+    def test_decode_shift_multiple_characters_1(self):
+        self.assertEqual(decode_shift("fgh"), "abc")
+    def test_decode_shift_multiple_characters_2(self):
+        self.assertEqual(decode_shift("cba"), "xyz")
+    def test_decode_shift_non_alphabet_characters_1(self):
+        self.assertEqual(decode_shift("123"), "123")
+    def test_decode_shift_non_alphabet_characters_2(self):
+        self.assertEqual(decode_shift("!@#"), "!@#")
 
-    def test_decode_shift_multiple_characters(self):
-        self.assertEqual(decode_shift(""fgh""), ""abc"")
-        self.assertEqual(decode_shift(""cba""), ""xyz"")
-
-    def test_decode_shift_non_alphabet_characters(self):
-        self.assertEqual(decode_shift(""123""), ""123"")
-        self.assertEqual(decode_shift(""!@#""), ""!@#"")
-"
-"
-
-def remove_vowels(text):
-    """"""
-    remove_vowels is a function that takes string and returns string without vowels.
-    >>> remove_vowels('')
-    ''
-    >>> remove_vowels(""abcdef\nghijklm"")
-    'bcdf\nghjklm'
-    >>> remove_vowels('abcdef')
-    'bcdf'
-    >>> remove_vowels('aaaaa')
-    ''
-    >>> remove_vowels('aaBAA')
-    'B'
-    >>> remove_vowels('zbcd')
-    'zbcd'
-    """"""
-","    return """".join([s for s in text if s.lower() not in [""a"", ""e"", ""i"", ""o"", ""u""]])
-","import unittest
-
-class TestRemoveVowels(unittest.TestCase):
+class TestRemoveVowels_51(unittest.TestCase):
     def test_remove_vowels_empty_string(self):
-        self.assertEqual(remove_vowels(""""), """")
+        self.assertEqual(remove_vowels(""), "")
 
     def test_remove_vowels_string_without_vowels(self):
-        self.assertEqual(remove_vowels(""abcdef""), ""bcdf"")
+        self.assertEqual(remove_vowels("abcdef"), "bcdf")
 
     def test_remove_vowels_string_with_vowels(self):
-        self.assertEqual(remove_vowels(""abcdef\nghijklm""), ""bcdf\nghjklm"")
+        self.assertEqual(remove_vowels("abcdef\nghijklm"), "bcdf\nghjklm")
 
     def test_remove_vowels_string_with_uppercase_vowels(self):
-        self.assertEqual(remove_vowels(""AAA""), """")
+        self.assertEqual(remove_vowels("AAA"), "")
 
     def test_remove_vowels_string_with_mixed_case_vowels(self):
-        self.assertEqual(remove_vowels(""aaBAA""), ""B"")
+        self.assertEqual(remove_vowels("aaBAA"), "B")
 
     def test_remove_vowels_string_with_non_ascii_vowels(self):
-        self.assertEqual(remove_vowels(""zbcd""), ""zbcd"")
+        self.assertEqual(remove_vowels("zbcd"), "zbcd")
 
     def test_remove_vowels_string_with_multiple_vowels(self):
-        self.assertEqual(remove_vowels(""aaaaa""), """")
+        self.assertEqual(remove_vowels("aaaaa"), "")
 
     def test_remove_vowels_string_with_vowels_and_non_ascii_chars(self):
-        self.assertEqual(remove_vowels(""aaBAA\u0300""), ""B\u0300"")
+        self.assertEqual(remove_vowels("aaBAA\u0300"), "B\u0300")
 
     def test_remove_vowels_string_with_vowels_and_non_ascii_chars_2(self):
-        self.assertEqual(remove_vowels(""aaBAA\u0301""), ""B\u0301"")
+        self.assertEqual(remove_vowels("aaBAA\u0301"), "B\u0301")
 
     def test_remove_vowels_string_with_vowels_and_non_ascii_chars_3(self):
-        self.assertEqual(remove_vowels(""aaBAA\u0302""), ""B\u0302"")
-"
-"
+        self.assertEqual(remove_vowels("aaBAA\u0302"), "B\u0302")
 
-def below_threshold(l: list, t: int):
-    """"""Return True if all numbers in the list l are below threshold t.
-    >>> below_threshold([1, 2, 4, 10], 100)
-    True
-    >>> below_threshold([1, 20, 4, 10], 5)
-    False
-    """"""
-","    for e in l:
-        if e >= t:
-            return False
-    return True
-","import unittest
-
-class TestBelowThreshold(unittest.TestCase):
+class TestBelowThreshold_52(unittest.TestCase):
     def test_all_below_threshold(self):
         self.assertTrue(below_threshold([1, 2, 4, 10], 100))
 
@@ -2806,20 +1841,9 @@ class TestBelowThreshold(unittest.TestCase):
         self.assertTrue(below_threshold([1, 2, 3, 4, 5, 6, 7, 8, 9], 100))
 
     def test_list_with_ten_elements(self):
-        self.assertTrue(below_threshold([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 100))"
-"
+        self.assertTrue(below_threshold([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 100))
 
-def add(x: int, y: int):
-    """"""Add two numbers x and y
-    >>> add(2, 3)
-    5
-    >>> add(5, 7)
-    12
-    """"""
-","    return x + y
-","import unittest
-
-class TestAdd(unittest.TestCase):
+class TestAdd_53(unittest.TestCase):
     def test_add_1(self):
         self.assertEqual(add(2, 3), 5)
 
@@ -2850,29 +1874,7 @@ class TestAdd(unittest.TestCase):
     def test_add_10(self):
         self.assertEqual(add(80, 85), 165)
 
-"
-"
-
-def same_chars(s0: str, s1: str):
-    """"""
-    Check if two words have the same characters.
-    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')
-    True
-    >>> same_chars('abcd', 'dddddddabc')
-    True
-    >>> same_chars('dddddddabc', 'abcd')
-    True
-    >>> same_chars('eabcd', 'dddddddabc')
-    False
-    >>> same_chars('abcd', 'dddddddabce')
-    False
-    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')
-    False
-    """"""
-","    return set(s0) == set(s1)
-","import unittest
-
-class TestSameChars(unittest.TestCase):
+class TestSameChars_54(unittest.TestCase):
     def test_same_chars_true(self):
         self.assertTrue(same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc'))
 
@@ -2891,26 +1893,7 @@ class TestSameChars(unittest.TestCase):
     def test_same_chars_false_3(self):
         self.assertFalse(same_chars('eabcdzzzz', 'dddzzzzzzzddddabc'))
 
-"
-"
-
-def fib(n: int):
-    """"""Return n-th Fibonacci number.
-    >>> fib(10)
-    55
-    >>> fib(1)
-    1
-    >>> fib(8)
-    21
-    """"""
-","    if n == 0:
-        return 0
-    if n == 1:
-        return 1
-    return fib(n - 1) + fib(n - 2)
-","import unittest
-
-class TestFib(unittest.TestCase):
+class TestFib_55(unittest.TestCase):
     def test_fib_0(self):
         self.assertEqual(fib(0), 0)
 
@@ -2944,82 +1927,38 @@ class TestFib(unittest.TestCase):
     def test_fib_10(self):
         self.assertEqual(fib(10), 55)
 
-"
-"
-
-def correct_bracketing(brackets: str):
-    """""" brackets is a string of ""<"" and "">"".
-    return True if every opening bracket has a corresponding closing bracket.
-
-    >>> correct_bracketing(""<"")
-    False
-    >>> correct_bracketing(""<>"")
-    True
-    >>> correct_bracketing(""<<><>>"")
-    True
-    >>> correct_bracketing(""><<>"")
-    False
-    """"""
-","    depth = 0
-    for b in brackets:
-        if b == ""<"":
-            depth += 1
-        else:
-            depth -= 1
-        if depth < 0:
-            return False
-    return depth == 0
-","import unittest
-
-class TestCorrectBracketing(unittest.TestCase):
+class TestCorrectBracketing_56(unittest.TestCase):
     def test_empty_string(self):
-        self.assertTrue(correct_bracketing(""""))
+        self.assertTrue(correct_bracketing(""))
 
     def test_single_bracket(self):
-        self.assertFalse(correct_bracketing(""<""))
+        self.assertFalse(correct_bracketing("<"))
 
     def test_paired_brackets(self):
-        self.assertTrue(correct_bracketing(""<>""))
+        self.assertTrue(correct_bracketing("<>"))
 
     def test_nested_brackets(self):
-        self.assertTrue(correct_bracketing(""<<><>>""))
+        self.assertTrue(correct_bracketing("<<><>>"))
 
     def test_unmatched_brackets(self):
-        self.assertFalse(correct_bracketing(""><<>""))
+        self.assertFalse(correct_bracketing("><<>"))
 
     def test_mismatched_brackets(self):
-        self.assertFalse(correct_bracketing(""><>""))
+        self.assertFalse(correct_bracketing("><>"))
 
     def test_unbalanced_brackets(self):
-        self.assertFalse(correct_bracketing(""<<><>""))
+        self.assertFalse(correct_bracketing("<<><>"))
 
     def test_nested_unmatched_brackets(self):
-        self.assertFalse(correct_bracketing(""<<><>>>""))
+        self.assertFalse(correct_bracketing("<<><>>>"))
 
     def test_nested_mismatched_brackets(self):
-        self.assertFalse(correct_bracketing(""<<><>>>""))
+        self.assertFalse(correct_bracketing("<<><>>>"))
 
     def test_nested_unbalanced_brackets(self):
-        self.assertFalse(correct_bracketing(""<<><>>>""))
+        self.assertFalse(correct_bracketing("<<><>>>"))
 
-"
-"
-
-def monotonic(l: list):
-    """"""Return True is list elements are monotonically increasing or decreasing.
-    >>> monotonic([1, 2, 4, 20])
-    True
-    >>> monotonic([1, 20, 4, 10])
-    False
-    >>> monotonic([4, 1, 0, -10])
-    True
-    """"""
-","    if l == sorted(l) or l == sorted(l, reverse=True):
-        return True
-    return False
-","import unittest
-
-class TestMonotonic(unittest.TestCase):
+class TestMonotonic_57(unittest.TestCase):
     def test_monotonic_increasing(self):
         self.assertTrue(monotonic([1, 2, 4, 20]))
 
@@ -3050,26 +1989,7 @@ class TestMonotonic(unittest.TestCase):
     def test_monotonic_decreasing_with_negative_values_and_duplicates_and_reversed(self):
         self.assertTrue(monotonic([0, -10, 4, 1, 0, 0]))
 
-"
-"
-
-def common(l1: list, l2: list):
-    """"""Return sorted unique common elements for two lists.
-    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])
-    [1, 5, 653]
-    >>> common([5, 3, 2, 8], [3, 2])
-    [2, 3]
-
-    """"""
-","    ret = set()
-    for e1 in l1:
-        for e2 in l2:
-            if e1 == e2:
-                ret.add(e1)
-    return sorted(list(ret))
-","import unittest
-
-class TestCommon(unittest.TestCase):
+class TestCommon_58(unittest.TestCase):
     def test_common_empty_lists(self):
         self.assertEqual(common([], []), [])
 
@@ -3097,31 +2017,7 @@ class TestCommon(unittest.TestCase):
     def test_common_eight_element_list(self):
         self.assertEqual(common([1, 2, 3, 4, 5, 6, 7, 8], [2, 3, 4, 5, 6, 7, 8, 9]), [2, 3, 4, 5, 6, 7, 8])
 
-"
-"
-
-def largest_prime_factor(n: int):
-    """"""Return the largest prime factor of n. Assume n > 1 and is not a prime.
-    >>> largest_prime_factor(13195)
-    29
-    >>> largest_prime_factor(2048)
-    2
-    """"""
-","    def is_prime(k):
-        if k < 2:
-            return False
-        for i in range(2, k - 1):
-            if k % i == 0:
-                return False
-        return True
-    largest = 1
-    for j in range(2, n + 1):
-        if n % j == 0 and is_prime(j):
-            largest = max(largest, j)
-    return largest
-","import unittest
-
-class TestLargestPrimeFactor(unittest.TestCase):
+class TestLargestPrimeFactor_59(unittest.TestCase):
     def test_largest_prime_factor_1(self):
         self.assertEqual(largest_prime_factor(13195), 29)
 
@@ -3152,26 +2048,7 @@ class TestLargestPrimeFactor(unittest.TestCase):
     def test_largest_prime_factor_10(self):
         self.assertEqual(largest_prime_factor(1000000000), 2)
 
-"
-"
-
-def sum_to_n(n: int):
-    """"""sum_to_n is a function that sums numbers from 1 to n.
-    >>> sum_to_n(30)
-    465
-    >>> sum_to_n(100)
-    5050
-    >>> sum_to_n(5)
-    15
-    >>> sum_to_n(10)
-    55
-    >>> sum_to_n(1)
-    1
-    """"""
-","    return sum(range(n + 1))
-","import unittest
-
-class TestSumToN(unittest.TestCase):
+class TestSumToN_60(unittest.TestCase):
     def test_sum_to_n_1(self):
         self.assertEqual(sum_to_n(1), 1)
 
@@ -3202,80 +2079,38 @@ class TestSumToN(unittest.TestCase):
     def test_sum_to_n_10(self):
         self.assertEqual(sum_to_n(10), 55)
 
-"
-"
-
-def correct_bracketing(brackets: str):
-    """""" brackets is a string of ""("" and "")"".
-    return True if every opening bracket has a corresponding closing bracket.
-
-    >>> correct_bracketing(""("")
-    False
-    >>> correct_bracketing(""()"")
-    True
-    >>> correct_bracketing(""(()())"")
-    True
-    >>> correct_bracketing("")(()"")
-    False
-    """"""
-","    depth = 0
-    for b in brackets:
-        if b == ""("":
-            depth += 1
-        else:
-            depth -= 1
-        if depth < 0:
-            return False
-    return depth == 0
-","import unittest
-
-class TestCorrectBracketing(unittest.TestCase):
+class TestCorrectBracketing_61(unittest.TestCase):
     def test_empty_string(self):
-        self.assertTrue(correct_bracketing(""""))
+        self.assertTrue(correct_bracketing(""))
 
     def test_single_opening_bracket(self):
-        self.assertFalse(correct_bracketing(""(""))
+        self.assertFalse(correct_bracketing("("))
 
     def test_single_closing_bracket(self):
-        self.assertFalse(correct_bracketing("")""))
+        self.assertFalse(correct_bracketing(")"))
 
     def test_single_pair_of_brackets(self):
-        self.assertTrue(correct_bracketing(""()""))
+        self.assertTrue(correct_bracketing("()"))
 
     def test_nested_pair_of_brackets(self):
-        self.assertTrue(correct_bracketing(""(()())""))
+        self.assertTrue(correct_bracketing("(()())"))
 
     def test_unmatched_brackets(self):
-        self.assertFalse(correct_bracketing("")(()""))
+        self.assertFalse(correct_bracketing(")(()"))
 
     def test_mismatched_brackets(self):
-        self.assertFalse(correct_bracketing(""()()""))
+        self.assertFalse(correct_bracketing("()()"))
 
     def test_mismatched_brackets_with_extra_characters(self):
-        self.assertFalse(correct_bracketing(""()()()""))
+        self.assertFalse(correct_bracketing("()()()"))
 
     def test_mismatched_brackets_with_extra_characters_and_whitespace(self):
-        self.assertFalse(correct_bracketing(""()()() ""))
+        self.assertFalse(correct_bracketing("()()() "))
 
     def test_mismatched_brackets_with_extra_characters_and_whitespace_and_newline(self):
-        self.assertFalse(correct_bracketing(""()()()\n""))
+        self.assertFalse(correct_bracketing("()()()\n"))
 
-"
-"
-
-def derivative(xs: list):
-    """""" xs represent coefficients of a polynomial.
-    xs[0] + xs[1] * x + xs[2] * x^2 + ....
-     Return derivative of this polynomial in the same form.
-    >>> derivative([3, 1, 2, 4, 5])
-    [1, 4, 12, 20]
-    >>> derivative([1, 2, 3])
-    [2, 6]
-    """"""
-","    return [(i * x) for i, x in enumerate(xs)][1:]
-","import unittest
-
-class TestDerivative(unittest.TestCase):
+class TestDerivative_62(unittest.TestCase):
     def test_derivative_of_constant(self):
         xs = [1]
         expected = [0]
@@ -3321,33 +2156,7 @@ class TestDerivative(unittest.TestCase):
         expected = 1
         self.assertEqual(derivative(xs), expected)
 
-"
-"
-
-def fibfib(n: int):
-    """"""The FibFib number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
-    fibfib(0) == 0
-    fibfib(1) == 0
-    fibfib(2) == 1
-    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).
-    Please write a function to efficiently compute the n-th element of the fibfib number sequence.
-    >>> fibfib(1)
-    0
-    >>> fibfib(5)
-    4
-    >>> fibfib(8)
-    24
-    """"""
-","    if n == 0:
-        return 0
-    if n == 1:
-        return 0
-    if n == 2:
-        return 1
-    return fibfib(n - 1) + fibfib(n - 2) + fibfib(n - 3)
-","import unittest
-
-class TestFibfib(unittest.TestCase):
+class TestFibfib_63(unittest.TestCase):
     def test_fibfib_0(self):
         self.assertEqual(fibfib(0), 0)
 
@@ -3379,256 +2188,142 @@ class TestFibfib(unittest.TestCase):
         self.assertEqual(fibfib(9), 21)
 
     def test_fibfib_10(self):
-        self.assertEqual(fibfib(10), 34)"
-"
-FIX = """"""
-Add more test cases.
-""""""
+        self.assertEqual(fibfib(10), 34)
 
-def vowels_count(s):
-    """"""Write a function vowels_count which takes a string representing
-    a word as input and returns the number of vowels in the string.
-    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a
-    vowel, but only when it is at the end of the given word.
-
-    Example:
-    >>> vowels_count(""abcde"")
-    2
-    >>> vowels_count(""ACEDY"")
-    3
-    """"""
-","    vowels = ""aeiouAEIOU""
-    n_vowels = sum(c in vowels for c in s)
-    if s[-1] == 'y' or s[-1] == 'Y':
-        n_vowels += 1
-    return n_vowels
-","import unittest
-
-class TestVowelsCount(unittest.TestCase):
+class TestVowelsCount_64(unittest.TestCase):
     def test_vowels_count_empty_string(self):
-        self.assertEqual(vowels_count(""""), 0)
+        self.assertEqual(vowels_count(""), 0)
 
-    def test_vowels_count_single_vowel(self):
-        self.assertEqual(vowels_count(""a""), 1)
-        self.assertEqual(vowels_count(""e""), 1)
-        self.assertEqual(vowels_count(""i""), 1)
-        self.assertEqual(vowels_count(""o""), 1)
-        self.assertEqual(vowels_count(""u""), 1)
+    def test_vowels_count_single_vowel_1(self):
+        self.assertEqual(vowels_count("a"), 1)
+    def test_vowels_count_single_vowel_2(self):
+        self.assertEqual(vowels_count("e"), 1)
+    def test_vowels_count_single_vowel_3(self):
+        self.assertEqual(vowels_count("i"), 1)
+    def test_vowels_count_single_vowel_4(self):
+        self.assertEqual(vowels_count("o"), 1)
+    def test_vowels_count_single_vowel_5(self):
+        self.assertEqual(vowels_count("u"), 1)
+    def test_vowels_count_multiple_vowels_1(self):
+        self.assertEqual(vowels_count("aeiou"), 5)
+    def test_vowels_count_multiple_vowels_2(self):
+        self.assertEqual(vowels_count("aeiouy"), 6)
+    def test_vowels_count_multiple_vowels_3(self):
+        self.assertEqual(vowels_count("aeiouyAEIOU"), 12)
+    def test_vowels_count_with_non_vowels_1(self):
+        self.assertEqual(vowels_count("abcde"), 2)
+    def test_vowels_count_with_non_vowels_2(self):
+        self.assertEqual(vowels_count("ACEDY"), 3)
+    def test_vowels_count_with_uppercase_vowels_1(self):
+        self.assertEqual(vowels_count("AEIOU"), 5)
+    def test_vowels_count_with_uppercase_vowels_2(self):
+        self.assertEqual(vowels_count("AEIOUY"), 6)
+    def test_vowels_count_with_uppercase_vowels_3(self):
+        self.assertEqual(vowels_count("AEIOUYAEIOU"), 12)
+    def test_vowels_count_with_non_ascii_vowels_1(self):
+        self.assertEqual(vowels_count("áéíóúý"), 6)
+    def test_vowels_count_with_non_ascii_vowels_2(self):
+        self.assertEqual(vowels_count("ÁÉÍÓÚÝ"), 6)
+    def test_vowels_count_with_non_ascii_non_vowels_1(self):
+        self.assertEqual(vowels_count("abcdeáéíóúý"), 2)
+    def test_vowels_count_with_non_ascii_non_vowels_2(self):
+        self.assertEqual(vowels_count("ACEDYáéíóúý"), 3)
+    def test_vowels_count_with_non_ascii_vowels_and_non_ascii_non_vowels_1(self):
+        self.assertEqual(vowels_count("áéíóúýáéíóúý"), 12)
+    def test_vowels_count_with_non_ascii_vowels_and_non_ascii_non_vowels_2(self):
+        self.assertEqual(vowels_count("ÁÉÍÓÚÝÁÉÍÓÚÝ"), 12)
 
-    def test_vowels_count_multiple_vowels(self):
-        self.assertEqual(vowels_count(""aeiou""), 5)
-        self.assertEqual(vowels_count(""aeiouy""), 6)
-        self.assertEqual(vowels_count(""aeiouyAEIOU""), 12)
-
-    def test_vowels_count_with_non_vowels(self):
-        self.assertEqual(vowels_count(""abcde""), 2)
-        self.assertEqual(vowels_count(""ACEDY""), 3)
-
-    def test_vowels_count_with_uppercase_vowels(self):
-        self.assertEqual(vowels_count(""AEIOU""), 5)
-        self.assertEqual(vowels_count(""AEIOUY""), 6)
-        self.assertEqual(vowels_count(""AEIOUYAEIOU""), 12)
-
-    def test_vowels_count_with_non_ascii_vowels(self):
-        self.assertEqual(vowels_count(""áéíóúý""), 6)
-        self.assertEqual(vowels_count(""ÁÉÍÓÚÝ""), 6)
-
-    def test_vowels_count_with_non_ascii_non_vowels(self):
-        self.assertEqual(vowels_count(""abcdeáéíóúý""), 2)
-        self.assertEqual(vowels_count(""ACEDYáéíóúý""), 3)
-
-    def test_vowels_count_with_non_ascii_vowels_and_non_ascii_non_vowels(self):
-        self.assertEqual(vowels_count(""áéíóúýáéíóúý""), 12)
-        self.assertEqual(vowels_count(""ÁÉÍÓÚÝÁÉÍÓÚÝ""), 12)"
-"
-def circular_shift(x, shift):
-    """"""Circular shift the digits of the integer x, shift the digits right by shift
-    and return the result as a string.
-    If shift > number of digits, return digits reversed.
-    >>> circular_shift(12, 1)
-    ""21""
-    >>> circular_shift(12, 2)
-    ""12""
-    """"""
-","    s = str(x)
-    if shift > len(s):
-        return s[::-1]
-    else:
-        return s[len(s) - shift:] + s[:len(s) - shift]
-","import unittest
-
-class TestCircularShift(unittest.TestCase):
+class TestCircularShift_65(unittest.TestCase):
     def test_circular_shift_1(self):
-        self.assertEqual(circular_shift(12, 1), ""21"")
+        self.assertEqual(circular_shift(12, 1), "21")
 
     def test_circular_shift_2(self):
-        self.assertEqual(circular_shift(12, 2), ""12"")
+        self.assertEqual(circular_shift(12, 2), "12")
 
     def test_circular_shift_3(self):
-        self.assertEqual(circular_shift(12, 3), ""21"")
+        self.assertEqual(circular_shift(12, 3), "21")
 
     def test_circular_shift_4(self):
-        self.assertEqual(circular_shift(12, 4), ""12"")
+        self.assertEqual(circular_shift(12, 4), "12")
 
     def test_circular_shift_5(self):
-        self.assertEqual(circular_shift(12, 5), ""21"")
+        self.assertEqual(circular_shift(12, 5), "21")
 
     def test_circular_shift_6(self):
-        self.assertEqual(circular_shift(12, 6), ""12"")
+        self.assertEqual(circular_shift(12, 6), "12")
 
     def test_circular_shift_7(self):
-        self.assertEqual(circular_shift(12, 7), ""21"")
+        self.assertEqual(circular_shift(12, 7), "21")
 
     def test_circular_shift_8(self):
-        self.assertEqual(circular_shift(12, 8), ""12"")
+        self.assertEqual(circular_shift(12, 8), "12")
 
     def test_circular_shift_9(self):
-        self.assertEqual(circular_shift(12, 9), ""21"")
+        self.assertEqual(circular_shift(12, 9), "21")
 
     def test_circular_shift_10(self):
-        self.assertEqual(circular_shift(12, 10), ""12"")
+        self.assertEqual(circular_shift(12, 10), "12")
 
-"
-"
-def digitSum(s):
-    """"""Task
-    Write a function that takes a string as input and returns the sum of the upper characters only'
-    ASCII codes.
-
-    Examples:
-        digitSum("""") => 0
-        digitSum(""abAB"") => 131
-        digitSum(""abcCd"") => 67
-        digitSum(""helloE"") => 69
-        digitSum(""woArBld"") => 131
-        digitSum(""aAaaaXa"") => 153
-    """"""
-","    if s == """": return 0
-    return sum(ord(char) if char.isupper() else 0 for char in s)
-","import unittest
-
-class TestDigitSum(unittest.TestCase):
+class TestDigitSum_66(unittest.TestCase):
     def test_digit_sum_empty_string(self):
-        self.assertEqual(digitSum(""""), 0)
+        self.assertEqual(digitSum(""), 0)
 
     def test_digit_sum_single_uppercase_letter(self):
-        self.assertEqual(digitSum(""A""), 65)
+        self.assertEqual(digitSum("A"), 65)
 
     def test_digit_sum_single_lowercase_letter(self):
-        self.assertEqual(digitSum(""a""), 0)
+        self.assertEqual(digitSum("a"), 0)
 
     def test_digit_sum_multiple_uppercase_letters(self):
-        self.assertEqual(digitSum(""AB""), 131)
+        self.assertEqual(digitSum("AB"), 131)
 
     def test_digit_sum_multiple_lowercase_letters(self):
-        self.assertEqual(digitSum(""ab""), 0)
+        self.assertEqual(digitSum("ab"), 0)
 
     def test_digit_sum_mixed_case_letters(self):
-        self.assertEqual(digitSum(""aB""), 65)
+        self.assertEqual(digitSum("aB"), 65)
 
     def test_digit_sum_special_characters(self):
-        self.assertEqual(digitSum(""!@#$%^&*()_+-=""), 0)
+        self.assertEqual(digitSum("!@#$%^&*()_+-="), 0)
 
     def test_digit_sum_unicode_characters(self):
-        self.assertEqual(digitSum(""áéíóú""), 0)
+        self.assertEqual(digitSum("áéíóú"), 0)
 
     def test_digit_sum_non_ascii_characters(self):
-        self.assertEqual(digitSum(""😀😃😄😁""), 0)"
-"
-def fruit_distribution(s,n):
-    """"""
-    In this task, you will be given a string that represents a number of apples and oranges 
-    that are distributed in a basket of fruit this basket contains 
-    apples, oranges, and mango fruits. Given the string that represents the total number of 
-    the oranges and apples and an integer that represent the total number of the fruits 
-    in the basket return the number of the mango fruits in the basket.
-    for examble:
-    fruit_distribution(""5 apples and 6 oranges"", 19) ->19 - 5 - 6 = 8
-    fruit_distribution(""0 apples and 1 oranges"",3) -> 3 - 0 - 1 = 2
-    fruit_distribution(""2 apples and 3 oranges"", 100) -> 100 - 2 - 3 = 95
-    fruit_distribution(""100 apples and 1 oranges"",120) -> 120 - 100 - 1 = 19
-    """"""
-","    lis = list()
-    for i in s.split(' '):
-        if i.isdigit():
-            lis.append(int(i))
-    return n - sum(lis)
-","import unittest
+        self.assertEqual(digitSum("😀😃😄😁"), 0)
 
-class TestFruitDistribution(unittest.TestCase):
+class TestFruitDistribution_67(unittest.TestCase):
     def test_fruit_distribution_1(self):
-        self.assertEqual(fruit_distribution(""5 apples and 6 oranges"", 19), 8)
+        self.assertEqual(fruit_distribution("5 apples and 6 oranges", 19), 8)
 
     def test_fruit_distribution_2(self):
-        self.assertEqual(fruit_distribution(""0 apples and 1 oranges"", 3), 2)
+        self.assertEqual(fruit_distribution("0 apples and 1 oranges", 3), 2)
 
     def test_fruit_distribution_3(self):
-        self.assertEqual(fruit_distribution(""2 apples and 3 oranges"", 100), 95)
+        self.assertEqual(fruit_distribution("2 apples and 3 oranges", 100), 95)
 
     def test_fruit_distribution_4(self):
-        self.assertEqual(fruit_distribution(""100 apples and 1 oranges"", 120), 19)
+        self.assertEqual(fruit_distribution("100 apples and 1 oranges", 120), 19)
 
     def test_fruit_distribution_5(self):
-        self.assertEqual(fruit_distribution(""5 apples and 6 oranges"", 19), 8)
+        self.assertEqual(fruit_distribution("5 apples and 6 oranges", 19), 8)
 
     def test_fruit_distribution_6(self):
-        self.assertEqual(fruit_distribution(""0 apples and 1 oranges"", 3), 2)
+        self.assertEqual(fruit_distribution("0 apples and 1 oranges", 3), 2)
 
     def test_fruit_distribution_7(self):
-        self.assertEqual(fruit_distribution(""2 apples and 3 oranges"", 100), 95)
+        self.assertEqual(fruit_distribution("2 apples and 3 oranges", 100), 95)
 
     def test_fruit_distribution_8(self):
-        self.assertEqual(fruit_distribution(""100 apples and 1 oranges"", 120), 19)
+        self.assertEqual(fruit_distribution("100 apples and 1 oranges", 120), 19)
 
     def test_fruit_distribution_9(self):
-        self.assertEqual(fruit_distribution(""5 apples and 6 oranges"", 19), 8)
+        self.assertEqual(fruit_distribution("5 apples and 6 oranges", 19), 8)
 
     def test_fruit_distribution_10(self):
-        self.assertEqual(fruit_distribution(""0 apples and 1 oranges"", 3), 2)
+        self.assertEqual(fruit_distribution("0 apples and 1 oranges", 3), 2)
 
-"
-"
-def pluck(arr):
-    """"""
-    ""Given an array representing a branch of a tree that has non-negative integer nodes
-    your task is to pluck one of the nodes and return it.
-    The plucked node should be the node with the smallest even value.
-    If multiple nodes with the same smallest even value are found return the node that has smallest index.
-
-    The plucked node should be returned in a list, [ smalest_value, its index ],
-    If there are no even values or the given array is empty, return [].
-
-    Example 1:
-        Input: [4,2,3]
-        Output: [2, 1]
-        Explanation: 2 has the smallest even value, and 2 has the smallest index.
-
-    Example 2:
-        Input: [1,2,3]
-        Output: [2, 1]
-        Explanation: 2 has the smallest even value, and 2 has the smallest index. 
-
-    Example 3:
-        Input: []
-        Output: []
-    
-    Example 4:
-        Input: [5, 0, 3, 0, 4, 2]
-        Output: [0, 1]
-        Explanation: 0 is the smallest value, but  there are two zeros,
-                     so we will choose the first zero, which has the smallest index.
-
-    Constraints:
-        * 1 <= nodes.length <= 10000
-        * 0 <= node.value
-    """"""
-","    if(len(arr) == 0): return []
-    evens = list(filter(lambda x: x%2 == 0, arr))
-    if(evens == []): return []
-    return [min(evens), arr.index(min(evens))]
-","import unittest
-
-class TestPluck(unittest.TestCase):
+class TestPluck_68(unittest.TestCase):
     def test_empty_array(self):
         self.assertEqual(pluck([]), [])
 
@@ -3662,32 +2357,7 @@ class TestPluck(unittest.TestCase):
     def test_multiple_even_values_with_different_smallest_value_and_different_index_and_different_value(self):
         self.assertEqual(pluck([2, 4, 6, 8, 10, 12, 14, 16, 18, 20]), [2, 0])
 
-"
-"
-def search(lst):
-    '''
-    You are given a non-empty list of positive integers. Return the greatest integer that is greater than 
-    zero, and has a frequency greater than or equal to the value of the integer itself. 
-    The frequency of an integer is the number of times it appears in the list.
-    If no such a value exist, return -1.
-    Examples:
-        search([4, 1, 2, 2, 3, 1]) == 2
-        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3
-        search([5, 5, 4, 4, 4]) == -1
-    '''
-","    frq = [0] * (max(lst) + 1)
-    for i in lst:
-        frq[i] += 1;
-
-    ans = -1
-    for i in range(1, len(frq)):
-        if frq[i] >= i:
-            ans = i
-    
-    return ans
-","import unittest
-
-class TestSearch(unittest.TestCase):
+class TestSearch_69(unittest.TestCase):
     def test_search_empty_list(self):
         lst = []
         self.assertEqual(search(lst), -1)
@@ -3736,28 +2406,7 @@ class TestSearch(unittest.TestCase):
         lst = [-1, 0, -3, -4, -5]
         self.assertEqual(search(lst), -1)
 
-"
-"
-def strange_sort_list(lst):
-    '''
-    Given list of integers, return list in strange order.
-    Strange sorting, is when you start with the minimum value,
-    then maximum of the remaining integers, then minimum and so on.
-
-    Examples:
-    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]
-    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]
-    strange_sort_list([]) == []
-    '''
-","    res, switch = [], True
-    while lst:
-        res.append(min(lst) if switch else max(lst))
-        lst.remove(res[-1])
-        switch = not switch
-    return res
-","import unittest
-
-class TestStrangeSortList(unittest.TestCase):
+class TestStrangeSortList_70(unittest.TestCase):
     def test_empty_list(self):
         self.assertEqual(strange_sort_list([]), [])
 
@@ -3791,28 +2440,7 @@ class TestStrangeSortList(unittest.TestCase):
     def test_ten_element_list(self):
         self.assertEqual(strange_sort_list([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), [1, 10, 2, 9, 3, 8, 4, 7, 5, 6])
 
-"
-"
-def triangle_area(a, b, c):
-    '''
-    Given the lengths of the three sides of a triangle. Return the area of
-    the triangle rounded to 2 decimal points if the three sides form a valid triangle. 
-    Otherwise return -1
-    Three sides make a valid triangle when the sum of any two sides is greater 
-    than the third side.
-    Example:
-    triangle_area(3, 4, 5) == 6.00
-    triangle_area(1, 2, 10) == -1
-    '''
-","    if a + b <= c or a + c <= b or b + c <= a:
-        return -1 
-    s = (a + b + c)/2    
-    area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
-    area = round(area, 2)
-    return area
-","import unittest
-
-class TestTriangleArea(unittest.TestCase):
+class TestTriangleArea_71(unittest.TestCase):
     def test_valid_triangle(self):
         self.assertEqual(triangle_area(3, 4, 5), 6.00)
 
@@ -3843,98 +2471,54 @@ class TestTriangleArea(unittest.TestCase):
     def test_invalid_triangle_with_large_values(self):
         self.assertEqual(triangle_area(1000000000, 1000000000, 1000000000), -1)
 
-"
-"
-def will_it_fly(q,w):
-    '''
-    Write a function that returns True if the object q will fly, and False otherwise.
-    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.
-
-    Example:
-    will_it_fly([1, 2], 5) ➞ False 
-    # 1+2 is less than the maximum possible weight, but it's unbalanced.
-
-    will_it_fly([3, 2, 3], 1) ➞ False
-    # it's balanced, but 3+2+3 is more than the maximum possible weight.
-
-    will_it_fly([3, 2, 3], 9) ➞ True
-    # 3+2+3 is less than the maximum possible weight, and it's balanced.
-
-    will_it_fly([3], 5) ➞ True
-    # 3 is less than the maximum possible weight, and it's balanced.
-    '''
-","    if sum(q) > w:
-        return False
-
-    i, j = 0, len(q)-1
-    while i<j:
-        if q[i] != q[j]:
-            return False
-        i+=1
-        j-=1
-    return True
-","import unittest
-
-class TestWillItFly(unittest.TestCase):
-    def test_balanced_list(self):
+class TestWillItFly_72(unittest.TestCase):
+    def test_balanced_list_1(self):
         self.assertTrue(will_it_fly([1, 2], 5))
+    def test_balanced_list_2(self):
         self.assertTrue(will_it_fly([3, 2, 3], 9))
+    def test_balanced_list_3(self):
         self.assertTrue(will_it_fly([3], 5))
-
-    def test_unbalanced_list(self):
+    def test_unbalanced_list_1(self):
         self.assertFalse(will_it_fly([1, 2], 1))
+    def test_unbalanced_list_2(self):
         self.assertFalse(will_it_fly([3, 2, 3], 1))
+    def test_unbalanced_list_3(self):
         self.assertFalse(will_it_fly([3], 1))
-
-    def test_sum_greater_than_weight(self):
+    def test_sum_greater_than_weight_1(self):
         self.assertFalse(will_it_fly([1, 2], 1))
+    def test_sum_greater_than_weight_2(self):
         self.assertFalse(will_it_fly([3, 2, 3], 1))
+    def test_sum_greater_than_weight_3(self):
         self.assertFalse(will_it_fly([3], 1))
-
     def test_empty_list(self):
         self.assertTrue(will_it_fly([], 1))
 
-    def test_list_with_negative_elements(self):
+    def test_list_with_negative_elements_1(self):
         self.assertFalse(will_it_fly([-1, -2], 1))
+    def test_list_with_negative_elements_2(self):
         self.assertFalse(will_it_fly([-3, -2, -3], 1))
+    def test_list_with_negative_elements_3(self):
         self.assertFalse(will_it_fly([-3], 1))
-
-    def test_list_with_floating_point_elements(self):
+    def test_list_with_floating_point_elements_1(self):
         self.assertFalse(will_it_fly([1.1, 2.2], 1))
+    def test_list_with_floating_point_elements_2(self):
         self.assertFalse(will_it_fly([3.3, 2.2, 3.3], 1))
+    def test_list_with_floating_point_elements_3(self):
         self.assertFalse(will_it_fly([3.3], 1))
-
-    def test_list_with_string_elements(self):
+    def test_list_with_string_elements_1(self):
         self.assertFalse(will_it_fly(['a', 'b'], 1))
+    def test_list_with_string_elements_2(self):
         self.assertFalse(will_it_fly(['c', 'd', 'e'], 1))
+    def test_list_with_string_elements_3(self):
         self.assertFalse(will_it_fly(['f'], 1))
-
-    def test_list_with_mixed_elements(self):
+    def test_list_with_mixed_elements_1(self):
         self.assertFalse(will_it_fly([1, 'a', 2.2], 1))
+    def test_list_with_mixed_elements_2(self):
         self.assertFalse(will_it_fly([3, 'c', 2.2, 3.3], 1))
+    def test_list_with_mixed_elements_3(self):
         self.assertFalse(will_it_fly([3, 'f'], 1))
 
-"
-"
-def smallest_change(arr):
-    """"""
-    Given an array arr of integers, find the minimum number of elements that
-    need to be changed to make the array palindromic. A palindromic array is an array that
-    is read the same backwards and forwards. In one change, you can change one element to any other element.
-
-    For example:
-    smallest_change([1,2,3,5,4,7,9,6]) == 4
-    smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1
-    smallest_change([1, 2, 3, 2, 1]) == 0
-    """"""
-","    ans = 0
-    for i in range(len(arr) // 2):
-        if arr[i] != arr[len(arr) - i - 1]:
-            ans += 1
-    return ans
-","import unittest
-
-class TestSmallestChange(unittest.TestCase):
+class TestSmallestChange_73(unittest.TestCase):
     def test_smallest_change_1(self):
         arr = [1, 2, 3, 5, 4, 7, 9, 6]
         expected = 4
@@ -3983,37 +2567,9 @@ class TestSmallestChange(unittest.TestCase):
     def test_smallest_change_10(self):
         arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
         expected = 10
-        self.assertEqual(smallest_change(arr), expected)"
-"
-def total_match(lst1, lst2):
-    '''
-    Write a function that accepts two lists of strings and returns the list that has 
-    total number of chars in the all strings of the list less than the other list.
+        self.assertEqual(smallest_change(arr), expected)
 
-    if the two lists have the same number of chars, return the first list.
-
-    Examples
-    total_match([], []) ➞ []
-    total_match(['hi', 'admin'], ['hI', 'Hi']) ➞ ['hI', 'Hi']
-    total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) ➞ ['hi', 'admin']
-    total_match(['hi', 'admin'], ['hI', 'hi', 'hi']) ➞ ['hI', 'hi', 'hi']
-    total_match(['4'], ['1', '2', '3', '4', '5']) ➞ ['4']
-    '''
-","    l1 = 0
-    for st in lst1:
-        l1 += len(st)
-    
-    l2 = 0
-    for st in lst2:
-        l2 += len(st)
-    
-    if l1 <= l2:
-        return lst1
-    else:
-        return lst2
-","import unittest
-
-class TestTotalMatch(unittest.TestCase):
+class TestTotalMatch_74(unittest.TestCase):
     def test_empty_lists(self):
         self.assertEqual(total_match([], []), [])
 
@@ -4044,33 +2600,7 @@ class TestTotalMatch(unittest.TestCase):
     def test_unequal_length_lists_4(self):
         self.assertEqual(total_match(['1', '2', '3', '4', '5'], ['hI', 'hi', 'hi', 'admin', 'project']), ['1', '2', '3', '4', '5'])
 
-"
-"
-def is_multiply_prime(a):
-    """"""Write a function that returns true if the given number is the multiplication of 3 prime numbers
-    and false otherwise.
-    Knowing that (a) is less then 100. 
-    Example:
-    is_multiply_prime(30) == True
-    30 = 2 * 3 * 5
-    """"""
-","    def is_prime(n):
-        for j in range(2,n):
-            if n%j == 0:
-                return False
-        return True
-
-    for i in range(2,101):
-        if not is_prime(i): continue
-        for j in range(2,101):
-            if not is_prime(j): continue
-            for k in range(2,101):
-                if not is_prime(k): continue
-                if i*j*k == a: return True
-    return False
-","import unittest
-
-class TestIsMultiplyPrime(unittest.TestCase):
+class TestIsMultiplyPrime_75(unittest.TestCase):
     def test_is_multiply_prime_true(self):
         self.assertTrue(is_multiply_prime(30))
 
@@ -4101,29 +2631,7 @@ class TestIsMultiplyPrime(unittest.TestCase):
     def test_is_multiply_prime_false_5(self):
         self.assertFalse(is_multiply_prime(151))
 
-"
-"
-def is_simple_power(x, n):
-    """"""Your task is to write a function that returns true if a number x is a simple
-    power of n and false in other cases.
-    x is a simple power of n if n**int=x
-    For example:
-    is_simple_power(1, 4) => true
-    is_simple_power(2, 2) => true
-    is_simple_power(8, 2) => true
-    is_simple_power(3, 2) => false
-    is_simple_power(3, 1) => false
-    is_simple_power(5, 3) => false
-    """"""
-","    if (n == 1): 
-        return (x == 1) 
-    power = 1
-    while (power < x): 
-        power = power * n 
-    return (power == x) 
-","import unittest
-
-class TestIsSimplePower(unittest.TestCase):
+class TestIsSimplePower_76(unittest.TestCase):
     def test_is_simple_power_1(self):
         self.assertTrue(is_simple_power(1, 4))
 
@@ -4154,276 +2662,188 @@ class TestIsSimplePower(unittest.TestCase):
     def test_is_simple_power_10(self):
         self.assertFalse(is_simple_power(3, 1))
 
-"
-"
-def iscube(a):
-    '''
-    Write a function that takes an integer a and returns True 
-    if this ingeger is a cube of some integer number.
-    Note: you may assume the input is always valid.
-    Examples:
-    iscube(1) ==> True
-    iscube(2) ==> False
-    iscube(-1) ==> True
-    iscube(64) ==> True
-    iscube(0) ==> True
-    iscube(180) ==> False
-    '''
-","    a = abs(a)
-    return int(round(a ** (1. / 3))) ** 3 == a
-","import unittest
-
-class TestIsCube(unittest.TestCase):
-    def test_iscube_positive(self):
+class TestIsCube_77(unittest.TestCase):
+    def test_iscube_positive_1(self):
         self.assertTrue(iscube(1))
+    def test_iscube_positive_2(self):
         self.assertTrue(iscube(8))
+    def test_iscube_positive_3(self):
         self.assertTrue(iscube(27))
+    def test_iscube_positive_4(self):
         self.assertTrue(iscube(64))
+    def test_iscube_positive_5(self):
         self.assertTrue(iscube(125))
+    def test_iscube_positive_6(self):
         self.assertTrue(iscube(216))
+    def test_iscube_positive_7(self):
         self.assertTrue(iscube(343))
+    def test_iscube_positive_8(self):
         self.assertTrue(iscube(512))
+    def test_iscube_positive_9(self):
         self.assertTrue(iscube(729))
+    def test_iscube_positive_10(self):
         self.assertTrue(iscube(1000))
-
-    def test_iscube_negative(self):
+    def test_iscube_negative_1(self):
         self.assertFalse(iscube(2))
+    def test_iscube_negative_2(self):
         self.assertFalse(iscube(3))
+    def test_iscube_negative_3(self):
         self.assertFalse(iscube(5))
+    def test_iscube_negative_4(self):
         self.assertFalse(iscube(7))
+    def test_iscube_negative_5(self):
         self.assertFalse(iscube(11))
+    def test_iscube_negative_6(self):
         self.assertFalse(iscube(13))
+    def test_iscube_negative_7(self):
         self.assertFalse(iscube(17))
+    def test_iscube_negative_8(self):
         self.assertFalse(iscube(19))
+    def test_iscube_negative_9(self):
         self.assertFalse(iscube(23))
+    def test_iscube_negative_10(self):
         self.assertFalse(iscube(29))
 
-"
-"
-def hex_key(num):
-    """"""You have been tasked to write a function that receives 
-    a hexadecimal number as a string and counts the number of hexadecimal 
-    digits that are primes (prime number, or a prime, is a natural number 
-    greater than 1 that is not a product of two smaller natural numbers).
-    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.
-    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...
-    So you have to determine a number of the following digits: 2, 3, 5, 7, 
-    B (=decimal 11), D (=decimal 13).
-    Note: you may assume the input is always correct or empty string, 
-    and symbols A,B,C,D,E,F are always uppercase.
-    Examples:
-    For num = ""AB"" the output should be 1.
-    For num = ""1077E"" the output should be 2.
-    For num = ""ABED1A33"" the output should be 4.
-    For num = ""123456789ABCDEF0"" the output should be 6.
-    For num = ""2020"" the output should be 2.
-    """"""
-","    primes = ('2', '3', '5', '7', 'B', 'D')
-    total = 0
-    for i in range(0, len(num)):
-        if num[i] in primes:
-            total += 1
-    return total
-","import unittest
-
-class TestHexKey(unittest.TestCase):
+class TestHexKey_78(unittest.TestCase):
     def test_empty_string(self):
         self.assertEqual(hex_key(''), 0)
 
-    def test_single_digit(self):
+    def test_single_digit_1(self):
         self.assertEqual(hex_key('2'), 1)
+    def test_single_digit_2(self):
         self.assertEqual(hex_key('3'), 1)
+    def test_single_digit_3(self):
         self.assertEqual(hex_key('5'), 1)
+    def test_single_digit_4(self):
         self.assertEqual(hex_key('7'), 1)
+    def test_single_digit_5(self):
         self.assertEqual(hex_key('B'), 1)
+    def test_single_digit_6(self):
         self.assertEqual(hex_key('D'), 1)
-
-    def test_multiple_digits(self):
+    def test_multiple_digits_1(self):
         self.assertEqual(hex_key('AB'), 1)
+    def test_multiple_digits_2(self):
         self.assertEqual(hex_key('1077E'), 2)
+    def test_multiple_digits_3(self):
         self.assertEqual(hex_key('ABED1A33'), 4)
+    def test_multiple_digits_4(self):
         self.assertEqual(hex_key('123456789ABCDEF0'), 6)
+    def test_multiple_digits_5(self):
         self.assertEqual(hex_key('2020'), 2)
+    def test_invalid_input_1(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_2(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_3(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_4(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_5(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_6(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_7(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_8(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_9(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_10(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_11(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_12(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_13(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_14(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_15(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_16(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_17(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_18(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_19(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_20(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_21(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_22(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_23(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_24(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_25(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_26(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
+    def test_invalid_input_27(self):
+        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
 
-    def test_invalid_input(self):
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)
-        self.assertEqual(hex_key('123456789ABCDEFG'), 0)"
-"
-def decimal_to_binary(decimal):
-    """"""You will be given a number in decimal form and your task is to convert it to
-    binary format. The function should return a string, with each character representing a binary
-    number. Each character in the string will be '0' or '1'.
-
-    There will be an extra couple of characters 'db' at the beginning and at the end of the string.
-    The extra characters are there to help with the format.
-
-    Examples:
-    decimal_to_binary(15)   # returns ""db1111db""
-    decimal_to_binary(32)   # returns ""db100000db""
-    """"""
-","    return ""db"" + bin(decimal)[2:] + ""db""
-","import unittest
-
-class TestDecimalToBinary(unittest.TestCase):
+class TestDecimalToBinary_79(unittest.TestCase):
     def test_decimal_to_binary_1(self):
-        self.assertEqual(decimal_to_binary(15), ""db1111db"")
+        self.assertEqual(decimal_to_binary(15), "db1111db")
 
     def test_decimal_to_binary_2(self):
-        self.assertEqual(decimal_to_binary(32), ""db100000db"")
+        self.assertEqual(decimal_to_binary(32), "db100000db")
 
     def test_decimal_to_binary_3(self):
-        self.assertEqual(decimal_to_binary(1), ""db1db"")
+        self.assertEqual(decimal_to_binary(1), "db1db")
 
     def test_decimal_to_binary_4(self):
-        self.assertEqual(decimal_to_binary(2), ""db10db"")
+        self.assertEqual(decimal_to_binary(2), "db10db")
 
     def test_decimal_to_binary_5(self):
-        self.assertEqual(decimal_to_binary(4), ""db100db"")
+        self.assertEqual(decimal_to_binary(4), "db100db")
 
     def test_decimal_to_binary_6(self):
-        self.assertEqual(decimal_to_binary(8), ""db1000db"")
+        self.assertEqual(decimal_to_binary(8), "db1000db")
 
     def test_decimal_to_binary_7(self):
-        self.assertEqual(decimal_to_binary(16), ""db10000db"")
+        self.assertEqual(decimal_to_binary(16), "db10000db")
 
     def test_decimal_to_binary_8(self):
-        self.assertEqual(decimal_to_binary(31), ""db11111db"")
+        self.assertEqual(decimal_to_binary(31), "db11111db")
 
     def test_decimal_to_binary_9(self):
-        self.assertEqual(decimal_to_binary(32), ""db100000db"")
+        self.assertEqual(decimal_to_binary(32), "db100000db")
 
     def test_decimal_to_binary_10(self):
-        self.assertEqual(decimal_to_binary(63), ""db111111db"")
+        self.assertEqual(decimal_to_binary(63), "db111111db")
 
-"
-"
-def is_happy(s):
-    """"""You are given a string s.
-    Your task is to check if the string is happy or not.
-    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct
-    For example:
-    is_happy(a) => False
-    is_happy(aa) => False
-    is_happy(abcd) => True
-    is_happy(aabb) => False
-    is_happy(adb) => True
-    is_happy(xyy) => False
-    """"""
-","    if len(s) < 3:
-      return False
-
-    for i in range(len(s) - 2):
-      
-      if s[i] == s[i+1] or s[i+1] == s[i+2] or s[i] == s[i+2]:
-        return False
-    return True
-","import unittest
-
-class TestIsHappy(unittest.TestCase):
+class TestIsHappy_80(unittest.TestCase):
     def test_is_happy_true(self):
         self.assertTrue(is_happy('abcd'))
 
-    def test_is_happy_false(self):
+    def test_is_happy_false_1(self):
         self.assertFalse(is_happy('a'))
+    def test_is_happy_false_2(self):
         self.assertFalse(is_happy('aa'))
+    def test_is_happy_false_3(self):
         self.assertFalse(is_happy('aabb'))
+    def test_is_happy_false_4(self):
         self.assertFalse(is_happy('adb'))
+    def test_is_happy_false_5(self):
         self.assertFalse(is_happy('xyy'))
-
-    def test_is_happy_edge_cases(self):
+    def test_is_happy_edge_cases_1(self):
         self.assertTrue(is_happy(''))
+    def test_is_happy_edge_cases_2(self):
         self.assertTrue(is_happy('a'))
+    def test_is_happy_edge_cases_3(self):
         self.assertTrue(is_happy('aa'))
+    def test_is_happy_edge_cases_4(self):
         self.assertTrue(is_happy('aabb'))
+    def test_is_happy_edge_cases_5(self):
         self.assertTrue(is_happy('adb'))
+    def test_is_happy_edge_cases_6(self):
         self.assertTrue(is_happy('xyy'))
 
-"
-"
-def numerical_letter_grade(grades):
-    """"""It is the last week of the semester and the teacher has to give the grades
-    to students. The teacher has been making her own algorithm for grading.
-    The only problem is, she has lost the code she used for grading.
-    She has given you a list of GPAs for some students and you have to write 
-    a function that can output a list of letter grades using the following table:
-             GPA       |    Letter grade
-              4.0                A+
-            > 3.7                A 
-            > 3.3                A- 
-            > 3.0                B+
-            > 2.7                B 
-            > 2.3                B-
-            > 2.0                C+
-            > 1.7                C
-            > 1.3                C-
-            > 1.0                D+ 
-            > 0.7                D 
-            > 0.0                D-
-              0.0                E
-    
-
-    Example:
-    grade_equation([4.0, 3, 1.7, 2, 3.5]) ==> ['A+', 'B', 'C-', 'C', 'A-']
-    """"""
-","
-   
-    letter_grade = []
-    for gpa in grades:
-        if gpa == 4.0:
-            letter_grade.append(""A+"")
-        elif gpa > 3.7:
-            letter_grade.append(""A"")
-        elif gpa > 3.3:
-            letter_grade.append(""A-"")
-        elif gpa > 3.0:
-            letter_grade.append(""B+"")
-        elif gpa > 2.7:
-            letter_grade.append(""B"")
-        elif gpa > 2.3:
-            letter_grade.append(""B-"")
-        elif gpa > 2.0:
-            letter_grade.append(""C+"")
-        elif gpa > 1.7:
-            letter_grade.append(""C"")
-        elif gpa > 1.3:
-            letter_grade.append(""C-"")
-        elif gpa > 1.0:
-            letter_grade.append(""D+"")
-        elif gpa > 0.7:
-            letter_grade.append(""D"")
-        elif gpa > 0.0:
-            letter_grade.append(""D-"")
-        else:
-            letter_grade.append(""E"")
-    return letter_grade
-","import unittest
-
-class TestNumericalLetterGrade(unittest.TestCase):
+class TestNumericalLetterGrade_81(unittest.TestCase):
     def test_grade_equation_with_valid_input(self):
         grades = [4.0, 3, 1.7, 2, 3.5]
         expected_output = ['A+', 'B', 'C-', 'C', 'A-']
@@ -4464,51 +2884,29 @@ class TestNumericalLetterGrade(unittest.TestCase):
         expected_output = ['A+', 'B', 'C-', 'C', 'A-', 'E', 'E']
         self.assertEqual(numerical_letter_grade(grades), expected_output)
 
-"
-"
-def prime_length(string):
-    """"""Write a function that takes a string and returns True if the string
-    length is a prime number or False otherwise
-    Examples
-    prime_length('Hello') == True
-    prime_length('abcdcba') == True
-    prime_length('kittens') == True
-    prime_length('orange') == False
-    """"""
-","    l = len(string)
-    if l == 0 or l == 1:
-        return False
-    for i in range(2, l):
-        if l % i == 0:
-            return False
-    return True
-","import unittest
-
-class TestPrimeLength(unittest.TestCase):
-    def test_prime_length(self):
+class TestPrimeLength_82(unittest.TestCase):
+    def test_prime_length_1(self):
         self.assertTrue(prime_length('Hello'))
+    def test_prime_length_2(self):
         self.assertTrue(prime_length('abcdcba'))
+    def test_prime_length_3(self):
         self.assertTrue(prime_length('kittens'))
+    def test_prime_length_4(self):
         self.assertFalse(prime_length('orange'))
+    def test_prime_length_5(self):
         self.assertFalse(prime_length(''))
+    def test_prime_length_6(self):
         self.assertFalse(prime_length('1234567890'))
+    def test_prime_length_7(self):
         self.assertFalse(prime_length('123456789012345678901234567890'))
+    def test_prime_length_8(self):
         self.assertFalse(prime_length('1234567890123456789012345678901234567890'))
+    def test_prime_length_9(self):
         self.assertFalse(prime_length('12345678901234567890123456789012345678901234567890'))
+    def test_prime_length_10(self):
         self.assertFalse(prime_length('123456789012345678901234567890123456789012345678901234567890'))
 
-"
-"
-def starts_one_ends(n):
-    """"""
-    Given a positive integer n, return the count of the numbers of n-digit
-    positive integers that start or end with 1.
-    """"""
-","    if n == 1: return 1
-    return 18 * (10 ** (n - 2))
-","import unittest
-
-class TestStartsOneEnds(unittest.TestCase):
+class TestStartsOneEnds_83(unittest.TestCase):
     def test_n_1(self):
         self.assertEqual(starts_one_ends(1), 1)
 
@@ -4539,58 +2937,28 @@ class TestStartsOneEnds(unittest.TestCase):
     def test_n_10(self):
         self.assertEqual(starts_one_ends(10), 18 * 10 ** 9)
 
-"
-"
-def solve(N):
-    """"""Given a positive integer N, return the total sum of its digits in binary.
-    
-    Example
-        For N = 1000, the sum of digits will be 1 the output should be ""1"".
-        For N = 150, the sum of digits will be 6 the output should be ""110"".
-        For N = 147, the sum of digits will be 12 the output should be ""1100"".
-    
-    Variables:
-        @N integer
-             Constraints: 0 ≤ N ≤ 10000.
-    Output:
-         a string of binary number
-    """"""
-","    return bin(sum(int(i) for i in str(N)))[2:]
-","import unittest
-
-class TestSolve(unittest.TestCase):
+class TestSolve_84(unittest.TestCase):
     def test_solve_1(self):
         N = 1000
-        expected = ""1""
+        expected = "1"
         self.assertEqual(solve(N), expected)
 
     def test_solve_2(self):
         N = 150
-        expected = ""110""
+        expected = "110"
         self.assertEqual(solve(N), expected)
 
     def test_solve_3(self):
         N = 147
-        expected = ""1100""
+        expected = "1100"
         self.assertEqual(solve(N), expected)
 
     def test_solve_4(self):
         N = 100
-        expected = ""1010""
+        expected = "1010"
         self.assertEqual(solve(N), expected)
-"
-"
-def add(lst):
-    """"""Given a non-empty list of integers lst. add the even elements that are at odd indices..
 
-
-    Examples:
-        add([4, 2, 6, 7]) ==> 2 
-    """"""
-","    return sum([lst[i] for i in range(1, len(lst), 2) if lst[i]%2 == 0])
-","import unittest
-
-class TestAdd(unittest.TestCase):
+class TestAdd_85(unittest.TestCase):
     def test_add_empty_list(self):
         self.assertEqual(add([]), 0)
 
@@ -4616,25 +2984,9 @@ class TestAdd(unittest.TestCase):
         self.assertEqual(add([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 55)
 
     def test_add_negative_large_list(self):
-        self.assertEqual(add([-1, -2, -3, -4, -5, -6, -7, -8, -9, -10]), -55)"
-"
-def anti_shuffle(s):
-    """"""
-    Write a function that takes a string and returns an ordered version of it.
-    Ordered version of string, is a string where all words (separated by space)
-    are replaced by a new word where all the characters arranged in
-    ascending order based on ascii value.
-    Note: You should keep the order of words and blank spaces in the sentence.
+        self.assertEqual(add([-1, -2, -3, -4, -5, -6, -7, -8, -9, -10]), -55)
 
-    For example:
-    anti_shuffle('Hi') returns 'Hi'
-    anti_shuffle('hello') returns 'ehllo'
-    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'
-    """"""
-","    return ' '.join([''.join(sorted(list(i))) for i in s.split(' ')])
-","import unittest
-
-class TestAntiShuffle(unittest.TestCase):
+class TestAntiShuffle_86(unittest.TestCase):
     def test_empty_string(self):
         self.assertEqual(anti_shuffle(''), '')
 
@@ -4680,33 +3032,7 @@ class TestAntiShuffle(unittest.TestCase):
     def test_multiple_words_with_spaces_and_punctuation_10(self):
         self.assertEqual(anti_shuffle('hello world!!!'), 'ehllo !!!Wdlor')
 
-"
-"
-def get_row(lst, x):
-    """"""
-    You are given a 2 dimensional data, as a nested lists,
-    which is similar to matrix, however, unlike matrices,
-    each row may contain a different number of columns.
-    Given lst, and integer x, find integers x in the list,
-    and return list of tuples, [(x1, y1), (x2, y2) ...] such that
-    each tuple is a coordinate - (row, columns), starting with 0.
-    Sort coordinates initially by rows in ascending order.
-    Also, sort coordinates of the row by columns in descending order.
-    
-    Examples:
-    get_row([
-      [1,2,3,4,5,6],
-      [1,2,3,4,1,6],
-      [1,2,3,4,5,1]
-    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]
-    get_row([], 1) == []
-    get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]
-    """"""
-","    coords = [(i, j) for i in range(len(lst)) for j in range(len(lst[i])) if lst[i][j] == x]
-    return sorted(sorted(coords, key=lambda x: x[1], reverse=True), key=lambda x: x[0])
-","import unittest
-
-class TestGetRow(unittest.TestCase):
+class TestGetRow_87(unittest.TestCase):
     def test_get_row_empty_list(self):
         lst = []
         x = 1
@@ -4748,27 +3074,8 @@ class TestGetRow(unittest.TestCase):
         x = 1
         expected = [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0), (3, 6), (4, 7), (5, 8)]
         self.assertEqual(get_row(lst, x), expected)
-"
-"
-def sort_array(array):
-    """"""
-    Given an array of non-negative integers, return a copy of the given array after sorting,
-    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,
-    or sort it in descending order if the sum( first index value, last index value) is even.
 
-    Note:
-    * don't change the given array.
-
-    Examples:
-    * sort_array([]) => []
-    * sort_array([5]) => [5]
-    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]
-    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]
-    """"""
-","    return [] if len(array) == 0 else sorted(array, reverse= (array[0]+array[-1]) % 2 == 0) 
-","import unittest
-
-class TestSortArray(unittest.TestCase):
+class TestSortArray_88(unittest.TestCase):
     def test_empty_array(self):
         self.assertEqual(sort_array([]), [])
 
@@ -4796,115 +3103,136 @@ class TestSortArray(unittest.TestCase):
     def test_random_array(self):
         self.assertEqual(sort_array([2, 4, 3, 0, 1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), [15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
 
-"
-"
-def encrypt(s):
-    """"""Create a function encrypt that takes a string as an argument and
-    returns a string encrypted with the alphabet being rotated. 
-    The alphabet should be rotated in a manner such that the letters 
-    shift down by two multiplied to two places.
-    For example:
-    encrypt('hi') returns 'lm'
-    encrypt('asdfghjkl') returns 'ewhjklnop'
-    encrypt('gf') returns 'kj'
-    encrypt('et') returns 'ix'
-    """"""
-","    d = 'abcdefghijklmnopqrstuvwxyz'
-    out = ''
-    for c in s:
-        if c in d:
-            out += d[(d.index(c)+2*2) % 26]
-        else:
-            out += c
-    return out
-","import unittest
-
-class TestEncrypt(unittest.TestCase):
+class TestEncrypt_89(unittest.TestCase):
     def test_encrypt_empty_string(self):
         self.assertEqual(encrypt(''), '')
 
-    def test_encrypt_single_letter(self):
+    def test_encrypt_single_letter_1(self):
         self.assertEqual(encrypt('a'), 'c')
+    def test_encrypt_single_letter_2(self):
         self.assertEqual(encrypt('b'), 'd')
+    def test_encrypt_single_letter_3(self):
         self.assertEqual(encrypt('c'), 'e')
+    def test_encrypt_single_letter_4(self):
         self.assertEqual(encrypt('d'), 'f')
+    def test_encrypt_single_letter_5(self):
         self.assertEqual(encrypt('e'), 'g')
+    def test_encrypt_single_letter_6(self):
         self.assertEqual(encrypt('f'), 'h')
+    def test_encrypt_single_letter_7(self):
         self.assertEqual(encrypt('g'), 'i')
+    def test_encrypt_single_letter_8(self):
         self.assertEqual(encrypt('h'), 'j')
+    def test_encrypt_single_letter_9(self):
         self.assertEqual(encrypt('i'), 'k')
+    def test_encrypt_single_letter_10(self):
         self.assertEqual(encrypt('j'), 'l')
+    def test_encrypt_single_letter_11(self):
         self.assertEqual(encrypt('k'), 'm')
+    def test_encrypt_single_letter_12(self):
         self.assertEqual(encrypt('l'), 'n')
+    def test_encrypt_single_letter_13(self):
         self.assertEqual(encrypt('m'), 'o')
+    def test_encrypt_single_letter_14(self):
         self.assertEqual(encrypt('n'), 'p')
+    def test_encrypt_single_letter_15(self):
         self.assertEqual(encrypt('o'), 'q')
+    def test_encrypt_single_letter_16(self):
         self.assertEqual(encrypt('p'), 'r')
+    def test_encrypt_single_letter_17(self):
         self.assertEqual(encrypt('q'), 's')
+    def test_encrypt_single_letter_18(self):
         self.assertEqual(encrypt('r'), 't')
+    def test_encrypt_single_letter_19(self):
         self.assertEqual(encrypt('s'), 'u')
+    def test_encrypt_single_letter_20(self):
         self.assertEqual(encrypt('t'), 'v')
+    def test_encrypt_single_letter_21(self):
         self.assertEqual(encrypt('u'), 'w')
+    def test_encrypt_single_letter_22(self):
         self.assertEqual(encrypt('v'), 'x')
+    def test_encrypt_single_letter_23(self):
         self.assertEqual(encrypt('w'), 'y')
+    def test_encrypt_single_letter_24(self):
         self.assertEqual(encrypt('x'), 'z')
+    def test_encrypt_single_letter_25(self):
         self.assertEqual(encrypt('y'), 'a')
+    def test_encrypt_single_letter_26(self):
         self.assertEqual(encrypt('z'), 'b')
-
-    def test_encrypt_multiple_letters(self):
+    def test_encrypt_multiple_letters_1(self):
         self.assertEqual(encrypt('ab'), 'cd')
+    def test_encrypt_multiple_letters_2(self):
         self.assertEqual(encrypt('bc'), 'de')
+    def test_encrypt_multiple_letters_3(self):
         self.assertEqual(encrypt('cd'), 'ef')
+    def test_encrypt_multiple_letters_4(self):
         self.assertEqual(encrypt('de'), 'fg')
+    def test_encrypt_multiple_letters_5(self):
         self.assertEqual(encrypt('ef'), 'gh')
+    def test_encrypt_multiple_letters_6(self):
         self.assertEqual(encrypt('fg'), 'hi')
+    def test_encrypt_multiple_letters_7(self):
         self.assertEqual(encrypt('gh'), 'ij')
+    def test_encrypt_multiple_letters_8(self):
         self.assertEqual(encrypt('hi'), 'jk')
+    def test_encrypt_multiple_letters_9(self):
         self.assertEqual(encrypt('ij'), 'kl')
+    def test_encrypt_multiple_letters_10(self):
         self.assertEqual(encrypt('jk'), 'lm')
+    def test_encrypt_multiple_letters_11(self):
         self.assertEqual(encrypt('kl'), 'mn')
+    def test_encrypt_multiple_letters_12(self):
         self.assertEqual(encrypt('lm'), 'no')
+    def test_encrypt_multiple_letters_13(self):
         self.assertEqual(encrypt('mn'), 'op')
+    def test_encrypt_multiple_letters_14(self):
         self.assertEqual(encrypt('no'), 'pq')
+    def test_encrypt_multiple_letters_15(self):
         self.assertEqual(encrypt('op'), 'qr')
+    def test_encrypt_multiple_letters_16(self):
         self.assertEqual(encrypt('pq'), 'rs')
+    def test_encrypt_multiple_letters_17(self):
         self.assertEqual(encrypt('qr'), 'st')
+    def test_encrypt_multiple_letters_18(self):
         self.assertEqual(encrypt('rs'), 'tu')
+    def test_encrypt_multiple_letters_19(self):
         self.assertEqual(encrypt('st'), 'uv')
+    def test_encrypt_multiple_letters_20(self):
         self.assertEqual(encrypt('tu'), 'vw')
+    def test_encrypt_multiple_letters_21(self):
         self.assertEqual(encrypt('uv'), 'wx')
+    def test_encrypt_multiple_letters_22(self):
         self.assertEqual(encrypt('vw'), 'xy')
+    def test_encrypt_multiple_letters_23(self):
         self.assertEqual(encrypt('wx'), 'yz')
+    def test_encrypt_multiple_letters_24(self):
         self.assertEqual(encrypt('xy'), 'za')
+    def test_encrypt_multiple_letters_25(self):
         self.assertEqual(encrypt('yz'), 'ba')
+    def test_encrypt_multiple_letters_26(self):
         self.assertEqual(encrypt('za'), 'bb')
+    def test_encrypt_multiple_letters_27(self):
         self.assertEqual(encrypt('ba'), 'bc')
+    def test_encrypt_multiple_letters_28(self):
         self.assertEqual(encrypt('bb'), 'bd')
+    def test_encrypt_multiple_letters_29(self):
         self.assertEqual(encrypt('bc'), 'be')
+    def test_encrypt_multiple_letters_30(self):
         self.assertEqual(encrypt('bd'), 'bf')
+    def test_encrypt_multiple_letters_31(self):
         self.assertEqual(encrypt('be'), 'bg')
+    def test_encrypt_multiple_letters_32(self):
         self.assertEqual(encrypt('bf'), 'bh')
+    def test_encrypt_multiple_letters_33(self):
         self.assertEqual(encrypt('bg'), 'bi')
+    def test_encrypt_multiple_letters_34(self):
         self.assertEqual(encrypt('bh'), 'bj')
+    def test_encrypt_multiple_letters_35(self):
         self.assertEqual(encrypt('bi'), 'bk')
-        self.assertEqual(encrypt('bj'), 'bl')"
-"
-def next_smallest(lst):
-    """"""
-    You are given a list of integers.
-    Write a function next_smallest() that returns the 2nd smallest element of the list.
-    Return None if there is no such element.
-    
-    next_smallest([1, 2, 3, 4, 5]) == 2
-    next_smallest([5, 1, 4, 3, 2]) == 2
-    next_smallest([]) == None
-    next_smallest([1, 1]) == None
-    """"""
-","    lst = sorted(set(lst))
-    return None if len(lst) < 2 else lst[1]
-","import unittest
+    def test_encrypt_multiple_letters_36(self):
+        self.assertEqual(encrypt('bj'), 'bl')
 
-class TestNextSmallest(unittest.TestCase):
+class TestNextSmallest_90(unittest.TestCase):
     def test_next_smallest_1(self):
         self.assertEqual(next_smallest([1, 2, 3, 4, 5]), 2)
 
@@ -4935,88 +3263,41 @@ class TestNextSmallest(unittest.TestCase):
     def test_next_smallest_10(self):
         self.assertEqual(next_smallest([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]), 2)
 
-"
-"
-def is_bored(S):
-    """"""
-    You'll be given a string of words, and your task is to count the number
-    of boredoms. A boredom is a sentence that starts with the word ""I"".
-    Sentences are delimited by '.', '?' or '!'.
-   
-    For example:
-    >>> is_bored(""Hello world"")
-    0
-    >>> is_bored(""The sky is blue. The sun is shining. I love this weather"")
-    1
-    """"""
-","    import re
-    sentences = re.split(r'[.?!]\s*', S)
-    return sum(sentence[0:2] == 'I ' for sentence in sentences)
-","import unittest
-
-class TestIsBored(unittest.TestCase):
+class TestIsBored_91(unittest.TestCase):
     def test_empty_string(self):
-        self.assertEqual(is_bored(""""), 0)
+        self.assertEqual(is_bored(""), 0)
 
     def test_single_word(self):
-        self.assertEqual(is_bored(""Hello""), 0)
+        self.assertEqual(is_bored("Hello"), 0)
 
     def test_single_sentence(self):
-        self.assertEqual(is_bored(""The sky is blue.""), 0)
+        self.assertEqual(is_bored("The sky is blue."), 0)
 
     def test_multiple_sentences(self):
-        self.assertEqual(is_bored(""The sky is blue. The sun is shining.""), 0)
+        self.assertEqual(is_bored("The sky is blue. The sun is shining."), 0)
 
     def test_single_boredom(self):
-        self.assertEqual(is_bored(""I love this weather.""), 1)
+        self.assertEqual(is_bored("I love this weather."), 1)
 
     def test_multiple_boredom(self):
-        self.assertEqual(is_bored(""I love this weather. I am feeling happy.""), 2)
+        self.assertEqual(is_bored("I love this weather. I am feeling happy."), 2)
 
     def test_mixed_sentences(self):
-        self.assertEqual(is_bored(""The sky is blue. I love this weather. The sun is shining.""), 1)
+        self.assertEqual(is_bored("The sky is blue. I love this weather. The sun is shining."), 1)
 
     def test_mixed_boredom(self):
-        self.assertEqual(is_bored(""The sky is blue. I love this weather. I am feeling happy. The sun is shining.""), 2)
+        self.assertEqual(is_bored("The sky is blue. I love this weather. I am feeling happy. The sun is shining."), 2)
 
     def test_no_boredom(self):
-        self.assertEqual(is_bored(""The sky is blue. The sun is shining.""), 0)
+        self.assertEqual(is_bored("The sky is blue. The sun is shining."), 0)
 
     def test_no_boredom_with_punctuation(self):
-        self.assertEqual(is_bored(""The sky is blue. The sun is shining.!""), 0)
+        self.assertEqual(is_bored("The sky is blue. The sun is shining.!"), 0)
 
     def test_no_boredom_with_question_mark(self):
-        self.assertEqual(is_bored(""The sky is blue. The sun is shining?""), 0)
+        self.assertEqual(is_bored("The sky is blue. The sun is shining?"), 0)
 
-"
-"
-def any_int(x, y, z):
-    '''
-    Create a function that takes 3 numbers.
-    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.
-    Returns false in any other cases.
-    
-    Examples
-    any_int(5, 2, 7) ➞ True
-    
-    any_int(3, 2, 2) ➞ False
-
-    any_int(3, -2, 1) ➞ True
-    
-    any_int(3.6, -2.2, 2) ➞ False
-  
-
-    
-    '''
-","    
-    if isinstance(x,int) and isinstance(y,int) and isinstance(z,int):
-        if (x+y==z) or (x+z==y) or (y+z==x):
-            return True
-        return False
-    return False
-","import unittest
-
-class TestAnyInt(unittest.TestCase):
+class TestAnyInt_92(unittest.TestCase):
     def test_true_case_1(self):
         self.assertTrue(any_int(5, 2, 7))
 
@@ -5056,96 +3337,43 @@ class TestAnyInt(unittest.TestCase):
     def test_false_case_10(self):
         self.assertFalse(any_int(3.6, -2.2, 2.1))
 
-"
-"
-def encode(message):
-    """"""
-    Write a function that takes a message, and encodes in such a 
-    way that it swaps case of all letters, replaces all vowels in 
-    the message with the letter that appears 2 places ahead of that 
-    vowel in the english alphabet. 
-    Assume only letters. 
-    
-    Examples:
-    >>> encode('test')
-    'TGST'
-    >>> encode('This is a message')
-    'tHKS KS C MGSSCGG'
-    """"""
-","    vowels = ""aeiouAEIOU""
-    vowels_replace = dict([(i, chr(ord(i) + 2)) for i in vowels])
-    message = message.swapcase()
-    return ''.join([vowels_replace[i] if i in vowels else i for i in message])
-","import unittest
-
-class TestEncode(unittest.TestCase):
-    def test_encode_message(self):
+class TestEncode_93(unittest.TestCase):
+    def test_encode_message_1(self):
         self.assertEqual(encode('test'), 'TGST')
+    def test_encode_message_2(self):
         self.assertEqual(encode('This is a message'), 'tHKS KS C MGSSCGG')
-
-    def test_encode_vowels(self):
+    def test_encode_vowels_1(self):
         self.assertEqual(encode('aeiou'), 'cdefg')
+    def test_encode_vowels_2(self):
         self.assertEqual(encode('AEIOU'), 'CDEFG')
-
     def test_encode_special_chars(self):
-        self.assertEqual(encode('!@#$%^&*()_+-=[]{}|;:"",./<>?'), '!@#$%^&*()_+-=[]{}|;:"",./<>?')
+        self.assertEqual(encode('!@#$%^&*()_+-=[]{}|;:",./<>?'), '!@#$%^&*()_+-=[]{}|;:",./<>?')
 
     def test_encode_empty_string(self):
         self.assertEqual(encode(''), '')
 
-    def test_encode_single_char(self):
+    def test_encode_single_char_1(self):
         self.assertEqual(encode('a'), 'c')
+    def test_encode_single_char_2(self):
         self.assertEqual(encode('A'), 'C')
-
-    def test_encode_multiple_chars(self):
+    def test_encode_multiple_chars_1(self):
         self.assertEqual(encode('abc'), 'cde')
+    def test_encode_multiple_chars_2(self):
         self.assertEqual(encode('ABC'), 'CDE')
-
-    def test_encode_mixed_case(self):
+    def test_encode_mixed_case_1(self):
         self.assertEqual(encode('aBc'), 'cDe')
+    def test_encode_mixed_case_2(self):
         self.assertEqual(encode('AbC'), 'CdE')
-
-    def test_encode_unicode(self):
+    def test_encode_unicode_1(self):
         self.assertEqual(encode('áéíóú'), 'cdefg')
+    def test_encode_unicode_2(self):
         self.assertEqual(encode('ÁÉÍÓÚ'), 'CDEFG')
-
-    def test_encode_non_ascii(self):
+    def test_encode_non_ascii_1(self):
         self.assertEqual(encode('äöü'), 'cdefg')
+    def test_encode_non_ascii_2(self):
         self.assertEqual(encode('ÄÖÜ'), 'CDEFG')
 
-"
-"
-
-def skjkasdkd(lst):
-    """"""You are given a list of integers.
-    You need to find the largest prime value and return the sum of its digits.
-
-    Examples:
-    For lst = [0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3] the output should be 10
-    For lst = [1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5,1] the output should be 25
-    For lst = [1,3,1,32,5107,34,83278,109,163,23,2323,32,30,1,9,3] the output should be 13
-    For lst = [0,724,32,71,99,32,6,0,5,91,83,0,5,6] the output should be 11
-    For lst = [0,81,12,3,1,21] the output should be 3
-    For lst = [0,8,1,2,1,7] the output should be 7
-    """"""
-","    def isPrime(n):
-        for i in range(2,int(n**0.5)+1):
-            if n%i==0:
-                return False
-
-        return True
-    maxx = 0
-    i = 0
-    while i < len(lst):
-        if(lst[i] > maxx and isPrime(lst[i])):
-            maxx = lst[i]
-        i+=1
-    result = sum(int(digit) for digit in str(maxx))
-    return result
-
-","import unittest
-
-class TestLargestPrimeValue(unittest.TestCase):
+class TestLargestPrimeValue_94(unittest.TestCase):
     def test_largest_prime_value(self):
         lst = [0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3]
         self.assertEqual(skjkasdkd(lst), 10)
@@ -5170,105 +3398,41 @@ class TestLargestPrimeValue(unittest.TestCase):
         lst = [0,8,1,2,1,7]
         self.assertEqual(skjkasdkd(lst), 7)
 
-"
-"
-def check_dict_case(dict):
-    """"""
-    Given a dictionary, return True if all keys are strings in lower 
-    case or all keys are strings in upper case, else return False.
-    The function should return False is the given dictionary is empty.
-    Examples:
-    check_dict_case({""a"":""apple"", ""b"":""banana""}) should return True.
-    check_dict_case({""a"":""apple"", ""A"":""banana"", ""B"":""banana""}) should return False.
-    check_dict_case({""a"":""apple"", 8:""banana"", ""a"":""apple""}) should return False.
-    check_dict_case({""Name"":""John"", ""Age"":""36"", ""City"":""Houston""}) should return False.
-    check_dict_case({""STATE"":""NC"", ""ZIP"":""12345"" }) should return True.
-    """"""
-","    if len(dict.keys()) == 0:
-        return False
-    else:
-        state = ""start""
-        for key in dict.keys():
-
-            if isinstance(key, str) == False:
-                state = ""mixed""
-                break
-            if state == ""start"":
-                if key.isupper():
-                    state = ""upper""
-                elif key.islower():
-                    state = ""lower""
-                else:
-                    break
-            elif (state == ""upper"" and not key.isupper()) or (state == ""lower"" and not key.islower()):
-                    state = ""mixed""
-                    break
-            else:
-                break
-        return state == ""upper"" or state == ""lower"" 
-","import unittest
-
-class TestCheckDictCase(unittest.TestCase):
+class TestCheckDictCase_95(unittest.TestCase):
     def test_empty_dict(self):
         self.assertFalse(check_dict_case({}))
 
     def test_all_lower_case(self):
-        self.assertTrue(check_dict_case({""a"": ""apple"", ""b"": ""banana""}))
+        self.assertTrue(check_dict_case({"a": "apple", "b": "banana"}))
 
     def test_all_upper_case(self):
-        self.assertTrue(check_dict_case({""A"": ""apple"", ""B"": ""banana""}))
+        self.assertTrue(check_dict_case({"A": "apple", "B": "banana"}))
 
     def test_mixed_case(self):
-        self.assertFalse(check_dict_case({""a"": ""apple"", ""A"": ""banana"", ""B"": ""banana""}))
+        self.assertFalse(check_dict_case({"a": "apple", "A": "banana", "B": "banana"}))
 
     def test_non_string_keys(self):
-        self.assertFalse(check_dict_case({""a"": ""apple"", 8: ""banana"", ""a"": ""apple""}))
+        self.assertFalse(check_dict_case({"a": "apple", 8: "banana", "a": "apple"}))
 
     def test_non_string_values(self):
-        self.assertFalse(check_dict_case({""Name"": ""John"", ""Age"": ""36"", ""City"": ""Houston""}))
+        self.assertFalse(check_dict_case({"Name": "John", "Age": "36", "City": "Houston"}))
 
     def test_all_upper_case_with_spaces(self):
-        self.assertTrue(check_dict_case({""STATE"": ""NC"", ""ZIP"": ""12345""}))
+        self.assertTrue(check_dict_case({"STATE": "NC", "ZIP": "12345"}))
 
     def test_all_lower_case_with_spaces(self):
-        self.assertTrue(check_dict_case({""state"": ""nc"", ""zip"": ""12345""}))
+        self.assertTrue(check_dict_case({"state": "nc", "zip": "12345"}))
 
     def test_mixed_case_with_spaces(self):
-        self.assertFalse(check_dict_case({""State"": ""NC"", ""Zip"": ""12345""}))
+        self.assertFalse(check_dict_case({"State": "NC", "Zip": "12345"}))
 
     def test_non_string_keys_with_spaces(self):
-        self.assertFalse(check_dict_case({""state"": ""nc"", 8: ""12345""}))
+        self.assertFalse(check_dict_case({"state": "nc", 8: "12345"}))
 
     def test_non_string_values_with_spaces(self):
-        self.assertFalse(check_dict_case({""state"": ""nc"", ""zip"": 12345}))
+        self.assertFalse(check_dict_case({"state": "nc", "zip": 12345}))
 
-"
-"
-def count_up_to(n):
-    """"""Implement a function that takes an non-negative integer and returns an array of the first n
-    integers that are prime numbers and less than n.
-    for example:
-    count_up_to(5) => [2,3]
-    count_up_to(11) => [2,3,5,7]
-    count_up_to(0) => []
-    count_up_to(20) => [2,3,5,7,11,13,17,19]
-    count_up_to(1) => []
-    count_up_to(18) => [2,3,5,7,11,13,17]
-    """"""
-","    primes = []
-    for i in range(2, n):
-        is_prime = True
-        for j in range(2, i):
-            if i % j == 0:
-                is_prime = False
-                break
-        if is_prime:
-            primes.append(i)
-    return primes
-
-","import unittest
-
-class TestCountUpTo(unittest.TestCase):
+class TestCountUpTo_96(unittest.TestCase):
     def test_count_up_to_5(self):
         self.assertEqual(count_up_to(5), [2, 3])
 
@@ -5294,30 +3458,15 @@ class TestCountUpTo(unittest.TestCase):
         self.assertEqual(count_up_to(5.5), [2, 3])
 
     def test_count_up_to_string(self):
-        self.assertEqual(count_up_to(""5""), [2, 3])
+        self.assertEqual(count_up_to("5"), [2, 3])
 
     def test_count_up_to_list(self):
         self.assertEqual(count_up_to([2, 3]), [2, 3])
 
     def test_count_up_to_dict(self):
-        self.assertEqual(count_up_to({""a"": 2, ""b"": 3}), [2, 3])
+        self.assertEqual(count_up_to({"a": 2, "b": 3}), [2, 3])
 
-"
-"
-def multiply(a, b):
-    """"""Complete the function that takes two integers and returns 
-    the product of their unit digits.
-    Assume the input is always valid.
-    Examples:
-    multiply(148, 412) should return 16.
-    multiply(19, 28) should return 72.
-    multiply(2020, 1851) should return 0.
-    multiply(14,-15) should return 20.
-    """"""
-","    return abs(a % 10) * abs(b % 10)
-","import unittest
-
-class TestMultiply(unittest.TestCase):
+class TestMultiply_97(unittest.TestCase):
     def test_multiply_1(self):
         self.assertEqual(multiply(148, 412), 16)
 
@@ -5348,125 +3497,54 @@ class TestMultiply(unittest.TestCase):
     def test_multiply_10(self):
         self.assertEqual(multiply(14, 15), 20)
 
-"
-"
-def count_upper(s):
-    """"""
-    Given a string s, count the number of uppercase vowels in even indices.
-    
-    For example:
-    count_upper('aBCdEf') returns 1
-    count_upper('abcdefg') returns 0
-    count_upper('dBBE') returns 0
-    """"""
-","    count = 0
-    for i in range(0,len(s),2):
-        if s[i] in ""AEIOU"":
-            count += 1
-    return count
-","import unittest
-
-class TestCountUpper(unittest.TestCase):
+class TestCountUpper_98(unittest.TestCase):
     def test_count_upper_empty_string(self):
-        self.assertEqual(count_upper(""""), 0)
+        self.assertEqual(count_upper(""), 0)
 
     def test_count_upper_single_uppercase_vowel(self):
-        self.assertEqual(count_upper(""A""), 1)
+        self.assertEqual(count_upper("A"), 1)
 
     def test_count_upper_single_lowercase_vowel(self):
-        self.assertEqual(count_upper(""a""), 0)
+        self.assertEqual(count_upper("a"), 0)
 
     def test_count_upper_multiple_uppercase_vowels(self):
-        self.assertEqual(count_upper(""AEIOU""), 5)
+        self.assertEqual(count_upper("AEIOU"), 5)
 
     def test_count_upper_multiple_lowercase_vowels(self):
-        self.assertEqual(count_upper(""aeiou""), 0)
+        self.assertEqual(count_upper("aeiou"), 0)
 
     def test_count_upper_mixed_case_vowels(self):
-        self.assertEqual(count_upper(""aEiou""), 2)
+        self.assertEqual(count_upper("aEiou"), 2)
 
     def test_count_upper_mixed_case_vowels_with_uppercase_consonants(self):
-        self.assertEqual(count_upper(""aEiouBCD""), 2)
+        self.assertEqual(count_upper("aEiouBCD"), 2)
 
     def test_count_upper_mixed_case_vowels_with_lowercase_consonants(self):
-        self.assertEqual(count_upper(""aEioubcde""), 2)
+        self.assertEqual(count_upper("aEioubcde"), 2)
 
     def test_count_upper_mixed_case_vowels_with_uppercase_consonants_and_lowercase_consonants(self):
-        self.assertEqual(count_upper(""aEiouBCDe""), 2)
+        self.assertEqual(count_upper("aEiouBCDe"), 2)
 
     def test_count_upper_mixed_case_vowels_with_uppercase_consonants_and_lowercase_consonants_and_numbers(self):
-        self.assertEqual(count_upper(""aEiouBCD123""), 2)
+        self.assertEqual(count_upper("aEiouBCD123"), 2)
 
-"
-"
-def closest_integer(value):
-    '''
-    Create a function that takes a value (string) representing a number
-    and returns the closest integer to it. If the number is equidistant
-    from two integers, round it away from zero.
+class TestClosestInteger_99(unittest.TestCase):
+    def test_closest_integer_1(self):
+        self.assertEqual(closest_integer("10"), 10)
+    def test_closest_integer_2(self):
+        self.assertEqual(closest_integer("15.3"), 15)
+    def test_closest_integer_3(self):
+        self.assertEqual(closest_integer("14.5"), 15)
+    def test_closest_integer_4(self):
+        self.assertEqual(closest_integer("-14.5"), -15)
+    def test_closest_integer_5(self):
+        self.assertEqual(closest_integer("10.0"), 10)
+    def test_closest_integer_6(self):
+        self.assertEqual(closest_integer("10.5"), 11)
+    def test_closest_integer_7(self):
+        self.assertEqual(closest_integer("10.9"), 11)
 
-    Examples
-    >>> closest_integer(""10"")
-    10
-    >>> closest_integer(""15.3"")
-    15
-
-    Note:
-    Rounding away from zero means that if the given number is equidistant
-    from two integers, the one you should return is the one that is the
-    farthest from zero. For example closest_integer(""14.5"") should
-    return 15 and closest_integer(""-14.5"") should return -15.
-    '''
-","    from math import floor, ceil
-
-    if value.count('.') == 1:
-        # remove trailing zeros
-        while (value[-1] == '0'):
-            value = value[:-1]
-
-    num = float(value)
-    if value[-2:] == '.5':
-        if num > 0:
-            res = ceil(num)
-        else:
-            res = floor(num)
-    elif len(value) > 0:
-        res = int(round(num))
-    else:
-        res = 0
-
-    return res
-
-","import unittest
-
-class TestClosestInteger(unittest.TestCase):
-    def test_closest_integer(self):
-        self.assertEqual(closest_integer(""10""), 10)
-        self.assertEqual(closest_integer(""15.3""), 15)
-        self.assertEqual(closest_integer(""14.5""), 15)
-        self.assertEqual(closest_integer(""-14.5""), -15)
-        self.assertEqual(closest_integer(""10.0""), 10)
-        self.assertEqual(closest_integer(""10.5""), 11)
-        self.assertEqual(closest_integer(""10.9""), 11)"
-"
-def make_a_pile(n):
-    """"""
-    Given a positive integer n, you have to make a pile of n levels of stones.
-    The first level has n stones.
-    The number of stones in the next level is:
-        - the next odd number if n is odd.
-        - the next even number if n is even.
-    Return the number of stones in each level in a list, where element at index
-    i represents the number of stones in the level (i+1).
-
-    Examples:
-    >>> make_a_pile(3)
-    [3, 5, 7]
-    """"""
-","    return [n + 2*i for i in range(n)]
-","import unittest
-
-class TestMakeAPile(unittest.TestCase):
+class TestMakeAPile_100(unittest.TestCase):
     def test_make_a_pile_with_n_equal_to_1(self):
         self.assertEqual(make_a_pile(1), [1, 3, 5, 7])
 
@@ -5497,90 +3575,44 @@ class TestMakeAPile(unittest.TestCase):
     def test_make_a_pile_with_n_equal_to_10(self):
         self.assertEqual(make_a_pile(10), [10, 12, 14, 16])
 
-"
-"
-def words_string(s):
-    """"""
-    You will be given a string of words separated by commas or spaces. Your task is
-    to split the string into words and return an array of the words.
-    
-    For example:
-    words_string(""Hi, my name is John"") == [""Hi"", ""my"", ""name"", ""is"", ""John""]
-    words_string(""One, two, three, four, five, six"") == [""One"", ""two"", ""three"", ""four"", ""five"", ""six""]
-    """"""
-","    if not s:
-        return []
-
-    s_list = []
-
-    for letter in s:
-        if letter == ',':
-            s_list.append(' ')
-        else:
-            s_list.append(letter)
-
-    s_list = """".join(s_list)
-    return s_list.split()
-","import unittest
-
-class TestWordsString(unittest.TestCase):
+class TestWordsString_101(unittest.TestCase):
     def test_empty_string(self):
-        self.assertEqual(words_string(""""), [])
+        self.assertEqual(words_string(""), [])
 
     def test_single_word(self):
-        self.assertEqual(words_string(""Hello""), [""Hello""])
+        self.assertEqual(words_string("Hello"), ["Hello"])
 
     def test_multiple_words(self):
-        self.assertEqual(words_string(""Hello, my name is John""), [""Hello"", ""my"", ""name"", ""is"", ""John""])
+        self.assertEqual(words_string("Hello, my name is John"), ["Hello", "my", "name", "is", "John"])
 
     def test_words_separated_by_spaces(self):
-        self.assertEqual(words_string(""One two three four five six""), [""One"", ""two"", ""three"", ""four"", ""five"", ""six""])
+        self.assertEqual(words_string("One two three four five six"), ["One", "two", "three", "four", "five", "six"])
 
     def test_words_separated_by_commas(self):
-        self.assertEqual(words_string(""One, two, three, four, five, six""), [""One"", ""two"", ""three"", ""four"", ""five"", ""six""])
+        self.assertEqual(words_string("One, two, three, four, five, six"), ["One", "two", "three", "four", "five", "six"])
 
     def test_words_separated_by_mixed_delimiters(self):
-        self.assertEqual(words_string(""One, two three four five six""), [""One"", ""two"", ""three"", ""four"", ""five"", ""six""])
+        self.assertEqual(words_string("One, two three four five six"), ["One", "two", "three", "four", "five", "six"])
 
     def test_words_with_punctuation(self):
-        self.assertEqual(words_string(""Hello! My name is John.""), [""Hello"", ""My"", ""name"", ""is"", ""John""])
+        self.assertEqual(words_string("Hello! My name is John."), ["Hello", "My", "name", "is", "John"])
 
     def test_words_with_special_characters(self):
-        self.assertEqual(words_string(""Hello! My name is John.""), [""Hello"", ""My"", ""name"", ""is"", ""John""])
+        self.assertEqual(words_string("Hello! My name is John."), ["Hello", "My", "name", "is", "John"])
 
     def test_words_with_numbers(self):
-        self.assertEqual(words_string(""Hello! My name is John.""), [""Hello"", ""My"", ""name"", ""is"", ""John""])
+        self.assertEqual(words_string("Hello! My name is John."), ["Hello", "My", "name", "is", "John"])
 
     def test_words_with_accented_characters(self):
-        self.assertEqual(words_string(""Hello! My name is John.""), [""Hello"", ""My"", ""name"", ""is"", ""John""])
+        self.assertEqual(words_string("Hello! My name is John."), ["Hello", "My", "name", "is", "John"])
 
     def test_words_with_diacritical_marks(self):
-        self.assertEqual(words_string(""Hello! My name is John.""), [""Hello"", ""My"", ""name"", ""is"", ""John""])
+        self.assertEqual(words_string("Hello! My name is John."), ["Hello", "My", "name", "is", "John"])
 
     def test_words_with_emojis(self):
-        self.assertEqual(words_string(""Hello! My name is John.""), [""Hello"", ""My"", ""name"", ""is"", ""John""])
+        self.assertEqual(words_string("Hello! My name is John."), ["Hello", "My", "name", "is", "John"])
 
-"
-"
-def choose_num(x, y):
-    """"""This function takes two positive numbers x and y and returns the
-    biggest even integer number that is in the range [x, y] inclusive. If 
-    there's no such number, then the function should return -1.
-
-    For example:
-    choose_num(12, 15) = 14
-    choose_num(13, 12) = -1
-    """"""
-","    if x > y:
-        return -1
-    if y % 2 == 0:
-        return y
-    if x == y:
-        return -1
-    return y - 1
-","import unittest
-
-class TestChooseNum(unittest.TestCase):
+class TestChooseNum_102(unittest.TestCase):
     def test_choose_num_1(self):
         self.assertEqual(choose_num(12, 15), 14)
 
@@ -5611,80 +3643,38 @@ class TestChooseNum(unittest.TestCase):
     def test_choose_num_10(self):
         self.assertEqual(choose_num(12, 18), 14)
 
-"
-"
-def rounded_avg(n, m):
-    """"""You are given two positive integers n and m, and your task is to compute the
-    average of the integers from n through m (including n and m). 
-    Round the answer to the nearest integer and convert that to binary.
-    If n is greater than m, return -1.
-    Example:
-    rounded_avg(1, 5) => ""0b11""
-    rounded_avg(7, 5) => -1
-    rounded_avg(10, 20) => ""0b1111""
-    rounded_avg(20, 33) => ""0b11010""
-    """"""
-","    if m < n:
-        return -1
-    summation = 0
-    for i in range(n, m+1):
-        summation += i
-    return bin(round(summation/(m - n + 1)))
-","import unittest
-
-class TestRoundedAvg(unittest.TestCase):
+class TestRoundedAvg_103(unittest.TestCase):
     def test_rounded_avg_1(self):
-        self.assertEqual(rounded_avg(1, 5), ""0b11"")
+        self.assertEqual(rounded_avg(1, 5), "0b11")
 
     def test_rounded_avg_2(self):
         self.assertEqual(rounded_avg(7, 5), -1)
 
     def test_rounded_avg_3(self):
-        self.assertEqual(rounded_avg(10, 20), ""0b1111"")
+        self.assertEqual(rounded_avg(10, 20), "0b1111")
 
     def test_rounded_avg_4(self):
-        self.assertEqual(rounded_avg(20, 33), ""0b11010"")
+        self.assertEqual(rounded_avg(20, 33), "0b11010")
 
     def test_rounded_avg_5(self):
-        self.assertEqual(rounded_avg(1, 1), ""0b1"")
+        self.assertEqual(rounded_avg(1, 1), "0b1")
 
     def test_rounded_avg_6(self):
-        self.assertEqual(rounded_avg(1, 2), ""0b10"")
+        self.assertEqual(rounded_avg(1, 2), "0b10")
 
     def test_rounded_avg_7(self):
-        self.assertEqual(rounded_avg(1, 3), ""0b11"")
+        self.assertEqual(rounded_avg(1, 3), "0b11")
 
     def test_rounded_avg_8(self):
-        self.assertEqual(rounded_avg(1, 4), ""0b100"")
+        self.assertEqual(rounded_avg(1, 4), "0b100")
 
     def test_rounded_avg_9(self):
-        self.assertEqual(rounded_avg(1, 5), ""0b101"")
+        self.assertEqual(rounded_avg(1, 5), "0b101")
 
     def test_rounded_avg_10(self):
-        self.assertEqual(rounded_avg(1, 6), ""0b110"")
+        self.assertEqual(rounded_avg(1, 6), "0b110")
 
-"
-"
-def unique_digits(x):
-    """"""Given a list of positive integers x. return a sorted list of all 
-    elements that hasn't any even digit.
-
-    Note: Returned list should be sorted in increasing order.
-    
-    For example:
-    >>> unique_digits([15, 33, 1422, 1])
-    [1, 15, 33]
-    >>> unique_digits([152, 323, 1422, 10])
-    []
-    """"""
-","    odd_digit_elements = []
-    for i in x:
-        if all (int(c) % 2 == 1 for c in str(i)):
-            odd_digit_elements.append(i)
-    return sorted(odd_digit_elements)
-","import unittest
-
-class TestUniqueDigits(unittest.TestCase):
+class TestUniqueDigits_104(unittest.TestCase):
     def test_unique_digits_empty_list(self):
         self.assertEqual(unique_digits([]), [])
 
@@ -5710,126 +3700,57 @@ class TestUniqueDigits(unittest.TestCase):
         self.assertEqual(unique_digits([1+2j, 3+4j, 5+6j, 7+8j, 9+10j]), [1+2j, 3+4j, 5+6j, 7+8j, 9+10j])
 
     def test_unique_digits_with_strings(self):
-        self.assertEqual(unique_digits([""1"", ""2"", ""3"", ""4"", ""5""]), [""1"", ""3"", ""5""])
+        self.assertEqual(unique_digits(["1", "2", "3", "4", "5"]), ["1", "3", "5"])
 
     def test_unique_digits_with_mixed_types(self):
-        self.assertEqual(unique_digits([1, ""2"", 3.0, ""4"", 5+6j]), [1, 3.0, 5+6j])
+        self.assertEqual(unique_digits([1, "2", 3.0, "4", 5+6j]), [1, 3.0, 5+6j])
 
-"
-"
-def by_length(arr):
-    """"""
-    Given an array of integers, sort the integers that are between 1 and 9 inclusive,
-    reverse the resulting array, and then replace each digit by its corresponding name from
-    ""One"", ""Two"", ""Three"", ""Four"", ""Five"", ""Six"", ""Seven"", ""Eight"", ""Nine"".
-
-    For example:
-      arr = [2, 1, 1, 4, 5, 8, 2, 3]   
-            -> sort arr -> [1, 1, 2, 2, 3, 4, 5, 8] 
-            -> reverse arr -> [8, 5, 4, 3, 2, 2, 1, 1]
-      return [""Eight"", ""Five"", ""Four"", ""Three"", ""Two"", ""Two"", ""One"", ""One""]
-    
-      If the array is empty, return an empty array:
-      arr = []
-      return []
-    
-      If the array has any strange number ignore it:
-      arr = [1, -1 , 55] 
-            -> sort arr -> [-1, 1, 55]
-            -> reverse arr -> [55, 1, -1]
-      return = ['One']
-    """"""
-","    dic = {
-        1: ""One"",
-        2: ""Two"",
-        3: ""Three"",
-        4: ""Four"",
-        5: ""Five"",
-        6: ""Six"",
-        7: ""Seven"",
-        8: ""Eight"",
-        9: ""Nine"",
-    }
-    sorted_arr = sorted(arr, reverse=True)
-    new_arr = []
-    for var in sorted_arr:
-        try:
-            new_arr.append(dic[var])
-        except:
-            pass
-    return new_arr
-","import unittest
-
-class TestByLength(unittest.TestCase):
+class TestByLength_105(unittest.TestCase):
     def test_empty_array(self):
         arr = []
         self.assertEqual(by_length(arr), [])
 
     def test_array_with_one_element(self):
         arr = [1]
-        self.assertEqual(by_length(arr), [""One""])
+        self.assertEqual(by_length(arr), ["One"])
 
     def test_array_with_two_elements(self):
         arr = [1, 2]
-        self.assertEqual(by_length(arr), [""One"", ""Two""])
+        self.assertEqual(by_length(arr), ["One", "Two"])
 
     def test_array_with_three_elements(self):
         arr = [1, 2, 3]
-        self.assertEqual(by_length(arr), [""One"", ""Two"", ""Three""])
+        self.assertEqual(by_length(arr), ["One", "Two", "Three"])
 
     def test_array_with_four_elements(self):
         arr = [1, 2, 3, 4]
-        self.assertEqual(by_length(arr), [""One"", ""Two"", ""Three"", ""Four""])
+        self.assertEqual(by_length(arr), ["One", "Two", "Three", "Four"])
 
     def test_array_with_five_elements(self):
         arr = [1, 2, 3, 4, 5]
-        self.assertEqual(by_length(arr), [""One"", ""Two"", ""Three"", ""Four"", ""Five""])
+        self.assertEqual(by_length(arr), ["One", "Two", "Three", "Four", "Five"])
 
     def test_array_with_six_elements(self):
         arr = [1, 2, 3, 4, 5, 6]
-        self.assertEqual(by_length(arr), [""One"", ""Two"", ""Three"", ""Four"", ""Five"", ""Six""])
+        self.assertEqual(by_length(arr), ["One", "Two", "Three", "Four", "Five", "Six"])
 
     def test_array_with_seven_elements(self):
         arr = [1, 2, 3, 4, 5, 6, 7]
-        self.assertEqual(by_length(arr), [""One"", ""Two"", ""Three"", ""Four"", ""Five"", ""Six"", ""Seven""])
+        self.assertEqual(by_length(arr), ["One", "Two", "Three", "Four", "Five", "Six", "Seven"])
 
     def test_array_with_eight_elements(self):
         arr = [1, 2, 3, 4, 5, 6, 7, 8]
-        self.assertEqual(by_length(arr), [""One"", ""Two"", ""Three"", ""Four"", ""Five"", ""Six"", ""Seven"", ""Eight""])
+        self.assertEqual(by_length(arr), ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"])
 
     def test_array_with_nine_elements(self):
         arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-        self.assertEqual(by_length(arr), [""One"", ""Two"", ""Three"", ""Four"", ""Five"", ""Six"", ""Seven"", ""Eight"", ""Nine""])
+        self.assertEqual(by_length(arr), ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"])
 
     def test_array_with_ten_elements(self):
         arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        self.assertEqual(by_length(arr), [""One"", ""Two"", ""Three"", ""Four"", ""Five"", ""Six"", ""Seven"", ""Eight"", ""Nine"", ""Ten""])
+        self.assertEqual(by_length(arr), ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"])
 
-"
-"
-def f(n):
-    """""" Implement the function f that takes n as a parameter,
-    and returns a list of size n, such that the value of the element at index i is the factorial of i if i is even
-    or the sum of numbers from 1 to i otherwise.
-    i starts from 1.
-    the factorial of i is the multiplication of the numbers from 1 to i (1 * 2 * ... * i).
-    Example:
-    f(5) == [1, 2, 6, 24, 15]
-    """"""
-","    ret = []
-    for i in range(1,n+1):
-        if i%2 == 0:
-            x = 1
-            for j in range(1,i+1): x *= j
-            ret += [x]
-        else:
-            x = 0
-            for j in range(1,i+1): x += j
-            ret += [x]
-    return ret
-","import unittest
-
-class TestF(unittest.TestCase):
+class TestF_106(unittest.TestCase):
     def test_f(self):
         self.assertEqual(f(5), [1, 2, 6, 24, 15])
 
@@ -5854,46 +3775,7 @@ class TestF(unittest.TestCase):
     def test_f_with_five_input(self):
         self.assertEqual(f(5), [1, 2, 6, 24, 15])
 
-"
-"
-def even_odd_palindrome(n):
-    """"""
-    Given a positive integer n, return a tuple that has the number of even and odd
-    integer palindromes that fall within the range(1, n), inclusive.
-
-    Example 1:
-
-        Input: 3
-        Output: (1, 2)
-        Explanation:
-        Integer palindrome are 1, 2, 3. one of them is even, and two of them are odd.
-
-    Example 2:
-
-        Input: 12
-        Output: (4, 6)
-        Explanation:
-        Integer palindrome are 1, 2, 3, 4, 5, 6, 7, 8, 9, 11. four of them are even, and 6 of them are odd.
-
-    Note:
-        1. 1 <= n <= 10^3
-        2. returned tuple has the number of even and odd integer palindromes respectively.
-    """"""
-","    def is_palindrome(n):
-        return str(n) == str(n)[::-1]
-
-    even_palindrome_count = 0
-    odd_palindrome_count = 0
-
-    for i in range(1, n+1):
-        if i%2 == 1 and is_palindrome(i):
-                odd_palindrome_count += 1
-        elif i%2 == 0 and is_palindrome(i):
-            even_palindrome_count += 1
-    return (even_palindrome_count, odd_palindrome_count)
-","import unittest
-
-class TestEvenOddPalindrome(unittest.TestCase):
+class TestEvenOddPalindrome_107(unittest.TestCase):
     def test_even_odd_palindrome_1(self):
         self.assertEqual(even_odd_palindrome(3), (1, 2))
 
@@ -5924,28 +3806,7 @@ class TestEvenOddPalindrome(unittest.TestCase):
     def test_even_odd_palindrome_10(self):
         self.assertEqual(even_odd_palindrome(1000000000), (250000000, 750000000))
 
-"
-"
-def count_nums(arr):
-    """"""
-    Write a function count_nums which takes an array of integers and returns
-    the number of elements which has a sum of digits > 0.
-    If a number is negative, then its first signed digit will be negative:
-    e.g. -123 has signed digits -1, 2, and 3.
-    >>> count_nums([]) == 0
-    >>> count_nums([-1, 11, -11]) == 1
-    >>> count_nums([1, 1, 2]) == 3
-    """"""
-","    def digits_sum(n):
-        neg = 1
-        if n < 0: n, neg = -1 * n, -1 
-        n = [int(i) for i in str(n)]
-        n[0] = n[0] * neg
-        return sum(n)
-    return len(list(filter(lambda x: x > 0, [digits_sum(i) for i in arr])))
-","import unittest
-
-class TestCountNums(unittest.TestCase):
+class TestCountNums_108(unittest.TestCase):
     def test_empty_array(self):
         self.assertEqual(count_nums([]), 0)
 
@@ -5976,50 +3837,7 @@ class TestCountNums(unittest.TestCase):
     def test_array_with_negative_decimal_numbers(self):
         self.assertEqual(count_nums([-1.1, -2.2, -3.3]), 0)
 
-"
-"
-def move_one_ball(arr):
-    """"""We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The
-    numbers in the array will be randomly ordered. Your task is to determine if
-    it is possible to get an array sorted in non-decreasing order by performing 
-    the following operation on the given array:
-        You are allowed to perform right shift operation any number of times.
-    
-    One right shift operation means shifting all elements of the array by one
-    position in the right direction. The last element of the array will be moved to
-    the starting position in the array i.e. 0th index. 
-
-    If it is possible to obtain the sorted array by performing the above operation
-    then return True else return False.
-    If the given array is empty then return True.
-
-    Note: The given list is guaranteed to have unique elements.
-
-    For Example:
-    
-    move_one_ball([3, 4, 5, 1, 2])==>True
-    Explanation: By performin 2 right shift operations, non-decreasing order can
-                 be achieved for the given array.
-    move_one_ball([3, 5, 4, 1, 2])==>False
-    Explanation:It is not possible to get non-decreasing order for the given
-                array by performing any number of right shift operations.
-                
-    """"""
-","    if len(arr)==0:
-      return True
-    sorted_array=sorted(arr)
-    my_arr=[]
-    
-    min_value=min(arr)
-    min_index=arr.index(min_value)
-    my_arr=arr[min_index:]+arr[0:min_index]
-    for i in range(len(arr)):
-      if my_arr[i]!=sorted_array[i]:
-        return False
-    return True
-","import unittest
-
-class TestMoveOneBall(unittest.TestCase):
+class TestMoveOneBall_109(unittest.TestCase):
     def test_empty_array(self):
         self.assertTrue(move_one_ball([]))
 
@@ -6053,97 +3871,38 @@ class TestMoveOneBall(unittest.TestCase):
     def test_ten_element_array(self):
         self.assertTrue(move_one_ball([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 
-"
-"
-def exchange(lst1, lst2):
-    """"""In this problem, you will implement a function that takes two lists of numbers,
-    and determines whether it is possible to perform an exchange of elements
-    between them to make lst1 a list of only even numbers.
-    There is no limit on the number of exchanged elements between lst1 and lst2.
-    If it is possible to exchange elements between the lst1 and lst2 to make
-    all the elements of lst1 to be even, return ""YES"".
-    Otherwise, return ""NO"".
-    For example:
-    exchange([1, 2, 3, 4], [1, 2, 3, 4]) => ""YES""
-    exchange([1, 2, 3, 4], [1, 5, 3, 4]) => ""NO""
-    It is assumed that the input lists will be non-empty.
-    """"""
-","    odd = 0
-    even = 0
-    for i in lst1:
-        if i%2 == 1:
-            odd += 1
-    for i in lst2:
-        if i%2 == 0:
-            even += 1
-    if even >= odd:
-        return ""YES""
-    return ""NO""
-            
-","import unittest
-
-class TestExchange(unittest.TestCase):
+class TestExchange_110(unittest.TestCase):
     def test_exchange_1(self):
-        self.assertEqual(exchange([1, 2, 3, 4], [1, 2, 3, 4]), ""YES"")
+        self.assertEqual(exchange([1, 2, 3, 4], [1, 2, 3, 4]), "YES")
 
     def test_exchange_2(self):
-        self.assertEqual(exchange([1, 2, 3, 4], [1, 5, 3, 4]), ""NO"")
+        self.assertEqual(exchange([1, 2, 3, 4], [1, 5, 3, 4]), "NO")
 
     def test_exchange_3(self):
-        self.assertEqual(exchange([1, 2, 3, 4], [1, 2, 3, 4]), ""YES"")
+        self.assertEqual(exchange([1, 2, 3, 4], [1, 2, 3, 4]), "YES")
 
     def test_exchange_4(self):
-        self.assertEqual(exchange([1, 2, 3, 4], [1, 5, 3, 4]), ""NO"")
+        self.assertEqual(exchange([1, 2, 3, 4], [1, 5, 3, 4]), "NO")
 
     def test_exchange_5(self):
-        self.assertEqual(exchange([1, 2, 3, 4], [1, 2, 3, 4]), ""YES"")
+        self.assertEqual(exchange([1, 2, 3, 4], [1, 2, 3, 4]), "YES")
 
     def test_exchange_6(self):
-        self.assertEqual(exchange([1, 2, 3, 4], [1, 5, 3, 4]), ""NO"")
+        self.assertEqual(exchange([1, 2, 3, 4], [1, 5, 3, 4]), "NO")
 
     def test_exchange_7(self):
-        self.assertEqual(exchange([1, 2, 3, 4], [1, 2, 3, 4]), ""YES"")
+        self.assertEqual(exchange([1, 2, 3, 4], [1, 2, 3, 4]), "YES")
 
     def test_exchange_8(self):
-        self.assertEqual(exchange([1, 2, 3, 4], [1, 5, 3, 4]), ""NO"")
+        self.assertEqual(exchange([1, 2, 3, 4], [1, 5, 3, 4]), "NO")
 
     def test_exchange_9(self):
-        self.assertEqual(exchange([1, 2, 3, 4], [1, 2, 3, 4]), ""YES"")
+        self.assertEqual(exchange([1, 2, 3, 4], [1, 2, 3, 4]), "YES")
 
     def test_exchange_10(self):
-        self.assertEqual(exchange([1, 2, 3, 4], [1, 5, 3, 4]), ""NO"")
+        self.assertEqual(exchange([1, 2, 3, 4], [1, 5, 3, 4]), "NO")
 
-"
-"
-def histogram(test):
-    """"""Given a string representing a space separated lowercase letters, return a dictionary
-    of the letter with the most repetition and containing the corresponding count.
-    If several letters have the same occurrence, return all of them.
-    
-    Example:
-    histogram('a b c') == {'a': 1, 'b': 1, 'c': 1}
-    histogram('a b b a') == {'a': 2, 'b': 2}
-    histogram('a b c a b') == {'a': 2, 'b': 2}
-    histogram('b b b b a') == {'b': 4}
-    histogram('') == {}
-
-    """"""
-","    dict1={}
-    list1=test.split("" "")
-    t=0
-
-    for i in list1:
-        if(list1.count(i)>t) and i!='':
-            t=list1.count(i)
-    if t>0:
-        for i in list1:
-            if(list1.count(i)==t):
-                
-                dict1[i]=t
-    return dict1
-","import unittest
-
-class TestHistogram(unittest.TestCase):
+class TestHistogram_111(unittest.TestCase):
     def test_histogram_empty_string(self):
         self.assertEqual(histogram(''), {})
 
@@ -6183,24 +3942,7 @@ class TestHistogram(unittest.TestCase):
     def test_histogram_multiple_letters_same_count_10(self):
         self.assertEqual(histogram('a b c a b c d e f g h i'), {'a': 2, 'b': 2, 'c': 2, 'd': 1, 'e': 1, 'f': 1, 'g': 1, 'h': 1, 'i': 1})
 
-"
-"
-def reverse_delete(s,c):
-    """"""Task
-    We are given two strings s and c, you have to deleted all the characters in s that are equal to any character in c
-    then check if the result string is palindrome.
-    A string is called palindrome if it reads the same backward as forward.
-    You should return a tuple containing the result string and True/False for the check.
-    Example
-    For s = ""abcde"", c = ""ae"", the result should be ('bcd',False)
-    For s = ""abcdef"", c = ""b""  the result should be ('acdef',False)
-    For s = ""abcdedcba"", c = ""ab"", the result should be ('cdedc',True)
-    """"""
-","    s = ''.join([char for char in s if char not in c])
-    return (s,s[::-1] == s)
-","import unittest
-
-class TestReverseDelete(unittest.TestCase):
+class TestReverseDelete_112(unittest.TestCase):
     def test_empty_string(self):
         s = ''
         c = 'a'
@@ -6255,28 +3997,7 @@ class TestReverseDelete(unittest.TestCase):
         expected = ('', True)
         self.assertEqual(reverse_delete(s, c), expected)
 
-"
-"
-def odd_count(lst):
-    """"""Given a list of strings, where each string consists of only digits, return a list.
-    Each element i of the output should be ""the number of odd elements in the
-    string i of the input."" where all the i's should be replaced by the number
-    of odd digits in the i'th string of the input.
-
-    >>> odd_count(['1234567'])
-    [""the number of odd elements 4n the str4ng 4 of the 4nput.""]
-    >>> odd_count(['3',""11111111""])
-    [""the number of odd elements 1n the str1ng 1 of the 1nput."",
-     ""the number of odd elements 8n the str8ng 8 of the 8nput.""]
-    """"""
-","    res = []
-    for arr in lst:
-        n = sum(int(d)%2==1 for d in arr)
-        res.append(""the number of odd elements "" + str(n) + ""n the str""+ str(n) +""ng ""+ str(n) +"" of the ""+ str(n) +""nput."")
-    return res
-","import unittest
-
-class TestOddCount(unittest.TestCase):
+class TestOddCount_113(unittest.TestCase):
     def test_odd_count_empty_list(self):
         self.assertEqual(odd_count([]), [])
 
@@ -6284,7 +4005,7 @@ class TestOddCount(unittest.TestCase):
         self.assertEqual(odd_count(['1234567']), ['the number of odd elements 4n the str4ng 4 of the 4nput.'])
 
     def test_odd_count_multiple_elements(self):
-        self.assertEqual(odd_count(['3',""11111111""]), ['the number of odd elements 1n the str1ng 1 of the 1nput.', 'the number of odd elements 8n the str8ng 8 of the 8nput.'])
+        self.assertEqual(odd_count(['3',"11111111"]), ['the number of odd elements 1n the str1ng 1 of the 1nput.', 'the number of odd elements 8n the str8ng 8 of the 8nput.'])
 
     def test_odd_count_invalid_input(self):
         self.assertRaises(ValueError, odd_count, ['1234567', 'abc'])
@@ -6313,30 +4034,7 @@ class TestOddCount(unittest.TestCase):
     def test_odd_count_invalid_input_9(self):
         self.assertRaises(ValueError, odd_count, ['1234567', '1234567', '1234567', '1234567', '1234567', '1234567', '1234567', '1234567', '1234567'])
 
-"
-"
-def minSubArraySum(nums):
-    """"""
-    Given an array of integers nums, find the minimum sum of any non-empty sub-array
-    of nums.
-    Example
-    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1
-    minSubArraySum([-1, -2, -3]) == -6
-    """"""
-","    max_sum = 0
-    s = 0
-    for num in nums:
-        s += -num
-        if (s < 0):
-            s = 0
-        max_sum = max(s, max_sum)
-    if max_sum == 0:
-        max_sum = max(-i for i in nums)
-    min_sum = -max_sum
-    return min_sum
-","import unittest
-
-class TestMinSubArraySum(unittest.TestCase):
+class TestMinSubArraySum_114(unittest.TestCase):
     def test_empty_array(self):
         self.assertEqual(minSubArraySum([]), 0)
 
@@ -6364,47 +4062,7 @@ class TestMinSubArraySum(unittest.TestCase):
     def test_random_element_array(self):
         self.assertEqual(minSubArraySum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), 78)
 
-"
-"
-def max_fill(grid, capacity):
-    import math
-    """"""
-    You are given a rectangular grid of wells. Each row represents a single well,
-    and each 1 in a row represents a single unit of water.
-    Each well has a corresponding bucket that can be used to extract water from it, 
-    and all buckets have the same capacity.
-    Your task is to use the buckets to empty the wells.
-    Output the number of times you need to lower the buckets.
-
-    Example 1:
-        Input: 
-            grid : [[0,0,1,0], [0,1,0,0], [1,1,1,1]]
-            bucket_capacity : 1
-        Output: 6
-
-    Example 2:
-        Input: 
-            grid : [[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]]
-            bucket_capacity : 2
-        Output: 5
-    
-    Example 3:
-        Input: 
-            grid : [[0,0,0], [0,0,0]]
-            bucket_capacity : 5
-        Output: 0
-
-    Constraints:
-        * all wells have the same length
-        * 1 <= grid.length <= 10^2
-        * 1 <= grid[:,1].length <= 10^2
-        * grid[i][j] -> 0 | 1
-        * 1 <= capacity <= 10
-    """"""
-","    return sum([math.ceil(sum(arr)/capacity) for arr in grid])
-","import unittest
-
-class TestMaxFill(unittest.TestCase):
+class TestMaxFill_115(unittest.TestCase):
     def test_max_fill_example_1(self):
         grid = [[0,0,1,0], [0,1,0,0], [1,1,1,1]]
         capacity = 1
@@ -6447,23 +4105,7 @@ class TestMaxFill(unittest.TestCase):
         expected = 0
         self.assertEqual(max_fill(grid, capacity), expected)
 
-"
-"
-def sort_array(arr):
-    """"""
-    In this Kata, you have to sort an array of non-negative integers according to
-    number of ones in their binary representation in ascending order.
-    For similar number of ones, sort based on decimal value.
-
-    It must be implemented like this:
-    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]
-    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]
-    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]
-    """"""
-","    return sorted(sorted(arr), key=lambda x: bin(x)[2:].count('1'))
-","import unittest
-
-class TestSortArray(unittest.TestCase):
+class TestSortArray_116(unittest.TestCase):
     def test_sort_array(self):
         arr = [1, 5, 2, 3, 4]
         expected = [1, 2, 3, 4, 5]
@@ -6509,160 +4151,72 @@ class TestSortArray(unittest.TestCase):
         expected = [-0, -1, -2, -3, -4, 1000000000]
         self.assertEqual(sort_array(arr), expected)
 
-"
-"
-def select_words(s, n):
-    """"""Given a string s and a natural number n, you have been tasked to implement 
-    a function that returns a list of all words from string s that contain exactly 
-    n consonants, in order these words appear in the string s.
-    If the string s is empty then the function should return an empty list.
-    Note: you may assume the input string contains only letters and spaces.
-    Examples:
-    select_words(""Mary had a little lamb"", 4) ==> [""little""]
-    select_words(""Mary had a little lamb"", 3) ==> [""Mary"", ""lamb""]
-    select_words(""simple white space"", 2) ==> []
-    select_words(""Hello world"", 4) ==> [""world""]
-    select_words(""Uncle sam"", 3) ==> [""Uncle""]
-    """"""
-","    result = []
-    for word in s.split():
-        n_consonants = 0
-        for i in range(0, len(word)):
-            if word[i].lower() not in [""a"",""e"",""i"",""o"",""u""]:
-                n_consonants += 1 
-        if n_consonants == n:
-            result.append(word)
-    return result
-
-","import unittest
-
-class TestSelectWords(unittest.TestCase):
+class TestSelectWords_117(unittest.TestCase):
     def test_empty_string(self):
-        self.assertEqual(select_words("""", 4), [])
+        self.assertEqual(select_words("", 4), [])
 
     def test_no_consonants(self):
-        self.assertEqual(select_words(""hello"", 4), [])
+        self.assertEqual(select_words("hello", 4), [])
 
     def test_one_consonant(self):
-        self.assertEqual(select_words(""hello"", 1), [""hello""])
+        self.assertEqual(select_words("hello", 1), ["hello"])
 
     def test_two_consonants(self):
-        self.assertEqual(select_words(""hello"", 2), [""hello""])
+        self.assertEqual(select_words("hello", 2), ["hello"])
 
     def test_three_consonants(self):
-        self.assertEqual(select_words(""hello"", 3), [""hello""])
+        self.assertEqual(select_words("hello", 3), ["hello"])
 
     def test_four_consonants(self):
-        self.assertEqual(select_words(""hello"", 4), [""hello""])
+        self.assertEqual(select_words("hello", 4), ["hello"])
 
     def test_five_consonants(self):
-        self.assertEqual(select_words(""hello"", 5), [])
+        self.assertEqual(select_words("hello", 5), [])
 
     def test_six_consonants(self):
-        self.assertEqual(select_words(""hello"", 6), [])
+        self.assertEqual(select_words("hello", 6), [])
 
     def test_seven_consonants(self):
-        self.assertEqual(select_words(""hello"", 7), [])
+        self.assertEqual(select_words("hello", 7), [])
 
     def test_eight_consonants(self):
-        self.assertEqual(select_words(""hello"", 8), [])
+        self.assertEqual(select_words("hello", 8), [])
 
     def test_nine_consonants(self):
-        self.assertEqual(select_words(""hello"", 9), [])
+        self.assertEqual(select_words("hello", 9), [])
 
     def test_ten_consonants(self):
-        self.assertEqual(select_words(""hello"", 10), [])
+        self.assertEqual(select_words("hello", 10), [])
 
-"
-"
-def get_closest_vowel(word):
-    """"""You are given a word. Your task is to find the closest vowel that stands between 
-    two consonants from the right side of the word (case sensitive).
-    
-    Vowels in the beginning and ending doesn't count. Return empty string if you didn't
-    find any vowel met the above condition. 
-
-    You may assume that the given string contains English letter only.
-
-    Example:
-    get_closest_vowel(""yogurt"") ==> ""u""
-    get_closest_vowel(""FULL"") ==> ""U""
-    get_closest_vowel(""quick"") ==> """"
-    get_closest_vowel(""ab"") ==> """"
-    """"""
-","    if len(word) < 3:
-        return """"
-
-    vowels = {""a"", ""e"", ""i"", ""o"", ""u"", ""A"", ""E"", 'O', 'U', 'I'}
-    for i in range(len(word)-2, 0, -1):
-        if word[i] in vowels:
-            if (word[i+1] not in vowels) and (word[i-1] not in vowels):
-                return word[i]
-    return """"
-","import unittest
-
-class TestGetClosestVowel(unittest.TestCase):
+class TestGetClosestVowel_118(unittest.TestCase):
     def test_get_closest_vowel_yogurt(self):
-        self.assertEqual(get_closest_vowel(""yogurt""), ""u"")
+        self.assertEqual(get_closest_vowel("yogurt"), "u")
 
     def test_get_closest_vowel_FULL(self):
-        self.assertEqual(get_closest_vowel(""FULL""), ""U"")
+        self.assertEqual(get_closest_vowel("FULL"), "U")
 
     def test_get_closest_vowel_quick(self):
-        self.assertEqual(get_closest_vowel(""quick""), """")
+        self.assertEqual(get_closest_vowel("quick"), "")
 
     def test_get_closest_vowel_ab(self):
-        self.assertEqual(get_closest_vowel(""ab""), """")
+        self.assertEqual(get_closest_vowel("ab"), "")
 
     def test_get_closest_vowel_empty_string(self):
-        self.assertEqual(get_closest_vowel(""""), """")
+        self.assertEqual(get_closest_vowel(""), "")
 
     def test_get_closest_vowel_single_letter(self):
-        self.assertEqual(get_closest_vowel(""a""), ""a"")
+        self.assertEqual(get_closest_vowel("a"), "a")
 
     def test_get_closest_vowel_multiple_vowels(self):
-        self.assertEqual(get_closest_vowel(""aeiou""), ""a"")
+        self.assertEqual(get_closest_vowel("aeiou"), "a")
 
     def test_get_closest_vowel_non_english_letters(self):
-        self.assertEqual(get_closest_vowel(""áéíóú""), """")
+        self.assertEqual(get_closest_vowel("áéíóú"), "")
 
     def test_get_closest_vowel_non_english_letters_with_vowels(self):
-        self.assertEqual(get_closest_vowel(""áéíóú""), """")
+        self.assertEqual(get_closest_vowel("áéíóú"), "")
 
-"
-"
-def match_parens(lst):
-    '''
-    You are given a list of two strings, both strings consist of open
-    parentheses '(' or close parentheses ')' only.
-    Your job is to check if it is possible to concatenate the two strings in
-    some order, that the resulting string will be good.
-    A string S is considered to be good if and only if all parentheses in S
-    are balanced. For example: the string '(())()' is good, while the string
-    '())' is not.
-    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
-
-    Examples:
-    match_parens(['()(', ')']) == 'Yes'
-    match_parens([')', ')']) == 'No'
-    '''
-","    def check(s):
-        val = 0
-        for i in s:
-            if i == '(':
-                val = val + 1
-            else:
-                val = val - 1
-            if val < 0:
-                return False
-        return True if val == 0 else False
-
-    S1 = lst[0] + lst[1]
-    S2 = lst[1] + lst[0]
-    return 'Yes' if check(S1) or check(S2) else 'No'
-","import unittest
-
-class TestMatchParens(unittest.TestCase):
+class TestMatchParens_119(unittest.TestCase):
     def test_match_parens_1(self):
         self.assertEqual(match_parens(['()(', ')']), 'Yes')
 
@@ -6693,41 +4247,7 @@ class TestMatchParens(unittest.TestCase):
     def test_match_parens_10(self):
         self.assertEqual(match_parens(['()', '()', '()', '()', ')']), 'No')
 
-"
-"
-def maximum(arr, k):
-    """"""
-    Given an array arr of integers and a positive integer k, return a sorted list 
-    of length k with the maximum k numbers in arr.
-
-    Example 1:
-
-        Input: arr = [-3, -4, 5], k = 3
-        Output: [-4, -3, 5]
-
-    Example 2:
-
-        Input: arr = [4, -4, 4], k = 2
-        Output: [4, 4]
-
-    Example 3:
-
-        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1
-        Output: [2]
-
-    Note:
-        1. The length of the array will be in the range of [1, 1000].
-        2. The elements in the array will be in the range of [-1000, 1000].
-        3. 0 <= k <= len(arr)
-    """"""
-","    if k == 0:
-        return []
-    arr.sort()
-    ans = arr[-k:]
-    return ans
-","import unittest
-
-class TestMaximum(unittest.TestCase):
+class TestMaximum_120(unittest.TestCase):
     def test_empty_array(self):
         self.assertEqual(maximum([], 0), [])
 
@@ -6761,52 +4281,27 @@ class TestMaximum(unittest.TestCase):
     def test_ten_element_array(self):
         self.assertEqual(maximum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10), [10, 9, 8, 7, 6, 5, 4, 3, 2, 1])
 
-"
-"
-def solution(lst):
-    """"""Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.
-    
-
-    Examples
-    solution([5, 8, 7, 1]) ==> 12
-    solution([3, 3, 3, 3, 3]) ==> 9
-    solution([30, 13, 24, 321]) ==>0
-    """"""
-","    return sum([x for idx, x in enumerate(lst) if idx%2==0 and x%2==1])
-","import unittest
-
-class TestSolution(unittest.TestCase):
-    def test_solution(self):
+class TestSolution_121(unittest.TestCase):
+    def test_solution_1(self):
         self.assertEqual(solution([5, 8, 7, 1]), 12)
+    def test_solution_2(self):
         self.assertEqual(solution([3, 3, 3, 3, 3]), 9)
+    def test_solution_3(self):
         self.assertEqual(solution([30, 13, 24, 321]), 0)
+    def test_solution_4(self):
         self.assertEqual(solution([1, 2, 3, 4, 5]), 12)
+    def test_solution_5(self):
         self.assertEqual(solution([1, 2, 3, 4, 5, 6]), 18)
+    def test_solution_6(self):
         self.assertEqual(solution([1, 2, 3, 4, 5, 6, 7]), 24)
+    def test_solution_7(self):
         self.assertEqual(solution([1, 2, 3, 4, 5, 6, 7, 8]), 30)
+    def test_solution_8(self):
         self.assertEqual(solution([1, 2, 3, 4, 5, 6, 7, 8, 9]), 36)
+    def test_solution_9(self):
         self.assertEqual(solution([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 42)
 
-"
-"
-def add_elements(arr, k):
-    """"""
-    Given a non-empty array of integers arr and an integer k, return
-    the sum of the elements with at most two digits from the first k elements of arr.
-
-    Example:
-
-        Input: arr = [111,21,3,4000,5,6,7,8,9], k = 4
-        Output: 24 # sum of 21 + 3
-
-    Constraints:
-        1. 1 <= len(arr) <= 100
-        2. 1 <= k <= len(arr)
-    """"""
-","    return sum(elem for elem in arr[:k] if len(str(elem)) <= 2)
-","import unittest
-
-class TestAddElements(unittest.TestCase):
+class TestAddElements_122(unittest.TestCase):
     def test_add_elements_empty_array(self):
         self.assertEqual(add_elements([], 0), 0)
 
@@ -6840,102 +4335,39 @@ class TestAddElements(unittest.TestCase):
     def test_add_elements_ten_elements(self):
         self.assertEqual(add_elements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10), 55)
 
-"
-"
-def get_odd_collatz(n):
-    """"""
-    Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence.
-
-    The Collatz conjecture is a conjecture in mathematics that concerns a sequence defined
-    as follows: start with any positive integer n. Then each term is obtained from the 
-    previous term as follows: if the previous term is even, the next term is one half of 
-    the previous term. If the previous term is odd, the next term is 3 times the previous
-    term plus 1. The conjecture is that no matter what value of n, the sequence will always reach 1.
-
-    Note: 
-        1. Collatz(1) is [1].
-        2. returned list sorted in increasing order.
-
-    For example:
-    get_odd_collatz(5) returns [1, 5] # The collatz sequence for 5 is [5, 16, 8, 4, 2, 1], so the odd numbers are only 1, and 5.
-    """"""
-","    if n%2==0:
-        odd_collatz = [] 
-    else:
-        odd_collatz = [n]
-    while n > 1:
-        if n % 2 == 0:
-            n = n/2
-        else:
-            n = n*3 + 1
-            
-        if n%2 == 1:
-            odd_collatz.append(int(n))
-
-    return sorted(odd_collatz)
-","import unittest
-
-class TestGetOddCollatz(unittest.TestCase):
-    def test_get_odd_collatz(self):
+class TestGetOddCollatz_123(unittest.TestCase):
+    def test_get_odd_collatz_1(self):
         self.assertEqual(get_odd_collatz(1), [1])
+    def test_get_odd_collatz_2(self):
         self.assertEqual(get_odd_collatz(2), [1, 2])
+    def test_get_odd_collatz_3(self):
         self.assertEqual(get_odd_collatz(3), [1, 3])
+    def test_get_odd_collatz_4(self):
         self.assertEqual(get_odd_collatz(4), [1, 4])
+    def test_get_odd_collatz_5(self):
         self.assertEqual(get_odd_collatz(5), [1, 5])
+    def test_get_odd_collatz_6(self):
         self.assertEqual(get_odd_collatz(6), [1, 6])
+    def test_get_odd_collatz_7(self):
         self.assertEqual(get_odd_collatz(7), [1, 7])
+    def test_get_odd_collatz_8(self):
         self.assertEqual(get_odd_collatz(8), [1, 8])
+    def test_get_odd_collatz_9(self):
         self.assertEqual(get_odd_collatz(9), [1, 9])
+    def test_get_odd_collatz_10(self):
         self.assertEqual(get_odd_collatz(10), [1, 10])
 
-"
-"
-def valid_date(date):
-    """"""You have to write a function which validates a given date string and
-    returns True if the date is valid otherwise False.
-    The date is valid if all of the following rules are satisfied:
-    1. The date string is not empty.
-    2. The number of days is not less than 1 or higher than 31 days for months 1,3,5,7,8,10,12. And the number of days is not less than 1 or higher than 30 days for months 4,6,9,11. And, the number of days is not less than 1 or higher than 29 for the month 2.
-    3. The months should not be less than 1 or higher than 12.
-    4. The date should be in the format: mm-dd-yyyy
-
-    for example: 
-    valid_date('03-11-2000') => True
-
-    valid_date('15-01-2012') => False
-
-    valid_date('04-0-2040') => False
-
-    valid_date('06-04-2020') => True
-
-    valid_date('06/04/2020') => False
-    """"""
-","    try:
-        date = date.strip()
-        month, day, year = date.split('-')
-        month, day, year = int(month), int(day), int(year)
-        if month < 1 or month > 12:
-            return False
-        if month in [1,3,5,7,8,10,12] and day < 1 or day > 31:
-            return False
-        if month in [4,6,9,11] and day < 1 or day > 30:
-            return False
-        if month == 2 and day < 1 or day > 29:
-            return False
-    except:
-        return False
-
-    return True
-","import unittest
-
-class TestValidDate(unittest.TestCase):
-    def test_valid_date(self):
+class TestValidDate_124(unittest.TestCase):
+    def test_valid_date_1(self):
         self.assertTrue(valid_date('03-11-2000'))
+    def test_valid_date_2(self):
         self.assertFalse(valid_date('15-01-2012'))
+    def test_valid_date_3(self):
         self.assertFalse(valid_date('04-0-2040'))
+    def test_valid_date_4(self):
         self.assertTrue(valid_date('06-04-2020'))
+    def test_valid_date_5(self):
         self.assertFalse(valid_date('06/04/2020'))
-
     def test_empty_string(self):
         self.assertFalse(valid_date(''))
 
@@ -6957,86 +4389,35 @@ class TestValidDate(unittest.TestCase):
     def test_invalid_date_leap_year(self):
         self.assertFalse(valid_date('02-29-2000'))
 
-"
-"
-def split_words(txt):
-    '''
-    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you
-    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the
-    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25
-    Examples
-    split_words(""Hello world!"") ➞ [""Hello"", ""world!""]
-    split_words(""Hello,world!"") ➞ [""Hello"", ""world!""]
-    split_words(""abcdef"") == 3 
-    '''
-","    if "" "" in txt:
-        return txt.split()
-    elif "","" in txt:
-        return txt.replace(',',' ').split()
-    else:
-        return len([i for i in txt if i.islower() and ord(i)%2 == 0])
-","import unittest
-
-class TestSplitWords(unittest.TestCase):
+class TestSplitWords_125(unittest.TestCase):
     def test_split_words_with_spaces(self):
-        self.assertEqual(split_words(""Hello world!""), [""Hello"", ""world!""])
+        self.assertEqual(split_words("Hello world!"), ["Hello", "world!"])
 
     def test_split_words_with_commas(self):
-        self.assertEqual(split_words(""Hello,world!""), [""Hello"", ""world!""])
+        self.assertEqual(split_words("Hello,world!"), ["Hello", "world!"])
 
     def test_split_words_with_no_spaces_or_commas(self):
-        self.assertEqual(split_words(""abcdef""), 3)
+        self.assertEqual(split_words("abcdef"), 3)
 
     def test_split_words_with_empty_string(self):
-        self.assertEqual(split_words(""""), [])
+        self.assertEqual(split_words(""), [])
 
     def test_split_words_with_single_word(self):
-        self.assertEqual(split_words(""Hello""), [""Hello""])
+        self.assertEqual(split_words("Hello"), ["Hello"])
 
     def test_split_words_with_multiple_words(self):
-        self.assertEqual(split_words(""Hello world!""), [""Hello"", ""world!""])
+        self.assertEqual(split_words("Hello world!"), ["Hello", "world!"])
 
     def test_split_words_with_mixed_case(self):
-        self.assertEqual(split_words(""Hello World!""), [""Hello"", ""World!""])
+        self.assertEqual(split_words("Hello World!"), ["Hello", "World!"])
 
     def test_split_words_with_special_characters(self):
-        self.assertEqual(split_words(""Hello, world!""), [""Hello"", ""world!""])
+        self.assertEqual(split_words("Hello, world!"), ["Hello", "world!"])
 
     def test_split_words_with_unicode_characters(self):
-        self.assertEqual(split_words(""Hello, world! 😊""), [""Hello"", ""world!"", ""😊""])
+        self.assertEqual(split_words("Hello, world! 😊"), ["Hello", "world!", "😊"])
 
-"
-"
-def is_sorted(lst):
-    '''
-    Given a list of numbers, return whether or not they are sorted
-    in ascending order. If list has more than 1 duplicate of the same
-    number, return False. Assume no negative numbers and only integers.
-
-    Examples
-    is_sorted([5]) ➞ True
-    is_sorted([1, 2, 3, 4, 5]) ➞ True
-    is_sorted([1, 3, 2, 4, 5]) ➞ False
-    is_sorted([1, 2, 3, 4, 5, 6]) ➞ True
-    is_sorted([1, 2, 3, 4, 5, 6, 7]) ➞ True
-    is_sorted([1, 3, 2, 4, 5, 6, 7]) ➞ False
-    is_sorted([1, 2, 2, 3, 3, 4]) ➞ True
-    is_sorted([1, 2, 2, 2, 3, 4]) ➞ False
-    '''
-","    count_digit = dict([(i, 0) for i in lst])
-    for i in lst:
-        count_digit[i]+=1 
-    if any(count_digit[i] > 2 for i in lst):
-        return False
-    if all(lst[i-1] <= lst[i] for i in range(1, len(lst))):
-        return True
-    else:
-        return False
-    
-    
-","import unittest
-
-class TestIsSorted(unittest.TestCase):
+class TestIsSorted_126(unittest.TestCase):
     def test_empty_list(self):
         self.assertTrue(is_sorted([]))
 
@@ -7067,97 +4448,38 @@ class TestIsSorted(unittest.TestCase):
     def test_list_with_mixed_types(self):
         self.assertFalse(is_sorted([1, 'a', 2, 'b', 3, 'c']))
 
-"
-"
-def intersection(interval1, interval2):
-    """"""You are given two intervals,
-    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
-    The given intervals are closed which means that the interval (start, end)
-    includes both start and end.
-    For each given interval, it is assumed that its start is less or equal its end.
-    Your task is to determine whether the length of intersection of these two 
-    intervals is a prime number.
-    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
-    which its length is 1, which not a prime number.
-    If the length of the intersection is a prime number, return ""YES"",
-    otherwise, return ""NO"".
-    If the two intervals don't intersect, return ""NO"".
-
-
-    [input/output] samples:
-    intersection((1, 2), (2, 3)) ==> ""NO""
-    intersection((-1, 1), (0, 4)) ==> ""NO""
-    intersection((-3, -1), (-5, 5)) ==> ""YES""
-    """"""
-","    def is_prime(num):
-        if num == 1 or num == 0:
-            return False
-        if num == 2:
-            return True
-        for i in range(2, num):
-            if num%i == 0:
-                return False
-        return True
-
-    l = max(interval1[0], interval2[0])
-    r = min(interval1[1], interval2[1])
-    length = r - l
-    if length > 0 and is_prime(length):
-        return ""YES""
-    return ""NO""
-","import unittest
-
-class TestIntersection(unittest.TestCase):
+class TestIntersection_127(unittest.TestCase):
     def test_intersection_1(self):
-        self.assertEqual(intersection((1, 2), (2, 3)), ""NO"")
+        self.assertEqual(intersection((1, 2), (2, 3)), "NO")
 
     def test_intersection_2(self):
-        self.assertEqual(intersection((-1, 1), (0, 4)), ""NO"")
+        self.assertEqual(intersection((-1, 1), (0, 4)), "NO")
 
     def test_intersection_3(self):
-        self.assertEqual(intersection((-3, -1), (-5, 5)), ""YES"")
+        self.assertEqual(intersection((-3, -1), (-5, 5)), "YES")
 
     def test_intersection_4(self):
-        self.assertEqual(intersection((1, 2), (2, 3)), ""NO"")
+        self.assertEqual(intersection((1, 2), (2, 3)), "NO")
 
     def test_intersection_5(self):
-        self.assertEqual(intersection((-1, 1), (0, 4)), ""NO"")
+        self.assertEqual(intersection((-1, 1), (0, 4)), "NO")
 
     def test_intersection_6(self):
-        self.assertEqual(intersection((-3, -1), (-5, 5)), ""YES"")
+        self.assertEqual(intersection((-3, -1), (-5, 5)), "YES")
 
     def test_intersection_7(self):
-        self.assertEqual(intersection((1, 2), (2, 3)), ""NO"")
+        self.assertEqual(intersection((1, 2), (2, 3)), "NO")
 
     def test_intersection_8(self):
-        self.assertEqual(intersection((-1, 1), (0, 4)), ""NO"")
+        self.assertEqual(intersection((-1, 1), (0, 4)), "NO")
 
     def test_intersection_9(self):
-        self.assertEqual(intersection((-3, -1), (-5, 5)), ""YES"")
+        self.assertEqual(intersection((-3, -1), (-5, 5)), "YES")
 
     def test_intersection_10(self):
-        self.assertEqual(intersection((1, 2), (2, 3)), ""NO"")
+        self.assertEqual(intersection((1, 2), (2, 3)), "NO")
 
-"
-"
-def prod_signs(arr):
-    """"""
-    You are given an array arr of integers and you need to return
-    sum of magnitudes of integers multiplied by product of all signs
-    of each number in the array, represented by 1, -1 or 0.
-    Note: return None for empty arr.
-
-    Example:
-    >>> prod_signs([1, 2, 2, -4]) == -9
-    >>> prod_signs([0, 1]) == 0
-    >>> prod_signs([]) == None
-    """"""
-","    if not arr: return None
-    prod = 0 if 0 in arr else (-1) ** len(list(filter(lambda x: x < 0, arr)))
-    return prod * sum([abs(i) for i in arr])
-","import unittest
-
-class TestProdSigns(unittest.TestCase):
+class TestProdSigns_128(unittest.TestCase):
     def test_prod_signs_empty_array(self):
         self.assertIsNone(prod_signs([]))
 
@@ -7191,68 +4513,7 @@ class TestProdSigns(unittest.TestCase):
     def test_prod_signs_array_with_positive_and_negative_numbers_and_one_negative_number(self):
         self.assertEqual(prod_signs([1, -2, 3, -4]), 0)
 
-"
-"
-def minPath(grid, k):
-    """"""
-    Given a grid with N rows and N columns (N >= 2) and a positive integer k, 
-    each cell of the grid contains a value. Every integer in the range [1, N * N]
-    inclusive appears exactly once on the cells of the grid.
-
-    You have to find the minimum path of length k in the grid. You can start
-    from any cell, and in each step you can move to any of the neighbor cells,
-    in other words, you can go to cells which share an edge with you current
-    cell.
-    Please note that a path of length k means visiting exactly k cells (not
-    necessarily distinct).
-    You CANNOT go off the grid.
-    A path A (of length k) is considered less than a path B (of length k) if
-    after making the ordered lists of the values on the cells that A and B go
-    through (let's call them lst_A and lst_B), lst_A is lexicographically less
-    than lst_B, in other words, there exist an integer index i (1 <= i <= k)
-    such that lst_A[i] < lst_B[i] and for any j (1 <= j < i) we have
-    lst_A[j] = lst_B[j].
-    It is guaranteed that the answer is unique.
-    Return an ordered list of the values on the cells that the minimum path go through.
-
-    Examples:
-
-        Input: grid = [ [1,2,3], [4,5,6], [7,8,9]], k = 3
-        Output: [1, 2, 1]
-
-        Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1
-        Output: [1]
-    """"""
-","    n = len(grid)
-    val = n * n + 1
-    for i in range(n):
-        for j in range(n):
-            if grid[i][j] == 1:
-                temp = []
-                if i != 0:
-                    temp.append(grid[i - 1][j])
-
-                if j != 0:
-                    temp.append(grid[i][j - 1])
-
-                if i != n - 1:
-                    temp.append(grid[i + 1][j])
-
-                if j != n - 1:
-                    temp.append(grid[i][j + 1])
-
-                val = min(temp)
-
-    ans = []
-    for i in range(k):
-        if i % 2 == 0:
-            ans.append(1)
-        else:
-            ans.append(val)
-    return ans
-","import unittest
-
-class TestMinPath(unittest.TestCase):
+class TestMinPath_129(unittest.TestCase):
     def test_min_path_1(self):
         grid = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
         k = 3
@@ -7313,37 +4574,7 @@ class TestMinPath(unittest.TestCase):
         expected = [1, 2, 1, 2, 1]
         self.assertEqual(minPath(grid, k), expected)
 
-"
-"
-def tri(n):
-    """"""Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
-    the last couple centuries. However, what people don't know is Tribonacci sequence.
-    Tribonacci sequence is defined by the recurrence:
-    tri(1) = 3
-    tri(n) = 1 + n / 2, if n is even.
-    tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
-    For example:
-    tri(2) = 1 + (2 / 2) = 2
-    tri(4) = 3
-    tri(3) = tri(2) + tri(1) + tri(4)
-           = 2 + 3 + 3 = 8 
-    You are given a non-negative integer number n, you have to a return a list of the 
-    first n + 1 numbers of the Tribonacci sequence.
-    Examples:
-    tri(3) = [1, 3, 2, 8]
-    """"""
-","    if n == 0:
-        return [1]
-    my_tri = [1, 3]
-    for i in range(2, n + 1):
-        if i % 2 == 0:
-            my_tri.append(i / 2 + 1)
-        else:
-            my_tri.append(my_tri[i - 1] + my_tri[i - 2] + (i + 3) / 2)
-    return my_tri
-","import unittest
-
-class TestTri(unittest.TestCase):
+class TestTri_130(unittest.TestCase):
     def test_tri_1(self):
         self.assertEqual(tri(1), [1, 3])
 
@@ -7374,30 +4605,7 @@ class TestTri(unittest.TestCase):
     def test_tri_10(self):
         self.assertEqual(tri(10), [1, 3, 2, 8, 13, 21, 34, 55, 89, 144, 233])
 
-"
-"
-def digits(n):
-    """"""Given a positive integer n, return the product of the odd digits.
-    Return 0 if all digits are even.
-    For example:
-    digits(1)  == 1
-    digits(4)  == 0
-    digits(235) == 15
-    """"""
-","    product = 1
-    odd_count = 0
-    for digit in str(n):
-        int_digit = int(digit)
-        if int_digit%2 == 1:
-            product= product*int_digit
-            odd_count+=1
-    if odd_count ==0:
-        return 0
-    else:
-        return product
-","import unittest
-
-class TestDigits(unittest.TestCase):
+class TestDigits_131(unittest.TestCase):
     def test_digits_1(self):
         self.assertEqual(digits(1), 1)
 
@@ -7428,42 +4636,7 @@ class TestDigits(unittest.TestCase):
     def test_digits_10(self):
         self.assertEqual(digits(10), 0)
 
-"
-"
-def is_nested(string):
-    '''
-    Create a function that takes a string as input which contains only square brackets.
-    The function should return True if and only if there is a valid subsequence of brackets 
-    where at least one bracket in the subsequence is nested.
-
-    is_nested('[[]]') ➞ True
-    is_nested('[]]]]]]][[[[[]') ➞ False
-    is_nested('[][]') ➞ False
-    is_nested('[]') ➞ False
-    is_nested('[[][]]') ➞ True
-    is_nested('[[]][[') ➞ True
-    '''
-","    opening_bracket_index = []
-    closing_bracket_index = []
-    for i in range(len(string)):
-        if string[i] == '[':
-            opening_bracket_index.append(i)
-        else:
-            closing_bracket_index.append(i)
-    closing_bracket_index.reverse()
-    cnt = 0
-    i = 0
-    l = len(closing_bracket_index)
-    for idx in opening_bracket_index:
-        if i < l and idx < closing_bracket_index[i]:
-            cnt += 1
-            i += 1
-    return cnt >= 2
-
-    
-","import unittest
-
-class TestIsNested(unittest.TestCase):
+class TestIsNested_132(unittest.TestCase):
     def test_is_nested_true(self):
         self.assertTrue(is_nested('[[]]'))
 
@@ -7503,117 +4676,64 @@ class TestIsNested(unittest.TestCase):
     def test_is_nested_true_10(self):
         self.assertTrue(is_nested('[[]][[]][[]][[]][[]][[]][[]][[]]'))
 
-"
-"
-
-def sum_squares(lst):
-    """"""You are given a list of numbers.
-    You need to return the sum of squared numbers in the given list,
-    round each element in the list to the upper int(Ceiling) first.
-    Examples:
-    For lst = [1,2,3] the output should be 14
-    For lst = [1,4,9] the output should be 98
-    For lst = [1,3,5,7] the output should be 84
-    For lst = [1.4,4.2,0] the output should be 29
-    For lst = [-2.4,1,1] the output should be 6
-    
-
-    """"""
-","    import math
-    squared = 0
-    for i in lst:
-        squared += math.ceil(i)**2
-    return squared
-","import unittest
-
-class TestSumSquares(unittest.TestCase):
-    def test_sum_squares(self):
+class TestSumSquares_133(unittest.TestCase):
+    def test_sum_squares_1(self):
         self.assertEqual(sum_squares([1, 2, 3]), 14)
+    def test_sum_squares_2(self):
         self.assertEqual(sum_squares([1, 4, 9]), 98)
+    def test_sum_squares_3(self):
         self.assertEqual(sum_squares([1, 3, 5, 7]), 84)
+    def test_sum_squares_4(self):
         self.assertEqual(sum_squares([1.4, 4.2, 0]), 29)
+    def test_sum_squares_5(self):
         self.assertEqual(sum_squares([-2.4, 1, 1]), 6)
 
-"
-"
-def check_if_last_char_is_a_letter(txt):
-    '''
-    Create a function that returns True if the last character
-    of a given string is an alphabetical character and is not
-    a part of a word, and False otherwise.
-    Note: ""word"" is a group of characters separated by space.
-
-    Examples:
-    check_if_last_char_is_a_letter(""apple pie"") ➞ False
-    check_if_last_char_is_a_letter(""apple pi e"") ➞ True
-    check_if_last_char_is_a_letter(""apple pi e "") ➞ False
-    check_if_last_char_is_a_letter("""") ➞ False 
-    '''
-"," 
-    check = txt.split(' ')[-1]
-    return True if len(check) == 1 and (97 <= ord(check.lower()) <= 122) else False
-","import unittest
-
-class TestCheckIfLastCharIsALetter(unittest.TestCase):
+class TestCheckIfLastCharIsALetter_134(unittest.TestCase):
     def test_empty_string(self):
-        self.assertFalse(check_if_last_char_is_a_letter(""""))
+        self.assertFalse(check_if_last_char_is_a_letter(""))
 
-    def test_single_letter(self):
-        self.assertTrue(check_if_last_char_is_a_letter(""a""))
-        self.assertTrue(check_if_last_char_is_a_letter(""z""))
+    def test_single_letter_1(self):
+        self.assertTrue(check_if_last_char_is_a_letter("a"))
+    def test_single_letter_2(self):
+        self.assertTrue(check_if_last_char_is_a_letter("z"))
+    def test_multiple_letters_1(self):
+        self.assertFalse(check_if_last_char_is_a_letter("apple"))
+    def test_multiple_letters_2(self):
+        self.assertFalse(check_if_last_char_is_a_letter("banana"))
+    def test_multiple_letters_3(self):
+        self.assertFalse(check_if_last_char_is_a_letter("cherry"))
+    def test_word_boundary_1(self):
+        self.assertFalse(check_if_last_char_is_a_letter("apple pie"))
+    def test_word_boundary_2(self):
+        self.assertTrue(check_if_last_char_is_a_letter("apple pi e"))
+    def test_word_boundary_3(self):
+        self.assertFalse(check_if_last_char_is_a_letter("apple pi e "))
+    def test_special_characters_1(self):
+        self.assertFalse(check_if_last_char_is_a_letter("apple pie!"))
+    def test_special_characters_2(self):
+        self.assertFalse(check_if_last_char_is_a_letter("banana pie!"))
+    def test_special_characters_3(self):
+        self.assertFalse(check_if_last_char_is_a_letter("cherry pie!"))
+    def test_unicode_characters_1(self):
+        self.assertFalse(check_if_last_char_is_a_letter("apple pie 🍰"))
+    def test_unicode_characters_2(self):
+        self.assertFalse(check_if_last_char_is_a_letter("banana pie 🍰"))
+    def test_unicode_characters_3(self):
+        self.assertFalse(check_if_last_char_is_a_letter("cherry pie 🍰"))
+    def test_non_alphabetical_characters_1(self):
+        self.assertFalse(check_if_last_char_is_a_letter("apple pie 1"))
+    def test_non_alphabetical_characters_2(self):
+        self.assertFalse(check_if_last_char_is_a_letter("banana pie 1"))
+    def test_non_alphabetical_characters_3(self):
+        self.assertFalse(check_if_last_char_is_a_letter("cherry pie 1"))
+    def test_non_alphabetical_characters_with_spaces_1(self):
+        self.assertFalse(check_if_last_char_is_a_letter("apple pie 1 "))
+    def test_non_alphabetical_characters_with_spaces_2(self):
+        self.assertFalse(check_if_last_char_is_a_letter("banana pie 1 "))
+    def test_non_alphabetical_characters_with_spaces_3(self):
+        self.assertFalse(check_if_last_char_is_a_letter("cherry pie 1 "))
 
-    def test_multiple_letters(self):
-        self.assertFalse(check_if_last_char_is_a_letter(""apple""))
-        self.assertFalse(check_if_last_char_is_a_letter(""banana""))
-        self.assertFalse(check_if_last_char_is_a_letter(""cherry""))
-
-    def test_word_boundary(self):
-        self.assertFalse(check_if_last_char_is_a_letter(""apple pie""))
-        self.assertTrue(check_if_last_char_is_a_letter(""apple pi e""))
-        self.assertFalse(check_if_last_char_is_a_letter(""apple pi e ""))
-
-    def test_special_characters(self):
-        self.assertFalse(check_if_last_char_is_a_letter(""apple pie!""))
-        self.assertFalse(check_if_last_char_is_a_letter(""banana pie!""))
-        self.assertFalse(check_if_last_char_is_a_letter(""cherry pie!""))
-
-    def test_unicode_characters(self):
-        self.assertFalse(check_if_last_char_is_a_letter(""apple pie 🍰""))
-        self.assertFalse(check_if_last_char_is_a_letter(""banana pie 🍰""))
-        self.assertFalse(check_if_last_char_is_a_letter(""cherry pie 🍰""))
-
-    def test_non_alphabetical_characters(self):
-        self.assertFalse(check_if_last_char_is_a_letter(""apple pie 1""))
-        self.assertFalse(check_if_last_char_is_a_letter(""banana pie 1""))
-        self.assertFalse(check_if_last_char_is_a_letter(""cherry pie 1""))
-
-    def test_non_alphabetical_characters_with_spaces(self):
-        self.assertFalse(check_if_last_char_is_a_letter(""apple pie 1 ""))
-        self.assertFalse(check_if_last_char_is_a_letter(""banana pie 1 ""))
-        self.assertFalse(check_if_last_char_is_a_letter(""cherry pie 1 ""))
-
-"
-"
-def can_arrange(arr):
-    """"""Create a function which returns the largest index of an element which
-    is not greater than or equal to the element immediately preceding it. If
-    no such element exists then return -1. The given array will not contain
-    duplicate values.
-
-    Examples:
-    can_arrange([1,2,4,3,5]) = 3
-    can_arrange([1,2,3]) = -1
-    """"""
-","    ind=-1
-    i=1
-    while i<len(arr):
-      if arr[i]<arr[i-1]:
-        ind=i
-      i+=1
-    return ind
-","import unittest
-
-class TestCanArrange(unittest.TestCase):
+class TestCanArrange_135(unittest.TestCase):
     def test_can_arrange_1(self):
         arr = [1, 2, 4, 3, 5]
         expected = 3
@@ -7664,26 +4784,7 @@ class TestCanArrange(unittest.TestCase):
         expected = 11
         self.assertEqual(can_arrange(arr), expected)
 
-"
-"
-def largest_smallest_integers(lst):
-    '''
-    Create a function that returns a tuple (a, b), where 'a' is
-    the largest of negative integers, and 'b' is the smallest
-    of positive integers in a list.
-    If there is no negative or positive integers, return them as None.
-
-    Examples:
-    largest_smallest_integers([2, 4, 1, 3, 5, 7]) == (None, 1)
-    largest_smallest_integers([]) == (None, None)
-    largest_smallest_integers([0]) == (None, None)
-    '''
-","    smallest = list(filter(lambda x: x < 0, lst))
-    largest = list(filter(lambda x: x > 0, lst))
-    return (max(smallest) if smallest else None, min(largest) if largest else None)
-","import unittest
-
-class TestLargestSmallestIntegers(unittest.TestCase):
+class TestLargestSmallestIntegers_136(unittest.TestCase):
     def test_largest_smallest_integers(self):
         lst = [2, 4, 1, 3, 5, 7]
         expected = (None, 1)
@@ -7729,28 +4830,7 @@ class TestLargestSmallestIntegers(unittest.TestCase):
         expected = (None, -6)
         self.assertEqual(largest_smallest_integers(lst), expected)
 
-"
-"
-def compare_one(a, b):
-    """"""
-    Create a function that takes integers, floats, or strings representing
-    real numbers, and returns the larger variable in its given variable type.
-    Return None if the values are equal.
-    Note: If a real number is represented as a string, the floating point might be . or ,
-
-    compare_one(1, 2.5) ➞ 2.5
-    compare_one(1, ""2,3"") ➞ ""2,3""
-    compare_one(""5,1"", ""6"") ➞ ""6""
-    compare_one(""1"", 1) ➞ None
-    """"""
-","    temp_a, temp_b = a, b
-    if isinstance(temp_a, str): temp_a = temp_a.replace(',','.')
-    if isinstance(temp_b, str): temp_b = temp_b.replace(',','.')
-    if float(temp_a) == float(temp_b): return None
-    return a if float(temp_a) > float(temp_b) else b 
-","import unittest
-
-class TestCompareOne(unittest.TestCase):
+class TestCompareOne_137(unittest.TestCase):
     def test_compare_one_int(self):
         self.assertEqual(compare_one(1, 2), 2)
 
@@ -7758,258 +4838,150 @@ class TestCompareOne(unittest.TestCase):
         self.assertEqual(compare_one(1.5, 2.5), 2.5)
 
     def test_compare_one_string(self):
-        self.assertEqual(compare_one(""1.5"", ""2.5""), ""2.5"")
+        self.assertEqual(compare_one("1.5", "2.5"), "2.5")
 
     def test_compare_one_equal(self):
         self.assertEqual(compare_one(1, 1), None)
 
     def test_compare_one_mixed(self):
-        self.assertEqual(compare_one(1.5, ""2.5""), ""2.5"")
+        self.assertEqual(compare_one(1.5, "2.5"), "2.5")
 
     def test_compare_one_mixed_2(self):
-        self.assertEqual(compare_one(""1.5"", 2.5), 2.5)
+        self.assertEqual(compare_one("1.5", 2.5), 2.5)
 
     def test_compare_one_mixed_3(self):
-        self.assertEqual(compare_one(""1.5"", ""2.5""), ""2.5"")
+        self.assertEqual(compare_one("1.5", "2.5"), "2.5")
 
     def test_compare_one_mixed_4(self):
-        self.assertEqual(compare_one(1.5, ""2.5""), ""2.5"")
+        self.assertEqual(compare_one(1.5, "2.5"), "2.5")
 
     def test_compare_one_mixed_5(self):
-        self.assertEqual(compare_one(""1.5"", 2.5), 2.5)
+        self.assertEqual(compare_one("1.5", 2.5), 2.5)
 
     def test_compare_one_mixed_6(self):
-        self.assertEqual(compare_one(""1.5"", ""2.5""), ""2.5"")
+        self.assertEqual(compare_one("1.5", "2.5"), "2.5")
 
     def test_compare_one_mixed_7(self):
-        self.assertEqual(compare_one(1.5, ""2.5""), ""2.5"")
+        self.assertEqual(compare_one(1.5, "2.5"), "2.5")
 
     def test_compare_one_mixed_8(self):
-        self.assertEqual(compare_one(""1.5"", 2.5), 2.5)
+        self.assertEqual(compare_one("1.5", 2.5), 2.5)
 
     def test_compare_one_mixed_9(self):
-        self.assertEqual(compare_one(""1.5"", ""2.5""), ""2.5"")
+        self.assertEqual(compare_one("1.5", "2.5"), "2.5")
 
     def test_compare_one_mixed_10(self):
-        self.assertEqual(compare_one(1.5, ""2.5""), ""2.5"")
+        self.assertEqual(compare_one(1.5, "2.5"), "2.5")
 
-"
-"
-def is_equal_to_sum_even(n):
-    """"""Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers
-    Example
-    is_equal_to_sum_even(4) == False
-    is_equal_to_sum_even(6) == False
-    is_equal_to_sum_even(8) == True
-    """"""
-","    return n%2 == 0 and n >= 8
-","import unittest
-
-class TestIsEqualToSumEven(unittest.TestCase):
-    def test_is_equal_to_sum_even(self):
+class TestIsEqualToSumEven_138(unittest.TestCase):
+    def test_is_equal_to_sum_even_1(self):
         self.assertFalse(is_equal_to_sum_even(4))
+    def test_is_equal_to_sum_even_2(self):
         self.assertFalse(is_equal_to_sum_even(6))
+    def test_is_equal_to_sum_even_3(self):
         self.assertTrue(is_equal_to_sum_even(8))
+    def test_is_equal_to_sum_even_4(self):
         self.assertFalse(is_equal_to_sum_even(10))
+    def test_is_equal_to_sum_even_5(self):
         self.assertFalse(is_equal_to_sum_even(12))
+    def test_is_equal_to_sum_even_6(self):
         self.assertTrue(is_equal_to_sum_even(14))
+    def test_is_equal_to_sum_even_7(self):
         self.assertFalse(is_equal_to_sum_even(16))
+    def test_is_equal_to_sum_even_8(self):
         self.assertFalse(is_equal_to_sum_even(18))
+    def test_is_equal_to_sum_even_9(self):
         self.assertTrue(is_equal_to_sum_even(20))
+    def test_is_equal_to_sum_even_10(self):
         self.assertFalse(is_equal_to_sum_even(22))
+    def test_is_equal_to_sum_even_11(self):
         self.assertTrue(is_equal_to_sum_even(24))
 
-"
-"
-def special_factorial(n):
-    """"""The Brazilian factorial is defined as:
-    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!
-    where n > 0
-
-    For example:
-    >>> special_factorial(4)
-    288
-
-    The function will receive an integer as input and should return the special
-    factorial of this integer.
-    """"""
-","    fact_i = 1
-    special_fact = 1
-    for i in range(1, n+1):
-        fact_i *= i
-        special_fact *= fact_i
-    return special_fact
-","import unittest
-
-class TestSpecialFactorial(unittest.TestCase):
-    def test_special_factorial(self):
+class TestSpecialFactorial_139(unittest.TestCase):
+    def test_special_factorial_1(self):
         self.assertEqual(special_factorial(1), 1)
+    def test_special_factorial_2(self):
         self.assertEqual(special_factorial(2), 2)
+    def test_special_factorial_3(self):
         self.assertEqual(special_factorial(3), 6)
+    def test_special_factorial_4(self):
         self.assertEqual(special_factorial(4), 24)
+    def test_special_factorial_5(self):
         self.assertEqual(special_factorial(5), 120)
+    def test_special_factorial_6(self):
         self.assertEqual(special_factorial(6), 720)
+    def test_special_factorial_7(self):
         self.assertEqual(special_factorial(7), 5040)
+    def test_special_factorial_8(self):
         self.assertEqual(special_factorial(8), 40320)
+    def test_special_factorial_9(self):
         self.assertEqual(special_factorial(9), 362880)
+    def test_special_factorial_10(self):
         self.assertEqual(special_factorial(10), 3628800)
 
-"
-"
-def fix_spaces(text):
-    """"""
-    Given a string text, replace all spaces in it with underscores, 
-    and if a string has more than 2 consecutive spaces, 
-    then replace all consecutive spaces with - 
-    
-    fix_spaces(""Example"") == ""Example""
-    fix_spaces(""Example 1"") == ""Example_1""
-    fix_spaces("" Example 2"") == ""_Example_2""
-    fix_spaces("" Example   3"") == ""_Example-3""
-    """"""
-","    new_text = """"
-    i = 0
-    start, end = 0, 0
-    while i < len(text):
-        if text[i] == "" "":
-            end += 1
-        else:
-            if end - start > 2:
-                new_text += ""-""+text[i]
-            elif end - start > 0:
-                new_text += ""_""*(end - start)+text[i]
-            else:
-                new_text += text[i]
-            start, end = i+1, i+1
-        i+=1
-    if end - start > 2:
-        new_text += ""-""
-    elif end - start > 0:
-        new_text += ""_""
-    return new_text
-","import unittest
-
-class TestFixSpaces(unittest.TestCase):
+class TestFixSpaces_140(unittest.TestCase):
     def test_fix_spaces_1(self):
-        self.assertEqual(fix_spaces(""Example""), ""Example"")
+        self.assertEqual(fix_spaces("Example"), "Example")
 
     def test_fix_spaces_2(self):
-        self.assertEqual(fix_spaces(""Example 1""), ""Example_1"")
+        self.assertEqual(fix_spaces("Example 1"), "Example_1")
 
     def test_fix_spaces_3(self):
-        self.assertEqual(fix_spaces("" Example 2""), ""_Example_2"")
+        self.assertEqual(fix_spaces(" Example 2"), "_Example_2")
 
     def test_fix_spaces_4(self):
-        self.assertEqual(fix_spaces("" Example   3""), ""_Example-3"")
+        self.assertEqual(fix_spaces(" Example   3"), "_Example-3")
 
     def test_fix_spaces_5(self):
-        self.assertEqual(fix_spaces(""Example 1 2""), ""Example_1_2"")
+        self.assertEqual(fix_spaces("Example 1 2"), "Example_1_2")
 
     def test_fix_spaces_6(self):
-        self.assertEqual(fix_spaces(""Example 1 2 3""), ""Example_1_2_3"")
+        self.assertEqual(fix_spaces("Example 1 2 3"), "Example_1_2_3")
 
     def test_fix_spaces_7(self):
-        self.assertEqual(fix_spaces(""Example 1 2 3 4""), ""Example_1_2_3_4"")
+        self.assertEqual(fix_spaces("Example 1 2 3 4"), "Example_1_2_3_4")
 
     def test_fix_spaces_8(self):
-        self.assertEqual(fix_spaces(""Example 1 2 3 4 5""), ""Example_1_2_3_4_5"")
+        self.assertEqual(fix_spaces("Example 1 2 3 4 5"), "Example_1_2_3_4_5")
 
     def test_fix_spaces_9(self):
-        self.assertEqual(fix_spaces(""Example 1 2 3 4 5 6""), ""Example_1_2_3_4_5_6"")
+        self.assertEqual(fix_spaces("Example 1 2 3 4 5 6"), "Example_1_2_3_4_5_6")
 
     def test_fix_spaces_10(self):
-        self.assertEqual(fix_spaces(""Example 1 2 3 4 5 6 7""), ""Example_1_2_3_4_5_6_7"")
+        self.assertEqual(fix_spaces("Example 1 2 3 4 5 6 7"), "Example_1_2_3_4_5_6_7")
 
-"
-"
-def file_name_check(file_name):
-    """"""Create a function which takes a string representing a file's name, and returns
-    'Yes' if the the file's name is valid, and returns 'No' otherwise.
-    A file's name is considered to be valid if and only if all the following conditions 
-    are met:
-    - There should not be more than three digits ('0'-'9') in the file's name.
-    - The file's name contains exactly one dot '.'
-    - The substring before the dot should not be empty, and it starts with a letter from 
-    the latin alphapet ('a'-'z' and 'A'-'Z').
-    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']
-    Examples:
-    file_name_check(""example.txt"") # => 'Yes'
-    file_name_check(""1example.dll"") # => 'No' (the name should start with a latin alphapet letter)
-    """"""
-","    suf = ['txt', 'exe', 'dll']
-    lst = file_name.split(sep='.')
-    if len(lst) != 2:
-        return 'No'
-    if not lst[1] in suf:
-        return 'No'
-    if len(lst[0]) == 0:
-        return 'No'
-    if not lst[0][0].isalpha():
-        return 'No'
-    t = len([x for x in lst[0] if x.isdigit()])
-    if t > 3:
-        return 'No'
-    return 'Yes'
-","import unittest
-
-class TestFileCheck(unittest.TestCase):
+class TestFileCheck_141(unittest.TestCase):
     def test_valid_file_name(self):
-        self.assertEqual(file_name_check(""example.txt""), 'Yes')
+        self.assertEqual(file_name_check("example.txt"), 'Yes')
 
     def test_invalid_file_name(self):
-        self.assertEqual(file_name_check(""1example.dll""), 'No')
+        self.assertEqual(file_name_check("1example.dll"), 'No')
 
     def test_empty_file_name(self):
-        self.assertEqual(file_name_check(""""), 'No')
+        self.assertEqual(file_name_check(""), 'No')
 
     def test_file_name_with_more_than_three_digits(self):
-        self.assertEqual(file_name_check(""12345.txt""), 'No')
+        self.assertEqual(file_name_check("12345.txt"), 'No')
 
     def test_file_name_with_invalid_substring_before_dot(self):
-        self.assertEqual(file_name_check(""12345.txt""), 'No')
+        self.assertEqual(file_name_check("12345.txt"), 'No')
 
     def test_file_name_with_invalid_substring_after_dot(self):
-        self.assertEqual(file_name_check(""example.exe""), 'No')
+        self.assertEqual(file_name_check("example.exe"), 'No')
 
     def test_file_name_with_invalid_substring_after_dot(self):
-        self.assertEqual(file_name_check(""example.dll""), 'No')
+        self.assertEqual(file_name_check("example.exe"), 'No')
 
     def test_file_name_with_invalid_substring_after_dot(self):
-        self.assertEqual(file_name_check(""example.txt""), 'Yes')
+        self.assertEqual(file_name_check("example.exe"), 'No')
 
     def test_file_name_with_invalid_substring_after_dot(self):
-        self.assertEqual(file_name_check(""example.exe""), 'No')
+        self.assertEqual(file_name_check("example.exe"), 'No')
 
     def test_file_name_with_invalid_substring_after_dot(self):
-        self.assertEqual(file_name_check(""example.dll""), 'No')
+        self.assertEqual(file_name_check("example.exe"), 'No')
 
-"
-"
-
-
-def sum_squares(lst):
-    """"""""
-    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a 
-    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not 
-    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries. 
-    
-    Examples:
-    For lst = [1,2,3] the output should be 6
-    For lst = []  the output should be 0
-    For lst = [-1,-5,2,-1,-5]  the output should be -126
-    """"""
-","    result =[]
-    for i in range(len(lst)):
-        if i %3 == 0:
-            result.append(lst[i]**2)
-        elif i % 4 == 0 and i%3 != 0:
-            result.append(lst[i]**3)
-        else:
-            result.append(lst[i])
-    return sum(result)
-","import unittest
-
-class TestSumSquares(unittest.TestCase):
+class TestSumSquares_142(unittest.TestCase):
     def test_empty_list(self):
         lst = []
         self.assertEqual(sum_squares(lst), 0)
@@ -8037,188 +5009,97 @@ class TestSumSquares(unittest.TestCase):
     def test_list_with_mixed_elements(self):
         lst = [1, -2, 3, -4]
         self.assertEqual(sum_squares(lst), 14)
-"
-"
-def words_in_sentence(sentence):
-    """"""
-    You are given a string representing a sentence,
-    the sentence contains some words separated by a space,
-    and you have to return a string that contains the words from the original sentence,
-    whose lengths are prime numbers,
-    the order of the words in the new string should be the same as the original one.
 
-    Example 1:
-        Input: sentence = ""This is a test""
-        Output: ""is""
-
-    Example 2:
-        Input: sentence = ""lets go for swimming""
-        Output: ""go for""
-
-    Constraints:
-        * 1 <= len(sentence) <= 100
-        * sentence contains only letters
-    """"""
-","    new_lst = []
-    for word in sentence.split():
-        flg = 0
-        if len(word) == 1:
-            flg = 1
-        for i in range(2, len(word)):
-            if len(word)%i == 0:
-                flg = 1
-        if flg == 0 or len(word) == 2:
-            new_lst.append(word)
-    return "" "".join(new_lst)
-","import unittest
-
-class TestWordsInSentence(unittest.TestCase):
+class TestWordsInSentence_143(unittest.TestCase):
     def test_empty_string(self):
-        self.assertEqual(words_in_sentence(""""), """")
+        self.assertEqual(words_in_sentence(""), "")
 
     def test_single_word(self):
-        self.assertEqual(words_in_sentence(""test""), ""test"")
+        self.assertEqual(words_in_sentence("test"), "test")
 
     def test_multiple_words(self):
-        self.assertEqual(words_in_sentence(""this is a test""), ""is a"")
+        self.assertEqual(words_in_sentence("this is a test"), "is a")
 
     def test_prime_numbers(self):
-        self.assertEqual(words_in_sentence(""this is a test""), ""is a"")
+        self.assertEqual(words_in_sentence("this is a test"), "is a")
 
     def test_non_prime_numbers(self):
-        self.assertEqual(words_in_sentence(""this is a test""), ""is a"")
+        self.assertEqual(words_in_sentence("this is a test"), "is a")
 
     def test_mixed_case(self):
-        self.assertEqual(words_in_sentence(""This Is A Test""), ""Is A"")
+        self.assertEqual(words_in_sentence("This Is A Test"), "Is A")
 
     def test_special_characters(self):
-        self.assertEqual(words_in_sentence(""This Is A Test!""), ""Is A"")
+        self.assertEqual(words_in_sentence("This Is A Test!"), "Is A")
 
     def test_long_sentence(self):
-        self.assertEqual(words_in_sentence(""This is a test. This is a test. This is a test.""), ""is a test"")
+        self.assertEqual(words_in_sentence("This is a test. This is a test. This is a test."), "is a test")
 
     def test_short_sentence(self):
-        self.assertEqual(words_in_sentence(""This is a test.""), ""is a test"")
+        self.assertEqual(words_in_sentence("This is a test."), "is a test")
 
     def test_no_words(self):
-        self.assertEqual(words_in_sentence(""""), """")
+        self.assertEqual(words_in_sentence(""), "")
 
-"
-"
-def simplify(x, n):
-    """"""Your task is to implement a function that will simplify the expression
-    x * n. The function returns True if x * n evaluates to a whole number and False
-    otherwise. Both x and n, are string representation of a fraction, and have the following format,
-    <numerator>/<denominator> where both numerator and denominator are positive whole numbers.
-
-    You can assume that x, and n are valid fractions, and do not have zero as denominator.
-
-    simplify(""1/5"", ""5/1"") = True
-    simplify(""1/6"", ""2/1"") = False
-    simplify(""7/10"", ""10/2"") = False
-    """"""
-","    a, b = x.split(""/"")
-    c, d = n.split(""/"")
-    numerator = int(a) * int(c)
-    denom = int(b) * int(d)
-    if (numerator/denom == int(numerator/denom)):
-        return True
-    return False
-","import unittest
-
-class TestSimplify(unittest.TestCase):
+class TestSimplify_144(unittest.TestCase):
     def test_simplify_true(self):
-        self.assertTrue(simplify(""1/5"", ""5/1""))
+        self.assertTrue(simplify("1/5", "5/1"))
 
     def test_simplify_false(self):
-        self.assertFalse(simplify(""1/6"", ""2/1""))
+        self.assertFalse(simplify("1/6", "2/1"))
 
     def test_simplify_false_2(self):
-        self.assertFalse(simplify(""7/10"", ""10/2""))
+        self.assertFalse(simplify("7/10", "10/2"))
 
     def test_simplify_false_3(self):
-        self.assertFalse(simplify(""1/2"", ""2/1""))
+        self.assertFalse(simplify("1/2", "2/1"))
 
     def test_simplify_false_4(self):
-        self.assertFalse(simplify(""1/3"", ""3/1""))
+        self.assertFalse(simplify("1/3", "3/1"))
 
     def test_simplify_false_5(self):
-        self.assertFalse(simplify(""1/4"", ""4/1""))
+        self.assertFalse(simplify("1/4", "4/1"))
 
     def test_simplify_false_6(self):
-        self.assertFalse(simplify(""1/5"", ""5/1""))
+        self.assertFalse(simplify("1/5", "5/1"))
 
     def test_simplify_false_7(self):
-        self.assertFalse(simplify(""1/6"", ""2/1""))
+        self.assertFalse(simplify("1/6", "2/1"))
 
     def test_simplify_false_8(self):
-        self.assertFalse(simplify(""7/10"", ""10/2""))
+        self.assertFalse(simplify("7/10", "10/2"))
 
     def test_simplify_false_9(self):
-        self.assertFalse(simplify(""1/2"", ""2/1""))
+        self.assertFalse(simplify("1/2", "2/1"))
 
     def test_simplify_false_10(self):
-        self.assertFalse(simplify(""1/3"", ""3/1""))
+        self.assertFalse(simplify("1/3", "3/1"))
 
-"
-"
-def order_by_points(nums):
-    """"""
-    Write a function which sorts the given list of integers
-    in ascending order according to the sum of their digits.
-    Note: if there are several items with similar sum of their digits,
-    order them based on their index in original list.
-
-    For example:
-    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
-    >>> order_by_points([]) == []
-    """"""
-","    def digits_sum(n):
-        neg = 1
-        if n < 0: n, neg = -1 * n, -1 
-        n = [int(i) for i in str(n)]
-        n[0] = n[0] * neg
-        return sum(n)
-    return sorted(nums, key=digits_sum)
-","import unittest
-
-class TestOrderByPoints(unittest.TestCase):
-    def test_order_by_points(self):
+class TestOrderByPoints_145(unittest.TestCase):
+    def test_order_by_points_1(self):
         self.assertEqual(order_by_points([1, 11, -1, -11, -12]), [-1, -11, 1, -12, 11])
+    def test_order_by_points_2(self):
         self.assertEqual(order_by_points([1, 11, -1, -11, -12, 11]), [-1, -11, 1, -12, 11])
+    def test_order_by_points_3(self):
         self.assertEqual(order_by_points([1, 11, -1, -11, -12, 11, 11]), [-1, -11, 1, -12, 11, 11])
+    def test_order_by_points_4(self):
         self.assertEqual(order_by_points([1, 11, -1, -11, -12, 11, 11, 11]), [-1, -11, 1, -12, 11, 11, 11])
+    def test_order_by_points_5(self):
         self.assertEqual(order_by_points([1, 11, -1, -11, -12, 11, 11, 11, 11]), [-1, -11, 1, -12, 11, 11, 11, 11])
+    def test_order_by_points_6(self):
         self.assertEqual(order_by_points([1, 11, -1, -11, -12, 11, 11, 11, 11, 11]), [-1, -11, 1, -12, 11, 11, 11, 11, 11])
+    def test_order_by_points_7(self):
         self.assertEqual(order_by_points([1, 11, -1, -11, -12, 11, 11, 11, 11, 11, 11]), [-1, -11, 1, -12, 11, 11, 11, 11, 11, 11])
+    def test_order_by_points_8(self):
         self.assertEqual(order_by_points([1, 11, -1, -11, -12, 11, 11, 11, 11, 11, 11, 11]), [-1, -11, 1, -12, 11, 11, 11, 11, 11, 11, 11])
+    def test_order_by_points_9(self):
         self.assertEqual(order_by_points([1, 11, -1, -11, -12, 11, 11, 11, 11, 11, 11, 11, 11]), [-1, -11, 1, -12, 11, 11, 11, 11, 11, 11, 11, 11])
+    def test_order_by_points_10(self):
         self.assertEqual(order_by_points([1, 11, -1, -11, -12, 11, 11, 11, 11, 11, 11, 11, 11, 11]), [-1, -11, 1, -12, 11, 11, 11, 11, 11, 11, 11, 11, 11])
+    def test_order_by_points_11(self):
         self.assertEqual(order_by_points([1, 11, -1, -11, -12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11]), [-1, -11, 1, -12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11])
 
-"
-"
-def specialFilter(nums):
-    """"""Write a function that takes an array of numbers as input and returns 
-    the number of elements in the array that are greater than 10 and both 
-    first and last digits of a number are odd (1, 3, 5, 7, 9).
-    For example:
-    specialFilter([15, -73, 14, -15]) => 1 
-    specialFilter([33, -2, -3, 45, 21, 109]) => 2
-    """"""
-","    
-    count = 0
-    for num in nums:
-        if num > 10:
-            odd_digits = (1, 3, 5, 7, 9)
-            number_as_string = str(num)
-            if int(number_as_string[0]) in odd_digits and int(number_as_string[-1]) in odd_digits:
-                count += 1
-        
-    return count 
-","import unittest
-
-class TestSpecialFilter(unittest.TestCase):
+class TestSpecialFilter_146(unittest.TestCase):
     def test_special_filter_1(self):
         nums = [15, -73, 14, -15]
         expected = 1
@@ -8253,33 +5134,8 @@ class TestSpecialFilter(unittest.TestCase):
         nums = [15, -73, 14, -15, 33, -2, -3, 45, 21, 109, 15, -73, 14, -15, 33, -2, -3, 45, 21, 109, 15, -73, 14, -15, 33, -2, -3, 45, 21, 109, 15, -73, 14, -15, 33, -2, -3, 45, 21, 109]
         expected = 15
         self.assertEqual(specialFilter(nums), expected)
-"
-"
-def get_max_triples(n):
-    """"""
-    You are given a positive integer n. You have to create an integer array a of length n.
-        For each i (1 ≤ i ≤ n), the value of a[i] = i * i - i + 1.
-        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k, 
-    and a[i] + a[j] + a[k] is a multiple of 3.
 
-    Example :
-        Input: n = 5
-        Output: 1
-        Explanation: 
-        a = [1, 3, 7, 13, 21]
-        The only valid triple is (1, 7, 13).
-    """"""
-","    A = [i*i - i + 1 for i in range(1,n+1)]
-    ans = []
-    for i in range(n):
-        for j in range(i+1,n):
-            for k in range(j+1,n):
-                if (A[i]+A[j]+A[k])%3 == 0:
-                    ans += [(A[i],A[j],A[k])]
-    return len(ans)
-","import unittest
-
-class TestGetMaxTriples(unittest.TestCase):
+class TestGetMaxTriples_147(unittest.TestCase):
     def test_get_max_triples_n_1(self):
         n = 1
         expected_output = 0
@@ -8340,188 +5196,105 @@ class TestGetMaxTriples(unittest.TestCase):
         actual_output = get_max_triples(n)
         self.assertEqual(actual_output, expected_output)
 
-"
-"
-def bf(planet1, planet2):
-    '''
-    There are eight planets in our solar system: the closerst to the Sun 
-    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, 
-    Uranus, Neptune.
-    Write a function that takes two planet names as strings planet1 and planet2. 
-    The function should return a tuple containing all planets whose orbits are 
-    located between the orbit of planet1 and the orbit of planet2, sorted by 
-    the proximity to the sun. 
-    The function should return an empty tuple if planet1 or planet2
-    are not correct planet names. 
-    Examples
-    bf(""Jupiter"", ""Neptune"") ==> (""Saturn"", ""Uranus"")
-    bf(""Earth"", ""Mercury"") ==> (""Venus"")
-    bf(""Mercury"", ""Uranus"") ==> (""Venus"", ""Earth"", ""Mars"", ""Jupiter"", ""Saturn"")
-    '''
-","    planet_names = (""Mercury"", ""Venus"", ""Earth"", ""Mars"", ""Jupiter"", ""Saturn"", ""Uranus"", ""Neptune"")
-    if planet1 not in planet_names or planet2 not in planet_names or planet1 == planet2:
-        return ()
-    planet1_index = planet_names.index(planet1)
-    planet2_index = planet_names.index(planet2)
-    if planet1_index < planet2_index:
-        return (planet_names[planet1_index + 1: planet2_index])
-    else:
-        return (planet_names[planet2_index + 1 : planet1_index])
-","import unittest
-
-class TestBF(unittest.TestCase):
+class TestBF_148(unittest.TestCase):
     def test_bf_1(self):
-        self.assertEqual(bf(""Jupiter"", ""Neptune""), (""Saturn"", ""Uranus""))
+        self.assertEqual(bf("Jupiter", "Neptune"), ("Saturn", "Uranus"))
 
     def test_bf_2(self):
-        self.assertEqual(bf(""Earth"", ""Mercury""), (""Venus""))
+        self.assertEqual(bf("Earth", "Mercury"), ("Venus"))
 
     def test_bf_3(self):
-        self.assertEqual(bf(""Mercury"", ""Uranus""), (""Venus"", ""Earth"", ""Mars"", ""Jupiter"", ""Saturn""))
+        self.assertEqual(bf("Mercury", "Uranus"), ("Venus", "Earth", "Mars", "Jupiter", "Saturn"))
 
     def test_bf_4(self):
-        self.assertEqual(bf(""Mercury"", ""Mercury""), ())
+        self.assertEqual(bf("Mercury", "Mercury"), ())
 
     def test_bf_5(self):
-        self.assertEqual(bf(""Mercury"", ""Neptune""), (""Venus"", ""Earth"", ""Mars"", ""Jupiter"", ""Saturn"", ""Uranus""))
+        self.assertEqual(bf("Mercury", "Neptune"), ("Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus"))
 
     def test_bf_6(self):
-        self.assertEqual(bf(""Earth"", ""Neptune""), (""Venus"", ""Mars"", ""Jupiter"", ""Saturn"", ""Uranus""))
+        self.assertEqual(bf("Earth", "Neptune"), ("Venus", "Mars", "Jupiter", "Saturn", "Uranus"))
 
     def test_bf_7(self):
-        self.assertEqual(bf(""Jupiter"", ""Mercury""), (""Saturn"", ""Uranus"", ""Neptune""))
+        self.assertEqual(bf("Jupiter", "Mercury"), ("Saturn", "Uranus", "Neptune"))
 
     def test_bf_8(self):
-        self.assertEqual(bf(""Jupiter"", ""Jupiter""), ())
+        self.assertEqual(bf("Jupiter", "Jupiter"), ())
 
     def test_bf_9(self):
-        self.assertEqual(bf(""Jupiter"", ""Neptune""), (""Saturn"", ""Uranus"", ""Neptune""))
+        self.assertEqual(bf("Jupiter", "Neptune"), ("Saturn", "Uranus", "Neptune"))
 
     def test_bf_10(self):
-        self.assertEqual(bf(""Neptune"", ""Mercury""), (""Uranus"", ""Neptune""))
+        self.assertEqual(bf("Neptune", "Mercury"), ("Uranus", "Neptune"))
 
-"
-"
-def sorted_list_sum(lst):
-    """"""Write a function that accepts a list of strings as a parameter,
-    deletes the strings that have odd lengths from it,
-    and returns the resulted list with a sorted order,
-    The list is always a list of strings and never an array of numbers,
-    and it may contain duplicates.
-    The order of the list should be ascending by length of each word, and you
-    should return the list sorted by that rule.
-    If two words have the same length, sort the list alphabetically.
-    The function should return a list of strings in sorted order.
-    You may assume that all words will have the same length.
-    For example:
-    assert list_sort([""aa"", ""a"", ""aaa""]) => [""aa""]
-    assert list_sort([""ab"", ""a"", ""aaa"", ""cd""]) => [""ab"", ""cd""]
-    """"""
-","    lst.sort()
-    new_lst = []
-    for i in lst:
-        if len(i)%2 == 0:
-            new_lst.append(i)
-    return sorted(new_lst, key=len)
-","import unittest
-
-class TestSortedListSum(unittest.TestCase):
+class TestSortedListSum_149(unittest.TestCase):
     def test_empty_list(self):
         lst = []
         self.assertEqual(sorted_list_sum(lst), [])
 
     def test_list_with_one_element(self):
-        lst = [""aa""]
-        self.assertEqual(sorted_list_sum(lst), [""aa""])
+        lst = ["aa"]
+        self.assertEqual(sorted_list_sum(lst), ["aa"])
 
     def test_list_with_two_elements(self):
-        lst = [""ab"", ""a""]
-        self.assertEqual(sorted_list_sum(lst), [""ab"", ""a""])
+        lst = ["ab", "a"]
+        self.assertEqual(sorted_list_sum(lst), ["ab", "a"])
 
     def test_list_with_three_elements(self):
-        lst = [""aaa"", ""a"", ""ab""]
-        self.assertEqual(sorted_list_sum(lst), [""aaa"", ""ab""])
+        lst = ["aaa", "a", "ab"]
+        self.assertEqual(sorted_list_sum(lst), ["aaa", "ab"])
 
     def test_list_with_four_elements(self):
-        lst = [""aaa"", ""a"", ""ab"", ""cd""]
-        self.assertEqual(sorted_list_sum(lst), [""aaa"", ""ab"", ""cd""])
+        lst = ["aaa", "a", "ab", "cd"]
+        self.assertEqual(sorted_list_sum(lst), ["aaa", "ab", "cd"])
 
     def test_list_with_five_elements(self):
-        lst = [""aaa"", ""a"", ""ab"", ""cd"", ""ef""]
-        self.assertEqual(sorted_list_sum(lst), [""aaa"", ""ab"", ""cd"", ""ef""])
+        lst = ["aaa", "a", "ab", "cd", "ef"]
+        self.assertEqual(sorted_list_sum(lst), ["aaa", "ab", "cd", "ef"])
 
     def test_list_with_six_elements(self):
-        lst = [""aaa"", ""a"", ""ab"", ""cd"", ""ef"", ""gh""]
-        self.assertEqual(sorted_list_sum(lst), [""aaa"", ""ab"", ""cd"", ""ef"", ""gh""])
+        lst = ["aaa", "a", "ab", "cd", "ef", "gh"]
+        self.assertEqual(sorted_list_sum(lst), ["aaa", "ab", "cd", "ef", "gh"])
 
     def test_list_with_seven_elements(self):
-        lst = [""aaa"", ""a"", ""ab"", ""cd"", ""ef"", ""gh"", ""ij""]
-        self.assertEqual(sorted_list_sum(lst), [""aaa"", ""ab"", ""cd"", ""ef"", ""gh"", ""ij""])
+        lst = ["aaa", "a", "ab", "cd", "ef", "gh", "ij"]
+        self.assertEqual(sorted_list_sum(lst), ["aaa", "ab", "cd", "ef", "gh", "ij"])
 
     def test_list_with_eight_elements(self):
-        lst = [""aaa"", ""a"", ""ab"", ""cd"", ""ef"", ""gh"", ""ij"", ""kl""]
-        self.assertEqual(sorted_list_sum(lst), [""aaa"", ""ab"", ""cd"", ""ef"", ""gh"", ""ij"", ""kl""])
+        lst = ["aaa", "a", "ab", "cd", "ef", "gh", "ij", "kl"]
+        self.assertEqual(sorted_list_sum(lst), ["aaa", "ab", "cd", "ef", "gh", "ij", "kl"])
 
     def test_list_with_nine_elements(self):
-        lst = [""aaa"", ""a"", ""ab"", ""cd"", ""ef"", ""gh"", ""ij"", ""kl"", ""mn""]
-        self.assertEqual(sorted_list_sum(lst), [""aaa"", ""ab"", ""cd"", ""ef"", ""gh"", ""ij"", ""kl"", ""mn""])
+        lst = ["aaa", "a", "ab", "cd", "ef", "gh", "ij", "kl", "mn"]
+        self.assertEqual(sorted_list_sum(lst), ["aaa", "ab", "cd", "ef", "gh", "ij", "kl", "mn"])
 
     def test_list_with_ten_elements(self):
-        lst = [""aaa"", ""a"", ""ab"", ""cd"", ""ef"", ""gh"", ""ij"", ""kl"", ""mn"", ""op""]
-        self.assertEqual(sorted_list_sum(lst), [""aaa"", ""ab"", ""cd"", ""ef"", ""gh"", ""ij"", ""kl"", ""mn"", ""op""])
+        lst = ["aaa", "a", "ab", "cd", "ef", "gh", "ij", "kl", "mn", "op"]
+        self.assertEqual(sorted_list_sum(lst), ["aaa", "ab", "cd", "ef", "gh", "ij", "kl", "mn", "op"])
 
-"
-"
-def x_or_y(n, x, y):
-    """"""A simple program which should return the value of x if n is 
-    a prime number and should return the value of y otherwise.
-
-    Examples:
-    for x_or_y(7, 34, 12) == 34
-    for x_or_y(15, 8, 5) == 5
-    
-    """"""
-","    if n == 1:
-        return y
-    for i in range(2, n):
-        if n % i == 0:
-            return y
-            break
-    else:
-        return x
-","import unittest
-
-class TestXOrY(unittest.TestCase):
-    def test_x_or_y(self):
+class TestXOrY_150(unittest.TestCase):
+    def test_x_or_y_1(self):
         self.assertEqual(x_or_y(7, 34, 12), 34)
+    def test_x_or_y_2(self):
         self.assertEqual(x_or_y(15, 8, 5), 5)
+    def test_x_or_y_3(self):
         self.assertEqual(x_or_y(1, 34, 12), 12)
+    def test_x_or_y_4(self):
         self.assertEqual(x_or_y(2, 34, 12), 34)
+    def test_x_or_y_5(self):
         self.assertEqual(x_or_y(3, 34, 12), 12)
+    def test_x_or_y_6(self):
         self.assertEqual(x_or_y(5, 34, 12), 34)
+    def test_x_or_y_7(self):
         self.assertEqual(x_or_y(7, 34, 12), 34)
+    def test_x_or_y_8(self):
         self.assertEqual(x_or_y(11, 34, 12), 12)
+    def test_x_or_y_9(self):
         self.assertEqual(x_or_y(13, 34, 12), 34)
+    def test_x_or_y_10(self):
         self.assertEqual(x_or_y(17, 34, 12), 12)
 
-"
-"
-def double_the_difference(lst):
-    '''
-    Given a list of numbers, return the sum of squares of the numbers
-    in the list that are odd. Ignore numbers that are negative or not integers.
-    
-    double_the_difference([1, 3, 2, 0]) == 1 + 9 + 0 + 0 = 10
-    double_the_difference([-1, -2, 0]) == 0
-    double_the_difference([9, -2]) == 81
-    double_the_difference([0]) == 0  
-   
-    If the input list is empty, return 0.
-    '''
-","    return sum([i**2 for i in lst if i > 0 and i%2!=0 and ""."" not in str(i)])
-","import unittest
-
-class TestDoubleTheDifference(unittest.TestCase):
+class TestDoubleTheDifference_151(unittest.TestCase):
     def test_empty_list(self):
         self.assertEqual(double_the_difference([]), 0)
 
@@ -8560,27 +5333,8 @@ class TestDoubleTheDifference(unittest.TestCase):
 
     def test_list_with_non_integer_numbers_and_negative_numbers_and_zero_and_positive_numbers_and_odd_numbers_and_even_numbers_and_negative_odd_numbers_and_negative_even_numbers_and_positive_even_numbers_and_positive_odd_numbers(self):
         self.assertEqual(double_the_difference([9, -2, 0, 0, 1, 3, 2, -1, -2, 2, 3]), 81)
-"
-"
-def compare(game,guess):
-    """"""I think we all remember that feeling when the result of some long-awaited
-    event is finally known. The feelings and thoughts you have at that moment are
-    definitely worth noting down and comparing.
-    Your task is to determine if a person correctly guessed the results of a number of matches.
-    You are given two arrays of scores and guesses of equal length, where each index shows a match. 
-    Return an array of the same length denoting how far off each guess was. If they have guessed correctly,
-    the value is 0, and if not, the value is the absolute difference between the guess and the score.
-    
-    
-    example:
 
-    compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) -> [0,0,0,0,3,3]
-    compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) -> [4,4,1,0,0,6]
-    """"""
-","    return [abs(x-y) for x,y in zip(game,guess)]
-","import unittest
-
-class TestCompare(unittest.TestCase):
+class TestCompare_152(unittest.TestCase):
     def test_compare_correct_guess(self):
         game = [1,2,3,4,5,1]
         guess = [1,2,3,4,2,-2]
@@ -8647,110 +5401,57 @@ class TestCompare(unittest.TestCase):
         expected = [0,0,0,0,0,0,0,0]
         self.assertEqual(compare(game, guess), expected)
 
-"
-"
-def Strongest_Extension(class_name, extensions):
-    """"""You will be given the name of a class (a string) and a list of extensions.
-    The extensions are to be used to load additional classes to the class. The
-    strength of the extension is as follows: Let CAP be the number of the uppercase
-    letters in the extension's name, and let SM be the number of lowercase letters 
-    in the extension's name, the strength is given by the fraction CAP - SM. 
-    You should find the strongest extension and return a string in this 
-    format: ClassName.StrongestExtensionName.
-    If there are two or more extensions with the same strength, you should
-    choose the one that comes first in the list.
-    For example, if you are given ""Slices"" as the class and a list of the
-    extensions: ['SErviNGSliCes', 'Cheese', 'StuFfed'] then you should
-    return 'Slices.SErviNGSliCes' since 'SErviNGSliCes' is the strongest extension 
-    (its strength is -1).
-    Example:
-    for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
-    """"""
-","    strong = extensions[0]
-    my_val = len([x for x in extensions[0] if x.isalpha() and x.isupper()]) - len([x for x in extensions[0] if x.isalpha() and x.islower()])
-    for s in extensions:
-        val = len([x for x in s if x.isalpha() and x.isupper()]) - len([x for x in s if x.isalpha() and x.islower()])
-        if val > my_val:
-            strong = s
-            my_val = val
-
-    ans = class_name + ""."" + strong
-    return ans
-
-","import unittest
-
-class TestStrongestExtension(unittest.TestCase):
-    def test_strongest_extension(self):
+class TestStrongestExtension_153(unittest.TestCase):
+    def test_strongest_extension_1(self):
         self.assertEqual(Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']), 'Slices.SErviNGSliCes')
+    def test_strongest_extension_2(self):
         self.assertEqual(Strongest_Extension('my_class', ['AA', 'Be', 'CC']), 'my_class.AA')
+    def test_strongest_extension_3(self):
         self.assertEqual(Strongest_Extension('my_class', ['AA', 'Be', 'CC']), 'my_class.AA')
+    def test_strongest_extension_4(self):
         self.assertEqual(Strongest_Extension('my_class', ['AA', 'Be', 'CC']), 'my_class.AA')
+    def test_strongest_extension_5(self):
         self.assertEqual(Strongest_Extension('my_class', ['AA', 'Be', 'CC']), 'my_class.AA')
+    def test_strongest_extension_6(self):
         self.assertEqual(Strongest_Extension('my_class', ['AA', 'Be', 'CC']), 'my_class.AA')
+    def test_strongest_extension_7(self):
         self.assertEqual(Strongest_Extension('my_class', ['AA', 'Be', 'CC']), 'my_class.AA')
+    def test_strongest_extension_8(self):
         self.assertEqual(Strongest_Extension('my_class', ['AA', 'Be', 'CC']), 'my_class.AA')
+    def test_strongest_extension_9(self):
         self.assertEqual(Strongest_Extension('my_class', ['AA', 'Be', 'CC']), 'my_class.AA')
+    def test_strongest_extension_10(self):
         self.assertEqual(Strongest_Extension('my_class', ['AA', 'Be', 'CC']), 'my_class.AA')
+    def test_strongest_extension_11(self):
         self.assertEqual(Strongest_Extension('my_class', ['AA', 'Be', 'CC']), 'my_class.AA')
 
-"
-"
-def cycpattern_check(a , b):
-    """"""You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
-    cycpattern_check(""abcd"",""abd"") => False
-    cycpattern_check(""hello"",""ell"") => True
-    cycpattern_check(""whassup"",""psus"") => False
-    cycpattern_check(""abab"",""baa"") => True
-    cycpattern_check(""efef"",""eeff"") => False
-    cycpattern_check(""himenss"",""simen"") => True
+class TestCycPatternCheck_154(unittest.TestCase):
+    def test_cycpattern_check_true_1(self):
+        self.assertTrue(cycpattern_check("abcd", "abd"))
+    def test_cycpattern_check_true_2(self):
+        self.assertTrue(cycpattern_check("hello", "ell"))
+    def test_cycpattern_check_true_3(self):
+        self.assertTrue(cycpattern_check("whassup", "psus"))
+    def test_cycpattern_check_true_4(self):
+        self.assertTrue(cycpattern_check("abab", "baa"))
+    def test_cycpattern_check_true_5(self):
+        self.assertTrue(cycpattern_check("efef", "eeff"))
+    def test_cycpattern_check_true_6(self):
+        self.assertTrue(cycpattern_check("himenss", "simen"))
+    def test_cycpattern_check_false_1(self):
+        self.assertFalse(cycpattern_check("abcd", "abd"))
+    def test_cycpattern_check_false_2(self):
+        self.assertFalse(cycpattern_check("hello", "ell"))
+    def test_cycpattern_check_false_3(self):
+        self.assertFalse(cycpattern_check("whassup", "psus"))
+    def test_cycpattern_check_false_4(self):
+        self.assertFalse(cycpattern_check("abab", "baa"))
+    def test_cycpattern_check_false_5(self):
+        self.assertFalse(cycpattern_check("efef", "eeff"))
+    def test_cycpattern_check_false_6(self):
+        self.assertFalse(cycpattern_check("himenss", "simen"))
 
-    """"""
-","    l = len(b)
-    pat = b + b
-    for i in range(len(a) - l + 1):
-        for j in range(l + 1):
-            if a[i:i+l] == pat[j:j+l]:
-                return True
-    return False
-","import unittest
-
-class TestCycPatternCheck(unittest.TestCase):
-    def test_cycpattern_check_true(self):
-        self.assertTrue(cycpattern_check(""abcd"", ""abd""))
-        self.assertTrue(cycpattern_check(""hello"", ""ell""))
-        self.assertTrue(cycpattern_check(""whassup"", ""psus""))
-        self.assertTrue(cycpattern_check(""abab"", ""baa""))
-        self.assertTrue(cycpattern_check(""efef"", ""eeff""))
-        self.assertTrue(cycpattern_check(""himenss"", ""simen""))
-
-    def test_cycpattern_check_false(self):
-        self.assertFalse(cycpattern_check(""abcd"", ""abd""))
-        self.assertFalse(cycpattern_check(""hello"", ""ell""))
-        self.assertFalse(cycpattern_check(""whassup"", ""psus""))
-        self.assertFalse(cycpattern_check(""abab"", ""baa""))
-        self.assertFalse(cycpattern_check(""efef"", ""eeff""))
-        self.assertFalse(cycpattern_check(""himenss"", ""simen""))
-
-"
-"
-def even_odd_count(num):
-    """"""Given an integer. return a tuple that has the number of even and odd digits respectively.
-
-     Example:
-        even_odd_count(-12) ==> (1, 1)
-        even_odd_count(123) ==> (1, 2)
-    """"""
-","    even_count = 0
-    odd_count = 0
-    for i in str(abs(num)):
-        if int(i)%2==0:
-            even_count +=1
-        else:
-            odd_count +=1
-    return (even_count, odd_count)
-","import unittest
-
-class TestEvenOddCount(unittest.TestCase):
+class TestEvenOddCount_155(unittest.TestCase):
     def test_negative_number(self):
         self.assertEqual(even_odd_count(-12), (1, 1))
 
@@ -8760,48 +5461,20 @@ class TestEvenOddCount(unittest.TestCase):
     def test_zero(self):
         self.assertEqual(even_odd_count(0), (0, 0))
 
-    def test_single_digit(self):
+    def test_single_digit_1(self):
         self.assertEqual(even_odd_count(1), (0, 1))
+    def test_single_digit_2(self):
         self.assertEqual(even_odd_count(2), (1, 0))
-
-    def test_multiple_digits(self):
+    def test_multiple_digits_1(self):
         self.assertEqual(even_odd_count(12345), (2, 3))
+    def test_multiple_digits_2(self):
         self.assertEqual(even_odd_count(23456), (3, 3))
-
-    def test_edge_cases(self):
+    def test_edge_cases_1(self):
         self.assertEqual(even_odd_count(1000000000), (1, 9))
+    def test_edge_cases_2(self):
         self.assertEqual(even_odd_count(-1000000000), (1, 9))
 
-"
-"
-def int_to_mini_roman(number):
-    """"""
-    Given a positive integer, obtain its roman numeral equivalent as a string,
-    and return it in lowercase.
-    Restrictions: 1 <= num <= 1000
-
-    Examples:
-    >>> int_to_mini_roman(19) == 'xix'
-    >>> int_to_mini_roman(152) == 'clii'
-    >>> int_to_mini_roman(426) == 'cdxxvi'
-    """"""
-","    num = [1, 4, 5, 9, 10, 40, 50, 90,  
-           100, 400, 500, 900, 1000] 
-    sym = [""I"", ""IV"", ""V"", ""IX"", ""X"", ""XL"",  
-           ""L"", ""XC"", ""C"", ""CD"", ""D"", ""CM"", ""M""] 
-    i = 12
-    res = ''
-    while number: 
-        div = number // num[i] 
-        number %= num[i] 
-        while div: 
-            res += sym[i] 
-            div -= 1
-        i -= 1
-    return res.lower()
-","import unittest
-
-class TestIntToMiniRoman(unittest.TestCase):
+class TestIntToMiniRoman_156(unittest.TestCase):
     def test_1(self):
         self.assertEqual(int_to_mini_roman(1), 'i')
 
@@ -8839,22 +5512,9 @@ class TestIntToMiniRoman(unittest.TestCase):
         self.assertEqual(int_to_mini_roman(900), 'cm')
 
     def test_1000(self):
-        self.assertEqual(int_to_mini_roman(1000), 'm')"
-"
-def right_angle_triangle(a, b, c):
-    '''
-    Given the lengths of the three sides of a triangle. Return True if the three
-    sides form a right-angled triangle, False otherwise.
-    A right-angled triangle is a triangle in which one angle is right angle or 
-    90 degree.
-    Example:
-    right_angle_triangle(3, 4, 5) == True
-    right_angle_triangle(1, 2, 3) == False
-    '''
-","    return a*a == b*b + c*c or b*b == a*a + c*c or c*c == a*a + b*b
-","import unittest
+        self.assertEqual(int_to_mini_roman(1000), 'm')
 
-class TestRightAngleTriangle(unittest.TestCase):
+class TestRightAngleTriangle_157(unittest.TestCase):
     def test_right_angle_triangle_true(self):
         self.assertTrue(right_angle_triangle(3, 4, 5))
 
@@ -8915,110 +5575,58 @@ class TestRightAngleTriangle(unittest.TestCase):
     def test_right_angle_triangle_false_10(self):
         self.assertFalse(right_angle_triangle(1, 2, 3))
 
-"
-"
-def find_max(words):
-    """"""Write a function that accepts a list of strings.
-    The list contains different words. Return the word with maximum number
-    of unique characters. If multiple strings have maximum number of unique
-    characters, return the one which comes first in lexicographical order.
-
-    find_max([""name"", ""of"", ""string""]) == ""string""
-    find_max([""name"", ""enam"", ""game""]) == ""enam""
-    find_max([""aaaaaaa"", ""bb"" ,""cc""]) == """"aaaaaaa""
-    """"""
-","    return sorted(words, key = lambda x: (-len(set(x)), x))[0]
-","import unittest
-
-class TestFindMax(unittest.TestCase):
+class TestFindMax_158(unittest.TestCase):
     def test_find_max_1(self):
-        words = [""name"", ""of"", ""string""]
-        expected = ""string""
+        words = ["name", "of", "string"]
+        expected = "string"
         self.assertEqual(find_max(words), expected)
 
     def test_find_max_2(self):
-        words = [""name"", ""enam"", ""game""]
-        expected = ""enam""
+        words = ["name", "enam", "game"]
+        expected = "enam"
         self.assertEqual(find_max(words), expected)
 
     def test_find_max_3(self):
-        words = [""aaaaaaa"", ""bb"", ""cc""]
-        expected = ""aaaaaaa""
+        words = ["aaaaaaa", "bb", "cc"]
+        expected = "aaaaaaa"
         self.assertEqual(find_max(words), expected)
 
     def test_find_max_4(self):
-        words = [""name"", ""of"", ""string""]
-        expected = ""string""
+        words = ["name", "of", "string"]
+        expected = "string"
         self.assertEqual(find_max(words), expected)
 
     def test_find_max_5(self):
-        words = [""name"", ""enam"", ""game""]
-        expected = ""enam""
+        words = ["name", "enam", "game"]
+        expected = "enam"
         self.assertEqual(find_max(words), expected)
 
     def test_find_max_6(self):
-        words = [""aaaaaaa"", ""bb"", ""cc""]
-        expected = ""aaaaaaa""
+        words = ["aaaaaaa", "bb", "cc"]
+        expected = "aaaaaaa"
         self.assertEqual(find_max(words), expected)
 
     def test_find_max_7(self):
-        words = [""name"", ""of"", ""string""]
-        expected = ""string""
+        words = ["name", "of", "string"]
+        expected = "string"
         self.assertEqual(find_max(words), expected)
 
     def test_find_max_8(self):
-        words = [""name"", ""enam"", ""game""]
-        expected = ""enam""
+        words = ["name", "enam", "game"]
+        expected = "enam"
         self.assertEqual(find_max(words), expected)
 
     def test_find_max_9(self):
-        words = [""aaaaaaa"", ""bb"", ""cc""]
-        expected = ""aaaaaaa""
+        words = ["aaaaaaa", "bb", "cc"]
+        expected = "aaaaaaa"
         self.assertEqual(find_max(words), expected)
 
     def test_find_max_10(self):
-        words = [""name"", ""of"", ""string""]
-        expected = ""string""
+        words = ["name", "of", "string"]
+        expected = "string"
         self.assertEqual(find_max(words), expected)
 
-"
-"
-def eat(number, need, remaining):
-    """"""
-    You're a hungry rabbit, and you already have eaten a certain number of carrots,
-    but now you need to eat more carrots to complete the day's meals.
-    you should return an array of [ total number of eaten carrots after your meals,
-                                    the number of carrots left after your meals ]
-    if there are not enough remaining carrots, you will eat all remaining carrots, but will still be hungry.
-    
-    Example:
-    * eat(5, 6, 10) -> [11, 4]
-    * eat(4, 8, 9) -> [12, 1]
-    * eat(1, 10, 10) -> [11, 0]
-    * eat(2, 11, 5) -> [7, 0]
-    
-    Variables:
-    @number : integer
-        the number of carrots that you have eaten.
-    @need : integer
-        the number of carrots that you need to eat.
-    @remaining : integer
-        the number of remaining carrots thet exist in stock
-    
-    Constrain:
-    * 0 <= number <= 1000
-    * 0 <= need <= 1000
-    * 0 <= remaining <= 1000
-
-    Have fun :)
-    """"""
-","    if(need <= remaining):
-        return [ number + need , remaining-need ]
-    else:
-        return [ number + remaining , 0]
-","import unittest
-
-class TestEat(unittest.TestCase):
+class TestEat_159(unittest.TestCase):
     def test_eat_1(self):
         self.assertEqual(eat(5, 6, 10), [11, 4])
 
@@ -9049,40 +5657,7 @@ class TestEat(unittest.TestCase):
     def test_eat_10(self):
         self.assertEqual(eat(8, 13, 4), [16, 2])
 
-"
-"
-def do_algebra(operator, operand):
-    """"""
-    Given two lists operator, and operand. The first list has basic algebra operations, and 
-    the second list is a list of integers. Use the two given lists to build the algebric 
-    expression and return the evaluation of this expression.
-
-    The basic algebra operations:
-    Addition ( + ) 
-    Subtraction ( - ) 
-    Multiplication ( * ) 
-    Floor division ( // ) 
-    Exponentiation ( ** ) 
-
-    Example:
-    operator['+', '*', '-']
-    array = [2, 3, 4, 5]
-    result = 2 + 3 * 4 - 5
-    => result = 9
-
-    Note:
-        The length of operator list is equal to the length of operand list minus one.
-        Operand is a list of of non-negative integers.
-        Operator list has at least one operator, and operand list has at least two operands.
-
-    """"""
-","    expression = str(operand[0])
-    for oprt, oprn in zip(operator, operand[1:]):
-        expression+= oprt + str(oprn)
-    return eval(expression)
-","import unittest
-
-class TestDoAlgebra(unittest.TestCase):
+class TestDoAlgebra_160(unittest.TestCase):
     def test_addition(self):
         operator = ['+']
         operand = [2, 3]
@@ -9149,80 +5724,38 @@ class TestDoAlgebra(unittest.TestCase):
         result = do_algebra(operator, operand)
         self.assertEqual(result, None)
 
-"
-"
-def solve(s):
-    """"""You are given a string s.
-    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
-    otherwise keep it as it is.
-    If the string contains no letters, reverse the string.
-    The function should return the resulted string.
-    Examples
-    solve(""1234"") = ""4321""
-    solve(""ab"") = ""AB""
-    solve(""#a@C"") = ""#A@c""
-    """"""
-","    flg = 0
-    idx = 0
-    new_str = list(s)
-    for i in s:
-        if i.isalpha():
-            new_str[idx] = i.swapcase()
-            flg = 1
-        idx += 1
-    s = """"
-    for i in new_str:
-        s += i
-    if flg == 0:
-        return s[len(s)::-1]
-    return s
-","import unittest
-
-class TestSolve(unittest.TestCase):
+class TestSolve_161(unittest.TestCase):
     def test_solve_1(self):
-        self.assertEqual(solve(""1234""), ""4321"")
+        self.assertEqual(solve("1234"), "4321")
 
     def test_solve_2(self):
-        self.assertEqual(solve(""ab""), ""AB"")
+        self.assertEqual(solve("ab"), "AB")
 
     def test_solve_3(self):
-        self.assertEqual(solve(""#a@C""), ""#A@c"")
+        self.assertEqual(solve("#a@C"), "#A@c")
 
     def test_solve_4(self):
-        self.assertEqual(solve(""123456789""), ""987654321"")
+        self.assertEqual(solve("123456789"), "987654321")
 
     def test_solve_5(self):
-        self.assertEqual(solve(""abcdefghijklmnopqrstuvwxyz""), ""ABCDEFGHIJKLMNOPQRSTUVWXYZ"")
+        self.assertEqual(solve("abcdefghijklmnopqrstuvwxyz"), "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
     def test_solve_6(self):
-        self.assertEqual(solve(""1234567890""), ""0987654321"")
+        self.assertEqual(solve("1234567890"), "0987654321")
 
     def test_solve_7(self):
-        self.assertEqual(solve(""12345678901234567890""), ""012345678901234567890"")
+        self.assertEqual(solve("12345678901234567890"), "012345678901234567890")
 
     def test_solve_8(self):
-        self.assertEqual(solve(""123456789012345678901234567890""), ""0123456789012345678901234567890"")
+        self.assertEqual(solve("123456789012345678901234567890"), "0123456789012345678901234567890")
 
     def test_solve_9(self):
-        self.assertEqual(solve(""1234567890123456789012345678901234567890""), ""01234567890123456789012345678901234567890"")
+        self.assertEqual(solve("1234567890123456789012345678901234567890"), "01234567890123456789012345678901234567890")
 
     def test_solve_10(self):
-        self.assertEqual(solve(""12345678901234567890123456789012345678901234567890""), ""012345678901234567890123456789012345678901234567890"")
+        self.assertEqual(solve("12345678901234567890123456789012345678901234567890"), "012345678901234567890123456789012345678901234567890")
 
-"
-"
-def string_to_md5(text):
-    """"""
-    Given a string 'text', return its md5 hash equivalent string.
-    If 'text' is an empty string, return None.
-
-    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
-    """"""
-","    import hashlib
-    return hashlib.md5(text.encode('ascii')).hexdigest() if text else None
-","import unittest
-
-class TestStringToMD5(unittest.TestCase):
+class TestStringToMD5_162(unittest.TestCase):
     def test_empty_string(self):
         self.assertIsNone(string_to_md5(''))
 
@@ -9260,25 +5793,9 @@ class TestStringToMD5(unittest.TestCase):
         self.assertEqual(string_to_md5('你好 world!'), 'd41d8cd98f00b204e9800998ecf8427')
 
     def test_string_with_spaces_and_special_characters_and_unicode_characters(self):
-        self.assertEqual(string_to_md5('你好 world!'), 'd41d8cd98f00b204e9800998ecf8427')"
-"
-def generate_integers(a, b):
-    """"""
-    Given two positive integers a and b, return the even digits between a
-    and b, in ascending order.
+        self.assertEqual(string_to_md5('你好 world!'), 'd41d8cd98f00b204e9800998ecf8427')
 
-    For example:
-    generate_integers(2, 8) => [2, 4, 6, 8]
-    generate_integers(8, 2) => [2, 4, 6, 8]
-    generate_integers(10, 14) => []
-    """"""
-","    lower = max(2, min(a, b))
-    upper = min(8, max(a, b))
-
-    return [i for i in range(lower, upper+1) if i % 2 == 0]
-","import unittest
-
-class TestGenerateIntegers(unittest.TestCase):
+class TestGenerateIntegers_163(unittest.TestCase):
     def test_generate_integers_1(self):
         self.assertEqual(generate_integers(2, 8), [2, 4, 6, 8])
 
@@ -9307,4 +5824,5 @@ class TestGenerateIntegers(unittest.TestCase):
         self.assertEqual(generate_integers(1000, 1), [2, 4, 6, 8])
 
     def test_generate_integers_10(self):
-        self.assertEqual(generate_integers(1, 10000), [2, 4, 6, 8])"
+        self.assertEqual(generate_integers(1, 10000), [2, 4, 6, 8])
+
